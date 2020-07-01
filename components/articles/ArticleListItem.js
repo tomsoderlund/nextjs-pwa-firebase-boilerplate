@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { useUpdateArticle, useDeleteArticle } from '../../hooks/articles'
+import { useArticles } from '../../hooks/articles'
 
 const usePromptAndUpdateArticle = (article, fieldName) => {
-  const updateArticle = useUpdateArticle()
+  const { updateArticle } = useArticles()
 
   const handleUpdate = async () => {
     const newValue = window.prompt(`New value for ${fieldName}?`, article[fieldName])
@@ -19,7 +19,7 @@ const usePromptAndUpdateArticle = (article, fieldName) => {
 }
 
 const usePromptAndDeleteArticle = (article) => {
-  const deleteArticle = useDeleteArticle(article)
+  const { deleteArticle } = useArticles(article)
 
   const handleDelete = async () => {
     if (window.confirm(`Delete ${article.title}?`)) {

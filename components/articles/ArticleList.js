@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { useAddArticle } from '../../hooks/articles'
+import { useArticles } from '../../hooks/articles'
 import ArticleListItem from './ArticleListItem'
 
 const useAddArticleForm = () => {
   const [inputs, setInputs] = React.useState({ title: '' })
-  const addArticle = useAddArticle()
+  const { addArticle } = useArticles()
 
   const handleSubmit = async (event) => {
     if (event) event.preventDefault()
@@ -26,7 +26,8 @@ const useAddArticleForm = () => {
   return { inputs, handleInputChange, handleSubmit }
 }
 
-const ArticleList = ({ articles }) => {
+const ArticleList = () => {
+  const { articles } = useArticles()
   const { inputs, handleInputChange, handleSubmit } = useAddArticleForm()
 
   if (!articles) return 'Loading...'

@@ -4,6 +4,7 @@ import { withRouter } from 'next/router'
 
 import { config } from '../config/config'
 import { firebaseDB, getCollection } from '../lib/firebase'
+import { ArticlesContextProvider } from '../hooks/articles'
 
 import Page from '../components/Page'
 import ArticleList from '../components/articles/ArticleList'
@@ -19,9 +20,9 @@ function StartPage ({ articles, router: { query, asPath } }) {
 
       <p><em>{config.appTagline}</em></p>
 
-      <ArticleList
-        articles={articles}
-      />
+      <ArticlesContextProvider articles={articles}>
+        <ArticleList />
+      </ArticlesContextProvider>
 
       <h2>Routing</h2>
       <p>Current query: <strong>{JSON.stringify(query)}</strong></p>
