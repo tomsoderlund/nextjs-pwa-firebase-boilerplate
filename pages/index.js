@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'next/router'
 
 import { config } from '../config/config'
-import { firebaseDB, getCollectionItems } from '../lib/firebase'
+import { getCollectionItems, articlesCollection } from '../lib/firebase'
 import { ArticlesContextProvider } from '../hooks/articles'
 
 import Page from '../components/Page'
@@ -36,7 +36,7 @@ function ArticleListPage ({ articles, router: { query, asPath } }) {
 }
 
 export async function getServerSideProps ({ req, res, query }) {
-  const articles = await getCollectionItems(firebaseDB.collection('articles'))
+  const articles = await getCollectionItems(articlesCollection) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
   return { props: { articles } }
 }
 
