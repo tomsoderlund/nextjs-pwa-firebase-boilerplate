@@ -15,8 +15,7 @@ const completeConfig = {
     appDescription: packageJson.description,
     locale: 'en_US',
     googleAnalyticsId: 'UA-XXXXXXX-X',
-    googleSiteVerification: false,
-    databaseUrl: process.env.DATABASE_URL
+    googleSiteVerification: false
   },
 
   development: {
