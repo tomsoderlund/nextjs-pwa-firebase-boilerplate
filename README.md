@@ -22,7 +22,9 @@ _Lightning fast, all JavaScript._
 * Flexible configuration with `config/config.js` and `.env.local` file.
 * Code linting and formatting with StandardJS (`yarn lint`/`yarn fix`).
 * Unit testing with Jasmine (`yarn unit`, not yet included).
+* Great page speed, see [Lighthouse](https://developers.google.com/web/tools/lighthouse) score:
 
+![Lighthouse score](docs/lighthouse_score.png)
 
 ## Demo
 
