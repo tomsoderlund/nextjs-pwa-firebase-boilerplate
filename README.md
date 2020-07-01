@@ -11,17 +11,17 @@ This is a great template for a any project where you want **React (with Hooks)**
 _Lightning fast, all JavaScript._
 
 * Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications).
-* **NEW: Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying-serverless-on-vercelzeit-now).**
-* Firebase as database.
+* Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying-serverless-on-vercelzeit-now).
+* The new Firebase database, [Cloud Firestore](https://firebase.google.com/docs/firestore), as database.
 * React Hooks for business logic.
-* PWA features such as `manifest.json` and offline support (`next-offline`).
+* Free form database model, just add React Hooks and modify `[page].getServerSideProps` when changing/adding database tables.
+* PWA features such as `manifest.json` and offline support (`next-offline`, not yet included).
 * Easy to style the visual theme using CSS (e.g. using [Design Profile Generator](https://tomsoderlund.github.io/design-profile-generator/)).
 * `sitemap.xml` and `robots.txt` support.
 * Google Analytics and `google-site-verification` support (see `config/config.js`).
-* Flexible configuration with `config/config.js` and `.env` file.
-* Hot reloading with `nodemon`.
-* Unit testing with Jasmine (`yarn unit`).
+* Flexible configuration with `config/config.js` and `.env.local` file.
 * Code linting and formatting with StandardJS (`yarn lint`/`yarn fix`).
+* Unit testing with Jasmine (`yarn unit`, not yet included).
 
 
 ## Demo
@@ -79,7 +79,7 @@ Deploy to Now with:
 
 ### Change app name
 
-Do search/replace for "nextjs-pwa-firebase-boilerplate" to something else.
+Do search/replace for “nextjs-pwa-firebase-boilerplate” to something else.
 
 Change name in `public/manifest.json`
 
@@ -89,31 +89,30 @@ The database item is called “Article”, but you probably want something else 
 
 Rename the files:
 
-    mkdir graphql/{newName}
-    mv graphql/article/hooks.js graphql/{newName}/hooks.js
-    mv graphql/article/queries.js graphql/{newName}/queries.js
-    mv graphql/article/resolvers.js graphql/{newName}/resolvers.js
-    mv graphql/article/schema.js graphql/{newName}/schema.js
-    rm -r graphql/article
+    mv hooks/articles.js hooks/{newName}.js
+
     mkdir -p components/{newName}s
     mv components/articles/ArticleList.js components/{newName}s/{NewName}List.js
     mv components/articles/ArticleListItem.js components/{newName}s/{NewName}ListItem.js
     mv components/articles/ArticleDetails.js components/{newName}s/{NewName}Details.js
     rm -r components/articles
+
     mkdir pages/{newName}s
     mv "pages/articles/[article].js" "pages/{newName}s/[{newName}].js"
     rm -r pages/articles
 
-Then, do search/replace inside the files for different casing: article, Article, ARTICLE
+Then, do search/replace inside the files for different casing: `article`, `Article`, `ARTICLE`.
 
 ### Change port number
 
-Do search/replace for "3004" to something else.
+Do search/replace for “3004” to something else.
 
 ### How to remove/replace database
+
+Delete `lib/firebase.js` and modify `hooks/articles.js`.
 
 ### Change visual theme (CSS)
 
 1. Change colors in `public/manifest.json`
 2. Change CSS in `public/app.css`
-3. Change font in `PageHead.js`
+3. Change font(s) in `PageHead.js`
