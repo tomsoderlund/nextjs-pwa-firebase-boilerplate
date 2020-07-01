@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { withRouter } from 'next/router'
 
 import { config } from '../config/config'
-import { firebaseDB, getCollection } from '../lib/firebase'
+import { firebaseDB, getCollectionItems } from '../lib/firebase'
 import { ArticlesContextProvider } from '../hooks/articles'
 
 import Page from '../components/Page'
@@ -37,7 +37,7 @@ function ArticleListPage ({ articles, router: { query, asPath } }) {
 }
 
 export async function getServerSideProps ({ req, res, query }) {
-  const articles = await getCollection(firebaseDB.collection('articles'))
+  const articles = await getCollectionItems(firebaseDB.collection('articles'))
   return { props: { articles } }
 }
 
