@@ -35,6 +35,7 @@ const PageHead = ({ title, description = config.appDescription, path = '/' }) =>
       <meta property='og:description' content={description} />
       <meta property='og:locale' content={config.locale} />
 
+      <meta name='theme-color' content={manifest.theme_color} />
       <link rel='apple-touch-icon' href={iconUrl} />
       {(manifest.display === 'standalone') ? <meta name='apple-mobile-web-app-capable' content='yes' /> : null}
       <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
