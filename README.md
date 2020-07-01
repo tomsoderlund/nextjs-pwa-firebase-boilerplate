@@ -11,7 +11,7 @@ This is a great template for a any project where you want **React (with Hooks)**
 _Lightning fast, all JavaScript._
 
 * Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications).
-* **NEW: Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying-serverless-on-vercel-zeit-now).**
+* **NEW: Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying-serverless-on-vercelzeit-now).**
 * Firebase as database.
 * React Hooks for business logic.
 * PWA features such as `manifest.json` and offline support (`next-offline`).
@@ -69,7 +69,7 @@ Run in development mode with:
 
 Deploy to Now with:
 
-  yarn deploy
+    yarn deploy
 
 ## Modifying the app to your needs
 
