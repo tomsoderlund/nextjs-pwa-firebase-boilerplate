@@ -32,8 +32,15 @@ See [**nextjs-pwa-firebase-boilerplate** running on Vercel/Zeit Now here](https:
 
 ![nextjs-pwa-firebase-boilerplate demo on phone](docs/demo.jpg)
 
+## Deploying
+
+Setup and deploy your own project using this template with [Vercel](https://vercel.com). All you'll need is your Firebase Public API Key.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Ftomsoderlund%2Fnextjs-pwa-firebase-boilerplate&env=NEXT_PUBLIC_FIREBASE_API_KEY&envDescription=Enter%20your%20public%20Firebase%20API%20Key&envLink=https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate#deploying-with-vercel)
 
 ## How to use
+
+> Note: If you set up your project using the Deploy button above, you only need to clone your own repo instead of this repository.
 
 Clone this repository:
 
@@ -62,20 +69,6 @@ In production:
     yarn start
 
 If you navigate to `http://localhost:3004/` you will see a web page with a list of articles (or an empty list if you haven’t added one).
-
-## Deploying serverless (on Vercel/Zeit Now)
-
-Configure database:
-
-    vercel env add NEXT_PUBLIC_FIREBASE_API_KEY
-
-Run in development mode with:
-
-    yarn vercel
-
-Deploy to Now with:
-
-    yarn deploy
 
 ## Modifying the app to your needs
 
