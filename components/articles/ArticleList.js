@@ -15,7 +15,7 @@ const useAddArticleForm = () => {
       return
     }
     setInProgress(true)
-    await addArticle({ variables: inputs })
+    await addArticle({ variables: { ...inputs, content: 'This is the article content.' } })
     // Clear input form when done
     setInputs({ title: '' })
     setInProgress(false)
