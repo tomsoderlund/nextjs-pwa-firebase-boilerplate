@@ -11,7 +11,7 @@ const PageHead = ({ title, description = config.appDescription, path = '/' }) =>
   // const thumbnailUrl = `https://screens.myserver.com/?url=${config.appUrl}${path.slice(1)}`
   const iconUrl = '/favicon.png'
   const fonts = [
-    ['Source Sans Pro', '300,400,700']
+    // ['Source Sans Pro', '300,400,700']
   ]
 
   return (
