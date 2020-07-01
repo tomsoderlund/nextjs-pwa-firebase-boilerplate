@@ -48,7 +48,7 @@ Install dependencies:
 
 Set up the database:
 
-Configure the `.env` file.
+Configure the `.env.local` file.
 
 Start it by doing the following:
 
@@ -62,6 +62,10 @@ In production:
 If you navigate to `http://localhost:3004/` you will see a web page with a list of articles (or an empty list if you haven’t added one).
 
 ## Deploying serverless (on Vercel/Zeit Now)
+
+Configure database:
+
+    vercel env add FIREBASE_API_KEY
 
 Run in development mode with:
 
