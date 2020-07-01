@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useGetArticles, useAddArticle } from '../../graphql/article/hooks'
+import { useAddArticle } from '../../hooks/articles'
 import ArticleListItem from './ArticleListItem'
 
 const useAddArticleForm = () => {
@@ -26,16 +26,14 @@ const useAddArticleForm = () => {
   return { inputs, handleInputChange, handleSubmit }
 }
 
-const ArticleList = () => {
+const ArticleList = ({ articles }) => {
   const { inputs, handleInputChange, handleSubmit } = useAddArticleForm()
 
-  const { data, loading, error } = useGetArticles()
-  if (loading) return 'Loading...'
-  if (error) return `Error! ${error.message}`
+  if (!articles) return 'Loading...'
 
   return (
     <>
-      {data.articles && data.articles.map(article => (
+      {articles && articles.map(article => (
         <ArticleListItem
           key={article.id}
           article={article}

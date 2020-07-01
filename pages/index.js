@@ -3,11 +3,12 @@ import Link from 'next/link'
 import { withRouter } from 'next/router'
 
 import { config } from '../config/config'
+import { firebaseDB, getCollection } from '../lib/firebase'
 
 import Page from '../components/Page'
-// import ArticleList from '../components/articles/ArticleList'
+import ArticleList from '../components/articles/ArticleList'
 
-function StartPage ({ router: { query, asPath } }) {
+function StartPage ({ articles, router: { query, asPath } }) {
   // Note: 'query' contains both /:params and ?query=value from url
   return (
     <Page
@@ -18,7 +19,9 @@ function StartPage ({ router: { query, asPath } }) {
 
       <p><em>{config.appTagline}</em></p>
 
-      {/* <ArticleList /> */}
+      <ArticleList
+        articles={articles}
+      />
 
       <h2>Routing</h2>
       <p>Current query: <strong>{JSON.stringify(query)}</strong></p>
@@ -31,6 +34,11 @@ function StartPage ({ router: { query, asPath } }) {
       <p>Get the <a target='_blank' rel='noopener noreferrer' href='https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate'>source code for nextjs-pwa-firebase-boilerplate</a></p>
     </Page>
   )
+}
+
+export async function getServerSideProps ({ req, res, query }) {
+  const articles = await getCollection(firebaseDB.collection('articles'))
+  return { props: { articles } }
 }
 
 export default withRouter(StartPage)

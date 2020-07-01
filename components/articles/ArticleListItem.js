@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { useUpdateArticle, useDeleteArticle } from '../../graphql/article/hooks'
+import { useUpdateArticle, useDeleteArticle } from '../../hooks/articles'
 
 const usePromptAndUpdateArticle = (article, fieldName) => {
   const updateArticle = useUpdateArticle()
