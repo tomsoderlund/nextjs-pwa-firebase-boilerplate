@@ -14,7 +14,7 @@ _Lightning fast, all JavaScript._
 * Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying-serverless-on-vercelzeit-now).
 * The new Firebase database, [Cloud Firestore](https://firebase.google.com/docs/firestore), as database.
 * React Hooks for business logic.
-* Free form database model, just add React Hooks and modify `[page].getServerSideProps` when changing/adding database tables.
+* Free-form database model. No GraphQL or REST API, just add React Hooks and modify `[page].getServerSideProps` (for server-side rendering, SSR) when changing/adding database tables.
 * PWA features such as `manifest.json` and offline support (`next-offline`, not yet included).
 * Easy to style the visual theme using CSS (e.g. using [Design Profile Generator](https://tomsoderlund.github.io/design-profile-generator/)).
 * `sitemap.xml` and `robots.txt` support.
