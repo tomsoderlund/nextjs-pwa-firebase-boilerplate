@@ -14,7 +14,9 @@ function Page ({ title, description, path, children }) {
         path={path}
       />
 
-      <Header title={config.appName} />
+      <Header
+        title={config.appName}
+      />
 
       <main>
         {children}
