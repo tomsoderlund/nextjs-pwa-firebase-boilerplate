@@ -65,7 +65,7 @@ If you navigate to `http://localhost:3004/` you will see a web page with a list 
 
 Configure database:
 
-    vercel env add FIREBASE_API_KEY
+    vercel env add NEXT_PUBLIC_FIREBASE_API_KEY
 
 Run in development mode with:
 
