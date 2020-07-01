@@ -1,18 +1,17 @@
 const packageJson = require('../package.json')
 const manifest = require('../public/manifest.json')
 
-const appSlug = 'nextjs-pwa-firebase-boilerplate'
 const serverPort = process.env.PORT || 3004
 
 const completeConfig = {
 
   default: {
     serverPort,
-    appSlug,
+    appSlug: packageJson.name,
     appUrl: process.env.APP_URL,
     appName: manifest.name,
-    appTagline: 'Best web app boilerplate ever',
-    appDescription: packageJson.description,
+    appTagline: manifest.description,
+    appDescription: manifest.description,
     locale: 'en_US',
     googleAnalyticsId: 'UA-XXXXXXX-X',
     googleSiteVerification: false
