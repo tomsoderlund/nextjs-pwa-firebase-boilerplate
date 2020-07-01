@@ -1,5 +1,6 @@
 {
   "name": "nextjs-pwa-firebase-boilerplate",
+  "description": "Next.js serverless PWA with Firebase boilerplate.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
