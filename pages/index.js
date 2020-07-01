@@ -9,7 +9,7 @@ import { ArticlesContextProvider } from '../hooks/articles'
 import Page from '../components/Page'
 import ArticleList from '../components/articles/ArticleList'
 
-function StartPage ({ articles, router: { query, asPath } }) {
+function ArticleListPage ({ articles, router: { query, asPath } }) {
   // Note: 'query' contains both /:params and ?query=value from url
   return (
     <Page
@@ -41,4 +41,4 @@ export async function getServerSideProps ({ req, res, query }) {
   return { props: { articles } }
 }
 
-export default withRouter(StartPage)
+export default withRouter(ArticleListPage)

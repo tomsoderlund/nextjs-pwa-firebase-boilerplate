@@ -5,7 +5,7 @@ import { withRouter } from 'next/router'
 import Page from '../../components/Page'
 import ArticleDetails from '../../components/articles/ArticleDetails'
 
-function ArticlePage ({ router: { query, asPath } }) {
+function ArticleDetailsPage ({ router: { query, asPath } }) {
   // Note: 'query' contains both /:params and ?query=value from url
   const { loading, data } = { data: { article: { title: 'Test' } } }
   return (
@@ -29,4 +29,4 @@ function ArticlePage ({ router: { query, asPath } }) {
   )
 }
 
-export default withRouter(ArticlePage)
+export default withRouter(ArticleDetailsPage)
