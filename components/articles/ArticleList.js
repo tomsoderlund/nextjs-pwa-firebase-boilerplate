@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { useArticles } from '../../hooks/articles'
 import ArticleListItem from './ArticleListItem'
 
 const useAddArticleForm = () => {
-  const [inputs, setInputs] = React.useState({ title: '' })
+  const [inputs, setInputs] = useState({ title: '' })
   const { addArticle } = useArticles()
+  const [inProgress, setInProgress] = useState(false)
 
   const handleSubmit = async (event) => {
     if (event) event.preventDefault()
@@ -13,9 +14,11 @@ const useAddArticleForm = () => {
       window.alert('No title provided')
       return
     }
+    setInProgress(true)
     await addArticle({ variables: inputs })
     // Clear input form when done
     setInputs({ title: '' })
+    setInProgress(false)
   }
 
   const handleInputChange = (event) => {
@@ -23,12 +26,12 @@ const useAddArticleForm = () => {
     setInputs(inputs => ({ ...inputs, [event.target.name]: event.target.value }))
   }
 
-  return { inputs, handleInputChange, handleSubmit }
+  return { inputs, inProgress, handleInputChange, handleSubmit }
 }
 
 const ArticleList = () => {
   const { articles } = useArticles()
-  const { inputs, handleInputChange, handleSubmit } = useAddArticleForm()
+  const { inputs, inProgress, handleInputChange, handleSubmit } = useAddArticleForm()
 
   if (!articles) return 'Loading...'
 
@@ -49,8 +52,11 @@ const ArticleList = () => {
           required
           value={inputs.title}
           onChange={handleInputChange}
+          disabled={inProgress}
         />
-        <button type='submit'>Add article</button>
+
+        <button type='submit' disabled={inProgress}>Add article</button>
+
         <style jsx>{`
           form {
             margin-top: 1em
