@@ -2,20 +2,24 @@ import React from 'react'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 
+import { articleRef, docWithId } from '../../lib/firebase'
+
 import Page from '../../components/Page'
 import ArticleDetails from '../../components/articles/ArticleDetails'
 
-function ArticleDetailsPage ({ router: { query, asPath } }) {
+function ArticleDetailsPage ({ article, router: { query, asPath } }) {
   // Note: 'query' contains both /:params and ?query=value from url
-  const { loading, data } = { data: { article: { title: 'Test' } } }
   return (
     <Page
-      title={loading ? 'Loading...' : data.article.title}
+      title={!article ? 'Loading...' : article.title}
+      description={!article ? '' : article.content}
       path={asPath}
     >
-      {loading ? <div>Loading...</div> : (
+      {!article ? (
+        <div>Loading...</div>
+      ) : (
         <ArticleDetails
-          article={data.article}
+          article={article}
         />
       )}
 
@@ -27,6 +31,18 @@ function ArticleDetailsPage ({ router: { query, asPath } }) {
       </ul>
     </Page>
   )
+}
+
+export async function getServerSideProps ({ req, res, query }) {
+  const articleId = query.article.split('-').pop()
+  const articleSnapshot = await articleRef(articleId).get()
+  if (!articleSnapshot.exists) {
+    const notFoundError = new Error(`Not found: ${articleId}`)
+    notFoundError.code = 'ENOENT'
+    throw notFoundError
+  }
+  const article = docWithId(articleSnapshot)
+  return { props: { article } }
 }
 
 export default withRouter(ArticleDetailsPage)

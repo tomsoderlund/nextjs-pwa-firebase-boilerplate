@@ -1,9 +1,6 @@
 import React, { createContext, useState, useContext } from 'react'
 
-import { firebaseDB, docWithId } from '../lib/firebase'
-
-const articlesCollection = firebaseDB.collection('articles')
-const articleRef = id => articlesCollection.doc(id)
+import { articlesCollection, articleRef, docWithId } from '../lib/firebase'
 
 // ----- Articles collection -----
 
@@ -52,12 +49,13 @@ export const { Consumer: ArticlesContextConsumer } = ArticlesContext
 export const useArticles = () => useContext(ArticlesContext)
 
 // ----- One Article -----
+/*
 
 export const ArticleContext = createContext()
 
 export const ArticleContextProvider = (props) => {
   // Use State to keep the values. Initial values are obtained from ArticleContextProvider’s props.
-  const [article, setArticle] = useState(props.article)
+  const [article] = useState(props.article)
 
   // const { data, loading, error } = useGetArticle('slug-1')
   const getArticle = async (slugAndId) => {
@@ -80,3 +78,4 @@ export const ArticleContextProvider = (props) => {
 export const { Consumer: ArticleContextConsumer } = ArticleContext
 
 export const useArticle = () => useContext(ArticleContext)
+*/
