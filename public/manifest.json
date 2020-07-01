@@ -1,0 +1,16 @@
+{
+  "name": "Next.js PWA",
+  "theme_color": "#663399",
+  "background_color": "#663399",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/"
+}
