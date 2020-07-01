@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3004",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 3004",
+    "test": "echo 'Running Standard.js and Jasmine unit tests...\n' && yarn lint && yarn unit",
+    "unit": "jasmine",
+    "lint": "standard",
+    "fix": "standard --fix",
+    "vercel": "echo 'Running as Vercel serverless'; vercel dev --listen 3004",
+    "deploy": "vercel --prod"
   },
   "dependencies": {
-    "next": "9.4.4",
+    "next": "latest",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   }
