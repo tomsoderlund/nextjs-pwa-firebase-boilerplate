@@ -15,7 +15,7 @@ _Lightning fast, all JavaScript._
 * The new Firebase database, [Cloud Firestore](https://firebase.google.com/docs/firestore), as database.
 * React Hooks for business logic.
 * Free-form database model. No GraphQL or REST API, just add React Hooks and modify `[page].getServerSideProps` (for server-side rendering, SSR) when changing/adding database tables.
-* PWA features such as `manifest.json` and offline support (`next-offline`, not yet included).
+* PWA features such as `manifest.json` and offline support (`next-offline`).
 * Easy to style the visual theme using CSS (e.g. using [Design Profile Generator](https://tomsoderlund.github.io/design-profile-generator/)).
 * `sitemap.xml` and `robots.txt` support.
 * Google Analytics and `google-site-verification` support (see `config/config.js`).

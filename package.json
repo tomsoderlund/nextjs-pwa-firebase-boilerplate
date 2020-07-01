@@ -18,6 +18,7 @@
   "dependencies": {
     "firebase": "^7.15.5",
     "next": "latest",
+    "next-offline": "^5.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
