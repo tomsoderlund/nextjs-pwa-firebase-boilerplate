@@ -28,7 +28,6 @@ function StartPage ({ articles, router: { query, asPath } }) {
 
       <ul>
         <li><Link href='/'><a>Home</a></Link></li>
-        <li><Link href='/articles/other-1'><a>Other route</a></Link></li>
       </ul>
 
       <p>Get the <a target='_blank' rel='noopener noreferrer' href='https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate'>source code for nextjs-pwa-firebase-boilerplate</a></p>
