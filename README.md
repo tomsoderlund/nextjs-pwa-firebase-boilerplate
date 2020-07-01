@@ -26,7 +26,7 @@ _Lightning fast, all JavaScript._
 
 ## Demo
 
-See [**nextjs-pwa-firebase-boilerplate** running on Vercel/Zeit Now here](https://nextjs-pwa-firebase-boilerplate.tomsoderlund.vercel.sh/).
+See [**nextjs-pwa-firebase-boilerplate** running on Vercel/Zeit Now here](https://nextjs-pwa-firebase-boilerplate.vercel.app/).
 
 ![nextjs-pwa-firebase-boilerplate demo on phone](docs/demo.jpg)
 
