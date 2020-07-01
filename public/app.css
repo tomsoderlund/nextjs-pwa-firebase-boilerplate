@@ -391,6 +391,12 @@ footer {
   background-color: #663399;
 }
 
+@media only screen and (max-width: 480px) {
+  body {
+    background-color: #663399;
+  }
+}
+
 a {
   color: #00CED1;
 }
