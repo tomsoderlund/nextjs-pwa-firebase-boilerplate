@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import { withRouter } from 'next/router'
 
 import { config } from '../config/config'
@@ -27,10 +26,10 @@ function ArticleListPage ({ articles, router: { query, asPath } }) {
       <h2>Routing</h2>
       <p>Current query: <strong>{JSON.stringify(query)}</strong></p>
 
-      <ul>
-        <li><Link href='/'><a>Home</a></Link></li>
-      </ul>
+      <h2>Add to Home Screen</h2>
+      <p>You can add this to your Home Screen on iOS/Android, it should then start full screen.</p>
 
+      <h2>Source code</h2>
       <p>Get the <a target='_blank' rel='noopener noreferrer' href='https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate'>source code for nextjs-pwa-firebase-boilerplate</a></p>
     </Page>
   )
