@@ -1,7 +1,7 @@
 const packageJson = require('../package.json')
 const manifest = require('../public/manifest.json')
 
-const appSlug = 'nextjs-pwa-graphql-sql'
+const appSlug = 'nextjs-pwa-firebase-boilerplate'
 const serverPort = process.env.PORT || 3004
 
 const completeConfig = {

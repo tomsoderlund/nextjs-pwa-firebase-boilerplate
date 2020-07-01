@@ -27,7 +27,7 @@ function StartPage ({ query, asPath }) {
         <li><Link href='/articles/other-1'><a>Other route</a></Link></li>
       </ul>
 
-      <p>Get the <a target='_blank' rel='noopener noreferrer' href='https://github.com/tomsoderlund/nextjs-pwa-graphql-sql-boilerplate'>source code for nextjs-pwa-graphql-sql-boilerplate</a></p>
+      <p>Get the <a target='_blank' rel='noopener noreferrer' href='https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate'>source code for nextjs-pwa-firebase-boilerplate</a></p>
     </Page>
   )
 }
