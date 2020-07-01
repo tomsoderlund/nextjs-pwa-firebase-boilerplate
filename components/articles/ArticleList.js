@@ -55,7 +55,13 @@ const ArticleList = () => {
           disabled={inProgress}
         />
 
-        <button type='submit' disabled={inProgress}>Add article</button>
+        <button
+          type='submit'
+          className='primary'
+          disabled={inProgress}
+        >
+          Add article
+        </button>
 
         <style jsx>{`
           form {

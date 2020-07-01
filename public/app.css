@@ -136,7 +136,8 @@ a {
   cursor: pointer;
 }
 a:hover {
-  filter: brightness(125%);
+  filter: brightness(110%);
+  border-bottom-style: solid;
 }
 
 /* #NiceAndSimple: Button - https://codepen.io/tomsoderlund/pen/qqyzqp */
@@ -166,11 +167,11 @@ button,
 }
 button:focus:not(:disabled),
 .button:focus:not(:disabled) {
-  filter: brightness(125%);
+  filter: brightness(110%);
 }
 button:hover:not(:disabled),
 .button:hover:not(:disabled) {
-  filter: brightness(125%);
+  filter: brightness(110%);
   top: -0.1em;
   box-shadow: 0 0.2em 0.1em rgba(0, 0, 0, 0.2);
 }
@@ -399,6 +400,7 @@ footer {
 
 a {
   color: #00CED1;
+  border-bottom-color: #00CED1;
 }
 
 button,

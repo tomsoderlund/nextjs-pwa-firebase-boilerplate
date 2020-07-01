@@ -45,6 +45,10 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
       <a className='action update' onClick={promptAndUpdateArticle}>Update</a>
       <a className='action delete' onClick={promptAndDeleteArticle}>Delete</a>
       <style jsx>{`
+        div {
+          margin: 0.3em 0;
+        }
+
         a.action {
           margin-left: 0.5em;
           cursor: pointer;
@@ -57,6 +61,10 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
         }
         a.delete {
           color: tomato;
+        }
+
+        a:hover {
+          filter: brightness(70%);
         }
 
         .inProgress {
