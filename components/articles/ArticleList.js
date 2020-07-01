@@ -45,6 +45,7 @@ const ArticleList = ({ articles }) => {
           type='text'
           placeholder='Enter an article title'
           name='title'
+          required
           value={inputs.title}
           onChange={handleInputChange}
         />
