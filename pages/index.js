@@ -1,12 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
+import { withRouter } from 'next/router'
 
 import { config } from '../config/config'
 
 import Page from '../components/Page'
 // import ArticleList from '../components/articles/ArticleList'
 
-function StartPage ({ query, asPath }) {
+function StartPage ({ router: { query, asPath } }) {
   // Note: 'query' contains both /:params and ?query=value from url
   return (
     <Page
@@ -32,4 +33,4 @@ function StartPage ({ query, asPath }) {
   )
 }
 
-export default StartPage
+export default withRouter(StartPage)
