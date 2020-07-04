@@ -8,7 +8,7 @@ const PageHead = ({ title, description = config.appDescription, path = '/' }) =>
     ? `${title} – ${config.appName}`
     : `${config.appName} – ${config.appTagline}`
 
-  // const thumbnailUrl = `https://screens.myserver.com/?url=${config.appUrl}${path.slice(1)}`
+  // const thumbnailUrl = `https://screens.myserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
   const iconUrl = '/favicon.png'
   const fonts = [
     // ['Source Sans Pro', '300,400,700']

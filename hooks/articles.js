@@ -15,6 +15,7 @@ export const ArticlesContextProvider = (props) => {
     const variablesWithTimestamp = { ...variables, dateCreated: Date.now() }
     const newArticleRef = await articlesCollection.add(variablesWithTimestamp)
     const newArticleSnapshot = await newArticleRef.get()
+    // Update client-side state
     setArticles([
       ...articles,
       docWithId(newArticleSnapshot)
@@ -27,6 +28,7 @@ export const ArticlesContextProvider = (props) => {
     const { id, ...values } = variables
     await articleRef(id).update(values)
     const articleSnapshot = await articleRef(id).get()
+    // Update client-side state
     setArticles(articles.map(article => article.id === id ? docWithId(articleSnapshot) : article))
     return docWithId(articleSnapshot)
   }
@@ -35,6 +37,7 @@ export const ArticlesContextProvider = (props) => {
   const deleteArticle = async ({ variables }) => {
     const { id } = variables
     await articleRef(id).delete()
+    // Update client-side state
     setArticles(articles.filter(article => article.id !== id))
     return variables
   }
