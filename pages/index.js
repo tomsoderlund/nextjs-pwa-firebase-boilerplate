@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'next/router'
+import Link from 'next/link'
 
 import { config } from '../config/config'
 import { getCollectionItems, articlesCollection } from '../lib/firebase'
@@ -25,6 +26,11 @@ function ArticleListPage ({ articles, router: { query, asPath } }) {
 
       <h2>Routing</h2>
       <p>Current query: <strong>{JSON.stringify(query)}</strong></p>
+
+      <h2>Log in (using Firebase Authentication)</h2>
+      <Link href='/login'>
+        <a>Click here to log in</a>
+      </Link>
 
       <h2>Add to Home Screen</h2>
       <p>You can add this to your Home Screen on iOS/Android, it should then start full screen.</p>

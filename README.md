@@ -13,6 +13,7 @@ _Lightning fast, all JavaScript._
 * Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications).
 * Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying-serverless-on-vercelzeit-now).
 * The new Firebase database, [Cloud Firestore](https://firebase.google.com/docs/firestore), as database.
+* Login/Signup with Firebase Authentication.
 * React Hooks for business logic.
 * Free-form database model. No GraphQL or REST API, just add React Hooks and modify `[page].getServerSideProps` (for server-side rendering, SSR) when changing/adding database tables.
 * PWA features such as `manifest.json` and offline support (`next-offline`).
