@@ -5,12 +5,14 @@ import Link from 'next/link'
 import { config } from '../config/config'
 import { getCollectionItems, articlesCollection } from '../lib/firebase'
 import { ArticlesContextProvider } from '../hooks/articles'
+import useUser from '../hooks/useUser'
 
 import Page from '../components/Page'
 import ArticleList from '../components/articles/ArticleList'
 
 function ArticleListPage ({ articles, router: { query, asPath } }) {
   // Note: 'query' contains both /:params and ?query=value from url
+  const { user } = useUser()
   return (
     <Page
       title={undefined}
@@ -28,6 +30,9 @@ function ArticleListPage ({ articles, router: { query, asPath } }) {
       <p>Current query: <strong>{JSON.stringify(query)}</strong></p>
 
       <h2>Log in (using Firebase Authentication)</h2>
+      {user && (
+        <p>You are logged in as <strong>{user.email}</strong></p>
+      )}
       <Link href='/login'>
         <a>Click here to log in</a>
       </Link>
