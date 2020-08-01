@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import Link from 'next/link'
 import Router from 'next/router'
 
 import { config } from '../config/config'
@@ -8,7 +7,7 @@ import { firebaseApp } from '../lib/firebase'
 
 import Page from '../components/Page'
 
-function EmailAuthenticatePage ({ query }) {
+function EmailAuthenticatePage ({ query, loggedinRoute = '/' }) {
   useEffect(() => {
     async function loginUserAndRedirect () {
       // Confirm the link is a sign-in with email link.
@@ -23,7 +22,7 @@ function EmailAuthenticatePage ({ query }) {
           await firebaseApp.auth().signInWithEmailLink(email, window.location.href)
           // Clear email from storage
           window.localStorage.removeItem('emailForSignIn')
-          Router.push('/')
+          Router.push(loggedinRoute)
           // You can access the new user via result.user
           // Additional user info profile not available via:
           // result.additionalUserInfo.profile == null
@@ -38,11 +37,8 @@ function EmailAuthenticatePage ({ query }) {
   }, [query])
 
   return (
-    <Page title='Log in'>
-      <h2>Log in to {config.appName}</h2>
-      <Link href='/login'>
-        <a>Log in again</a>
-      </Link>
+    <Page title='Logging in'>
+      <h2>Logging in to {config.appName}...</h2>
     </Page>
   )
 }
