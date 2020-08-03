@@ -112,3 +112,9 @@ Delete `lib/firebase.js` and modify `hooks/articles.js`.
 1. Change colors in `public/manifest.json`
 2. Change CSS in `public/app.css`
 3. Change font(s) in `PageHead.js`
+
+### Login/Signup with Firebase Authentication
+
+You need to enable Email/Password authentication in https://console.firebase.google.com/u/0/project/MYAPP/authentication/providers
+
+TODO: add SSR support: https://github.com/vercel/next.js/tree/canary/examples/with-firebase-authentication
