@@ -13,7 +13,7 @@ export const ArticlesContextProvider = (props) => {
   // addArticle({ variables })
   const addArticle = async ({ variables }) => {
     const variablesWithTimestamp = { ...variables, dateCreated: Date.now() }
-    const newArticleRef = await articlesCollection.add(variablesWithTimestamp)
+    const newArticleRef = await articlesCollection().add(variablesWithTimestamp)
     const newArticleSnapshot = await newArticleRef.get()
     // Update client-side state
     setArticles([

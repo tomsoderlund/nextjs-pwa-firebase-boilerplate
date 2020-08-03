@@ -47,7 +47,7 @@ function ArticleListPage ({ articles, router: { query, asPath } }) {
 }
 
 export async function getServerSideProps ({ req, res, query }) {
-  const articles = await getCollectionItems(articlesCollection) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
+  const articles = await getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
   return { props: { articles } }
 }
 
