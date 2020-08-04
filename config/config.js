@@ -8,7 +8,7 @@ const completeConfig = {
   default: {
     serverPort,
     appSlug: packageJson.name,
-    appUrl: process.env.APP_URL,
+    appUrl: process.env.NEXT_PUBLIC_APP_URL,
     appName: manifest.name,
     appTagline: manifest.description,
     appDescription: manifest.description,
