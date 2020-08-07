@@ -20,13 +20,16 @@ const Sitemap = () => {
 }
 
 Sitemap.getInitialProps = async ({ res }) => { // { req, res, pathname, asPath, query }
-  res.setHeader('Content-Type', 'text/xml')
-  res.write(
-    ReactDOMServer.renderToStaticMarkup(
-      <Sitemap />
+  if (res.write) {
+    res.setHeader('Content-Type', 'text/xml')
+    res.write(
+      ReactDOMServer.renderToStaticMarkup(
+        <Sitemap />
+      )
     )
-  )
-  res.end()
+    res.end()
+  }
+  return {}
 }
 
 export default Sitemap
