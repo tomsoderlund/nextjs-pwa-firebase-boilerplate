@@ -85,7 +85,7 @@ The database item is called “Article”, but you probably want something else 
 
 Rename the files:
 
-    mv hooks/articles.js hooks/{newName}.js
+    mv hooks/articles.js hooks/{newName}s.js
 
     mkdir -p components/{newName}s
     mv components/articles/ArticleList.js components/{newName}s/{NewName}List.js
