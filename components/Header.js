@@ -26,7 +26,7 @@ const AppIcon = () => (
   </Link>
 )
 
-export default ({ title = config.appName, children }) => (
+const Header = ({ title = config.appName, children }) => (
   <header
     className='color-header-bg color-background-fg'
   >
@@ -48,8 +48,10 @@ export default ({ title = config.appName, children }) => (
 
       :global(main) {
         margin-top: 50px;
+        min-height: calc(100vh - 50px);
       }
     `}
     </style>
   </header>
 )
+export default Header
