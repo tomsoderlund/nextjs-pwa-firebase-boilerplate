@@ -46,6 +46,12 @@ const PageHead = ({ title, description = config.appDescription, path = '/' }) =>
         <link rel='apple-touch-startup-image' href='' />
         <link rel='canonical' href={websiteUrl} />
         <meta property='og:url' content={websiteUrl} />
+
+        <meta name='twitter:card' content='summary' />
+        <meta name='twitter:site' content={`@${config.landingPage.social.twitter}`} />
+        <meta name='twitter:title' content={pageTitle} />
+        <meta name='twitter:description' content={description} />
+        <meta name='twitter:image' content={thumbnailUrl} />
       */}
 
       {config.googleSiteVerification ? <meta name='google-site-verification' content={config.googleSiteVerification} /> : null}
