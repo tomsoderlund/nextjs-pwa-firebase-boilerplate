@@ -2,11 +2,14 @@ import Head from 'next/head'
 
 import manifest from '../public/manifest.json'
 import { config } from '../config/config'
+import isDevelopment from '../lib/isDevelopment'
 
 const PageHead = ({ title, description = config.appDescription, path = '/' }) => {
   const pageTitle = title
     ? `${title} – ${config.appName}`
     : `${config.appName} – ${config.appTagline}`
+
+  if (isDevelopment()) console.log('PageHead (dev):', [pageTitle, description])
 
   // const thumbnailUrl = `https://screens.myserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
   const iconUrl = '/favicon.png'
