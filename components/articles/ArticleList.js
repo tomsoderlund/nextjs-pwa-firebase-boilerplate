@@ -29,9 +29,40 @@ const useAddArticleForm = () => {
   return { inputs, inProgress, handleInputChange, handleSubmit }
 }
 
+const AddArticleForm = () => {
+  const { inputs, inProgress, handleInputChange, handleSubmit } = useAddArticleForm()
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type='text'
+        placeholder='Enter an article title'
+        name='title'
+        required
+        value={inputs.title}
+        onChange={handleInputChange}
+        disabled={inProgress}
+      />
+
+      <button
+        type='submit'
+        className='primary'
+        disabled={inProgress}
+      >
+        Add article
+      </button>
+
+      <style jsx>{`
+        form {
+          margin-top: 1em
+        }
+      `}
+      </style>
+    </form>
+  )
+}
+
 const ArticleList = () => {
   const { articles } = useArticles()
-  const { inputs, inProgress, handleInputChange, handleSubmit } = useAddArticleForm()
 
   if (!articles) return 'Loading...'
 
@@ -44,32 +75,7 @@ const ArticleList = () => {
         />
       ))}
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          placeholder='Enter an article title'
-          name='title'
-          required
-          value={inputs.title}
-          onChange={handleInputChange}
-          disabled={inProgress}
-        />
-
-        <button
-          type='submit'
-          className='primary'
-          disabled={inProgress}
-        >
-          Add article
-        </button>
-
-        <style jsx>{`
-          form {
-            margin-top: 1em
-          }
-        `}
-        </style>
-      </form>
+      <AddArticleForm />
     </>
   )
 }
