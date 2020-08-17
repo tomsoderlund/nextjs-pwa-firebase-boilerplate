@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import createNotification from 'lib/createNotification'
 import { useArticles } from 'hooks/articles'
 
 const usePromptAndUpdateArticle = (article, fieldName) => {
@@ -12,6 +13,7 @@ const usePromptAndUpdateArticle = (article, fieldName) => {
         id: article.id,
         [fieldName]: newValue
       }
+      createNotification('Updating article...')
       await updateArticle({ variables })
     }
   }
@@ -27,6 +29,7 @@ const usePromptAndDeleteArticle = (article) => {
       const variables = {
         id: article.id
       }
+      createNotification('Deleting article...')
       await deleteArticle({ variables })
     }
   }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 
+import createNotification from 'lib/createNotification'
 import { useArticles } from 'hooks/articles'
+
 import ArticleListItem from './ArticleListItem'
 
 const useAddArticleForm = () => {
@@ -15,6 +17,7 @@ const useAddArticleForm = () => {
       return
     }
     setInProgress(true)
+    createNotification('Creating new article...')
     await addArticle({ variables: { ...inputs, content: 'This is the article content.' } })
     // Clear input form when done
     setInputs({ title: '' })

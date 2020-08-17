@@ -1,6 +1,8 @@
 import React from 'react'
 import Router from 'next/router'
 
+import 'react-toastify/dist/ReactToastify.min.css'
+
 import { googlePageview } from 'components/GoogleAnalytics'
 
 Router.events.on('routeChangeComplete', path => googlePageview(path))
