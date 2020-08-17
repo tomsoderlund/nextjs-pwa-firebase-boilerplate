@@ -30,7 +30,6 @@ function Page ({ title, description, path, children }) {
           border-radius: 0.5em;
           box-shadow: 0 0.2em 0.4em rgba(0,0,0, 0.3);
           padding: 0.8em;
-          font-family: 'Inter', sans-serif;
           background-color: lemonchiffon;
           color: black;
         }
