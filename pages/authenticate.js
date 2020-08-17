@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import Router from 'next/router'
 
-import { config } from '../config/config'
-import { firebaseApp } from '../lib/firebase'
-// import createNotification from '../../lib/createNotification'
+import { config } from 'config/config'
+import { firebaseApp } from 'lib/firebase'
+// import createNotification from 'lib/createNotification'
 
-import Page from '../components/Page'
+import Page from 'components/Page'
 
 function EmailAuthenticatePage ({ query, loggedinRoute = '/' }) {
   useEffect(() => {

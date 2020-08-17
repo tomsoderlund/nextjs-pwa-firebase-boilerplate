@@ -1,5 +1,5 @@
-import { config } from '../config/config'
-import isDevelopment from '../lib/isDevelopment'
+import { config } from 'config/config'
+import isDevelopment from 'lib/isDevelopment'
 
 /* options: { 'page_title' : 'homepage' } */
 // See https://developers.google.com/analytics/devguides/collection/gtagjs

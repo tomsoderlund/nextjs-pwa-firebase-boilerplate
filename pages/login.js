@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
-import { config } from '../config/config'
-import { firebaseApp } from '../lib/firebase'
-import { googleEvent } from '../components/GoogleAnalytics'
-// import createNotification from '../lib/createNotification'
+import { config } from 'config/config'
+import { firebaseApp } from 'lib/firebase'
+import { googleEvent } from 'components/GoogleAnalytics'
+// import createNotification from 'lib/createNotification'
 
-import Page from '../components/Page'
+import Page from 'components/Page'
 
 const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for a login link!', googleEventAction = 'Log in' }) => {
   const [personInfo, setPersonInfo] = useState({ email: '' })

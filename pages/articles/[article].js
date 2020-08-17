@@ -2,11 +2,11 @@ import React from 'react'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 
-import { docWithId } from '../../lib/firebase'
-import { articleRef } from '../../hooks/articles'
+import { docWithId } from 'lib/firebase'
+import { articleRef } from 'hooks/articles'
 
-import Page from '../../components/Page'
-import ArticleDetails from '../../components/articles/ArticleDetails'
+import Page from 'components/Page'
+import ArticleDetails from 'components/articles/ArticleDetails'
 
 function ArticleDetailsPage ({ article, router: { query, asPath } }) {
   // Note: 'query' contains both /:params and ?query=value from url

@@ -1,5 +1,5 @@
-const packageJson = require('../package.json')
-const manifest = require('../public/manifest.json')
+const packageJson = require('package.json')
+const manifest = require('public/manifest.json')
 
 const serverPort = process.env.PORT || 3004
 

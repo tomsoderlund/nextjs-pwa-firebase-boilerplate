@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { config } from '../config/config'
+import { config } from 'config/config'
 
-import PageHead from '../components/PageHead'
-import Header from '../components/Header'
+import PageHead from 'components/PageHead'
+import Header from 'components/Header'
 
 function Page ({ title, description, path, children }) {
   return (

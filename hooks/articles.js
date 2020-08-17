@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react'
 
-import { firebaseDB, docWithId } from '../lib/firebase'
+import { firebaseDB, docWithId } from 'lib/firebase'
 
 export const articlesCollection = () => firebaseDB.collection('articles')
 export const articleRef = (articleId) => articlesCollection().doc(articleId)

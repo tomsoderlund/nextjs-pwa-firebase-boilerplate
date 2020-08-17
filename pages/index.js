@@ -2,13 +2,13 @@ import React from 'react'
 import { withRouter } from 'next/router'
 import Link from 'next/link'
 
-import { config } from '../config/config'
-import { getCollectionItems } from '../lib/firebase'
-import { articlesCollection, ArticlesContextProvider } from '../hooks/articles'
-import useUser from '../hooks/useUser'
+import { config } from 'config/config'
+import { getCollectionItems } from 'lib/firebase'
+import { articlesCollection, ArticlesContextProvider } from 'hooks/articles'
+import useUser from 'hooks/useUser'
 
-import Page from '../components/Page'
-import ArticleList from '../components/articles/ArticleList'
+import Page from 'components/Page'
+import ArticleList from 'components/articles/ArticleList'
 
 function ArticleListPage ({ articles, router: { query, asPath } }) {
   // Note: 'query' contains both /:params and ?query=value from url

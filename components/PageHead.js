@@ -1,8 +1,8 @@
 import Head from 'next/head'
 
-import manifest from '../public/manifest.json'
-import { config } from '../config/config'
-import isDevelopment from '../lib/isDevelopment'
+import manifest from 'public/manifest.json'
+import { config } from 'config/config'
+import isDevelopment from 'lib/isDevelopment'
 
 const PageHead = ({ title, description = config.appDescription, path = '/' }) => {
   const pageTitle = title
