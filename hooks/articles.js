@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react'
 
-import { firebaseDB, docWithId } from 'lib/firebase'
+import { firebaseDB, docWithId, getCollectionItems } from 'lib/firebase'
 
 export const articlesCollection = () => firebaseDB.collection('articles')
 export const articleRef = (articleId) => articlesCollection().doc(articleId)
@@ -16,6 +16,11 @@ export const ArticlesContext = createContext()
 export const ArticlesContextProvider = (props) => {
   // Use State to keep the values. Initial values are obtained from ArticlesContextProvider’s props.
   const [articles, setArticles] = useState(props.articles)
+
+  // Real-time updates from Firebase
+  articlesCollection().onSnapshot(snapshot => {
+    getCollectionItems(articlesCollection()).then(setArticles)
+  })
 
   // addArticle({ variables })
   const addArticle = async ({ variables }) => {
