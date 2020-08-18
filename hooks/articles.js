@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext, useEffect } from 'react'
 
 import { firebaseDB, docWithId, getCollectionItems } from 'lib/firebase'
 
@@ -18,9 +18,10 @@ export const ArticlesContextProvider = (props) => {
   const [articles, setArticles] = useState(props.articles)
 
   // Real-time updates from Firebase
-  articlesCollection().onSnapshot(snapshot => {
-    getCollectionItems(articlesCollection()).then(setArticles)
-  })
+  useEffect(
+    () => articlesCollection().onSnapshot(snapshot => getCollectionItems(articlesCollection()).then(setArticles)),
+    []
+  )
 
   // addArticle({ variables })
   const addArticle = async ({ variables }) => {
