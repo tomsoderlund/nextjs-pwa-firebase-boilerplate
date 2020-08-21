@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
 
-import { firebaseDB, docWithId, getCollectionItems } from 'lib/firebase'
+import { firebaseApp, firebaseDB, docWithId, getCollectionItems } from 'lib/firebase'
 
 export const articlesCollection = () => firebaseDB.collection('articles')
 export const articleRef = (articleId) => articlesCollection().doc(articleId)
@@ -25,7 +25,7 @@ export const ArticlesContextProvider = (props) => {
 
   // addArticle({ variables })
   const addArticle = async ({ variables }) => {
-    const variablesWithTimestamp = { ...variables, dateCreated: Date.now() }
+    const variablesWithTimestamp = { ...variables, dateCreated: firebaseApp.firestore.FieldValue.serverTimestamp() }
     const newArticleRef = await articlesCollection().add(variablesWithTimestamp)
     const newArticleSnapshot = await newArticleRef.get()
     // Update client-side state
