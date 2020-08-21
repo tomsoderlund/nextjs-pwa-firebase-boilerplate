@@ -14,10 +14,6 @@ const useAddArticleForm = () => {
 
   const handleSubmit = async (event) => {
     if (event) event.preventDefault()
-    if (!inputs.title) {
-      window.alert('No title provided')
-      return
-    }
     setInProgress(true)
     createNotification('Creating new article...')
     await addArticle({ variables: { ...inputs, content: 'This is the article content.' } })
