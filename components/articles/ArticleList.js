@@ -5,8 +5,10 @@ import { useArticles } from 'hooks/articles'
 
 import ArticleListItem from './ArticleListItem'
 
+const DEFAULT_INPUTS = { title: '' }
+
 const useAddArticleForm = () => {
-  const [inputs, setInputs] = useState({ title: '' })
+  const [inputs, setInputs] = useState(DEFAULT_INPUTS)
   const { addArticle } = useArticles()
   const [inProgress, setInProgress] = useState(false)
 
@@ -20,7 +22,7 @@ const useAddArticleForm = () => {
     createNotification('Creating new article...')
     await addArticle({ variables: { ...inputs, content: 'This is the article content.' } })
     // Clear input form when done
-    setInputs({ title: '' })
+    setInputs(DEFAULT_INPUTS)
     setInProgress(false)
   }
 
