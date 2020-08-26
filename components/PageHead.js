@@ -38,6 +38,10 @@ const PageHead = ({ title, description = config.appDescription, path = '/' }) =>
       <meta property='og:description' content={description} />
       <meta property='og:locale' content={config.locale} />
 
+      <meta name='twitter:card' content='summary' />
+      <meta name='twitter:title' content={pageTitle} />
+      <meta name='twitter:description' content={description} />
+
       <meta name='theme-color' content={manifest.theme_color} />
       <link rel='apple-touch-icon' href={iconUrl} />
       {(manifest.display === 'standalone') ? <meta name='apple-mobile-web-app-capable' content='yes' /> : null}
@@ -45,16 +49,15 @@ const PageHead = ({ title, description = config.appDescription, path = '/' }) =>
       <meta name='apple-mobile-web-app-title' content={config.appName} />
 
       {/*
-        <meta property='og:image' content={thumbnailUrl} />
         <link rel='apple-touch-startup-image' href='' />
+
         <link rel='canonical' href={websiteUrl} />
         <meta property='og:url' content={websiteUrl} />
 
-        <meta name='twitter:card' content='summary' />
-        <meta name='twitter:site' content={`@${config.landingPage.social.twitter}`} />
-        <meta name='twitter:title' content={pageTitle} />
-        <meta name='twitter:description' content={description} />
+        <meta property='og:image' content={thumbnailUrl} />
         <meta name='twitter:image' content={thumbnailUrl} />
+
+        <meta name='twitter:site' content={`@${config.landingPage.social.twitter}`} />
       */}
 
       {config.googleSiteVerification ? <meta name='google-site-verification' content={config.googleSiteVerification} /> : null}
