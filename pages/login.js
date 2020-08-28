@@ -53,7 +53,7 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
           />
           <button
             type='submit'
-            className='primary'
+            className={'progress-button' + (inProgress ? ' in-progress' : '')}
             disabled={inProgress}
           >
             {buttonText}

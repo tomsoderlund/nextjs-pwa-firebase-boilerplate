@@ -191,7 +191,7 @@ a.button {
   text-decoration: none;
 }
 
-button:not(.primary):not(:disabled) {
+button.secondary:not(:disabled) {
   filter: saturate(50%);
 }
 
@@ -371,6 +371,38 @@ hr {
   height: 1px;
   margin: 0.5em 0;
   background: rgba(0,0,0, 0.2);
+}
+
+/* ===== Progress Button ===== */
+
+.progress-button {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffffff 50%,
+    #663399 50%,
+    #663399 100%
+  );
+  background-size: 400% 100%;
+  background-position: 70% 50%;
+}
+.progress-button.in-progress {
+  animation: animation-progress 3s 1 ease-out;
+  filter: unset;
+  opacity: unset;
+}
+.progress-button.done {
+  background-position-x: 30%;
+  color: #663399;
+}
+@keyframes animation-progress {
+  from {
+    background-position-x: 70%;
+  }
+  to {
+    background-position-x: 30%;
+    color: #663399;
+  }
 }
 
 /* ===== Custom CSS ===== */
