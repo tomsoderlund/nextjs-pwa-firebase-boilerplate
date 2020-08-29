@@ -47,7 +47,8 @@ function ArticleListPage ({ articles, router: { query, asPath } }) {
 }
 
 export async function getServerSideProps ({ req, res, query }) {
-  const articles = await getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
+  const articlesRaw = await getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
+  const articles = articlesRaw.map(article => ({ ...article, dateCreated: article.dateCreated.toString() })) // To avoid “cannot be serialized as JSON” error
   return { props: { articles } }
 }
 

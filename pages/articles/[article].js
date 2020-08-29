@@ -43,6 +43,7 @@ export async function getServerSideProps ({ req, res, query }) {
     throw notFoundError
   }
   const article = docWithId(articleSnapshot)
+  article.dateCreated = article.dateCreated.toString() // To avoid “cannot be serialized as JSON” error
   return { props: { article } }
 }
 
