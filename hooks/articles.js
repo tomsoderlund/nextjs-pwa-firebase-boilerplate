@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react'
 
 import { firebase, firebaseDB, docWithId, getCollectionItems } from 'lib/firebase'
 
+// Tip: if you don’t need SSR, you can move these inside the ArticlesContextProvider and create “chains” of child Firebase collections that depend on their parents
 export const articlesCollection = () => firebaseDB.collection('articles')
 export const articleRef = (articleId) => articlesCollection().doc(articleId)
 
