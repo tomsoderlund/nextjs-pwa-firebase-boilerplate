@@ -26,6 +26,7 @@ export const ArticlesContextProvider = (props) => {
 
   // addArticle({ variables })
   const addArticle = async ({ variables }) => {
+    // if (props.onError) props.onError('An error happened!')
     const variablesWithTimestamp = { ...variables, dateCreated: firebase.firestore.FieldValue.serverTimestamp() }
 
     // Create new with a generated key

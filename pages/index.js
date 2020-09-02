@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import { config } from 'config/config'
 import { getCollectionItems } from 'lib/firebase'
+import { createErrorNotification } from 'lib/createNotification'
 import { articlesCollection, ArticlesContextProvider } from 'hooks/articles'
 import useUser from 'hooks/useUser'
 
@@ -22,7 +23,10 @@ function ArticleListPage ({ articles, router: { query, asPath } }) {
 
       <p><em>{config.appTagline}</em></p>
 
-      <ArticlesContextProvider articles={articles}>
+      <ArticlesContextProvider
+        articles={articles}
+        onError={createErrorNotification}
+      >
         <ArticleList />
       </ArticlesContextProvider>
 
