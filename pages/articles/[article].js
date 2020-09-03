@@ -1,6 +1,6 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { withRouter } from 'next/router'
 
 import { docWithId } from 'lib/firebase'
 import { articleRef } from 'hooks/articles'
@@ -8,8 +8,9 @@ import { articleRef } from 'hooks/articles'
 import Page from 'components/Page'
 import ArticleDetails from 'components/articles/ArticleDetails'
 
-function ArticleDetailsPage ({ article, router: { query, asPath } }) {
+function ArticleDetailsPage ({ article }) {
   // Note: 'query' contains both /:params and ?query=value from url
+  const { query, asPath } = useRouter()
   return (
     <Page
       title={!article ? 'Loading...' : article.title}
@@ -47,4 +48,4 @@ export async function getServerSideProps ({ req, res, query }) {
   return { props: { article } }
 }
 
-export default withRouter(ArticleDetailsPage)
+export default ArticleDetailsPage

@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import { config } from 'config/config'
@@ -11,8 +11,9 @@ import useUser from 'hooks/useUser'
 import Page from 'components/Page'
 import ArticleList from 'components/articles/ArticleList'
 
-function ArticleListPage ({ articles, router: { query, asPath } }) {
+function ArticleListPage ({ articles }) {
   // Note: 'query' contains both /:params and ?query=value from url
+  const { query, asPath } = useRouter()
   const { user } = useUser()
   return (
     <Page
@@ -56,4 +57,4 @@ export async function getServerSideProps ({ req, res, query }) {
   return { props: { articles } }
 }
 
-export default withRouter(ArticleListPage)
+export default ArticleListPage
