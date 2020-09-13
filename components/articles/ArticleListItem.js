@@ -44,7 +44,7 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
   const promptAndDeleteArticle = usePromptAndDeleteArticle(article)
 
   return (
-    <div className={inProgress === article.id ? 'inProgress' : ''} title={`id: ${article.id}`}>
+    <div className={inProgress === article.id ? 'in-progress' : ''} title={`id: ${article.id}`}>
       <Link href={`/articles/[article]?article=${toSlug(article.title)}-${article.id}`} as={`/articles/${toSlug(article.title)}-${article.id}`}><a>{article.title}</a></Link>
       <a className='action update' onClick={promptAndUpdateArticle}>Update</a>
       <a className='action delete' onClick={promptAndDeleteArticle}>Delete</a>
@@ -71,7 +71,7 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
           filter: brightness(70%);
         }
 
-        .inProgress {
+        .in-progress {
           opacity: 0.3;
         }
       `}
