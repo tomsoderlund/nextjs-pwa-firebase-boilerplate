@@ -9,6 +9,7 @@ const PageHead = ({ title, description = config.appDescription, path = '/' }) =>
     ? `${title} – ${config.appName}`
     : `${config.appName} – ${config.appTagline}`
 
+  // SEO: title 60 characters, description 160 characters
   if (isDevelopment()) console.log('PageHead (dev):', [pageTitle, description])
 
   // const thumbnailUrl = `https://screens.myserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
