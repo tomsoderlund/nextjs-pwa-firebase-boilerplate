@@ -38,16 +38,35 @@ const usePromptAndDeleteArticle = (article) => {
 }
 
 const toSlug = str => str && str.replace(/ /g, '-').replace(/[^\w-]+/g, '').toLowerCase()
+const getArticleSlug = (article) => `${toSlug(article.title)}-${article.id}`
 
 const ArticleListItem = ({ article, index, inProgress = false }) => {
   const promptAndUpdateArticle = usePromptAndUpdateArticle(article, 'title')
   const promptAndDeleteArticle = usePromptAndDeleteArticle(article)
 
   return (
-    <div className={inProgress === article.id ? 'in-progress' : ''} title={`id: ${article.id}`}>
-      <Link href={`/articles/[article]?article=${toSlug(article.title)}-${article.id}`} as={`/articles/${toSlug(article.title)}-${article.id}`}><a>{article.title}</a></Link>
-      <a className='action update' onClick={promptAndUpdateArticle}>Update</a>
-      <a className='action delete' onClick={promptAndDeleteArticle}>Delete</a>
+    <div
+      className={inProgress === article.id ? 'in-progress' : ''}
+      title={`id: ${article.id}`}
+    >
+      <Link
+        href={`/articles/[article]?article=${getArticleSlug(article)}`}
+        as={`/articles/${getArticleSlug(article)}`}
+      >
+        <a>{article.title}</a>
+      </Link>
+      <a
+        className='action update'
+        onClick={promptAndUpdateArticle}
+      >
+        Update
+      </a>
+      <a
+        className='action delete'
+        onClick={promptAndDeleteArticle}
+      >
+        Delete
+      </a>
       <style jsx>{`
         div {
           margin: 0.3em 0;
