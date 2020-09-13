@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { docWithId } from 'lib/firebase'
 import { articleRef } from 'hooks/articles'
 
-import Page from 'components/Page'
+import Page from 'components/page/Page'
 import ArticleDetails from 'components/articles/ArticleDetails'
 
 function ArticleDetailsPage ({ article }) {

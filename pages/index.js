@@ -8,7 +8,7 @@ import { createErrorNotification } from 'lib/createNotification'
 import { articlesCollection, ArticlesContextProvider } from 'hooks/articles'
 import useUser from 'hooks/useUser'
 
-import Page from 'components/Page'
+import Page from 'components/page/Page'
 import ArticleList from 'components/articles/ArticleList'
 
 function ArticleListPage ({ articles }) {

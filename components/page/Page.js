@@ -3,8 +3,8 @@ import { ToastContainer } from 'react-toastify'
 
 import { config } from 'config/config'
 
-import PageHead from 'components/PageHead'
-import Header from 'components/Header'
+import PageHead from './PageHead'
+import Header from './Header'
 
 function Page ({ title, description, path, children }) {
   return (
