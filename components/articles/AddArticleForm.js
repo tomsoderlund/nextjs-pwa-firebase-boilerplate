@@ -13,11 +13,12 @@ const useAddArticleForm = () => {
   const handleSubmit = async (event) => {
     if (event) event.preventDefault()
     setInProgress(true)
-    createNotification('Creating new article...')
+    const notificationId = createNotification('Creating new article...')
     await addArticle({ variables: { ...inputs, content: 'This is the article content.' } })
     // Clear input form when done
     setInputs(DEFAULT_INPUTS)
     setInProgress(false)
+    createNotification('Article created', 'success', { notificationId })
   }
 
   const handleInputChange = (event) => {
