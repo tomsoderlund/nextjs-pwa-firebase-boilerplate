@@ -33,7 +33,7 @@ export async function getServerSideProps ({ res }) { // { req, res, query }
     )
     res.end()
   }
-  return { props: {} }
+  return { props: {} }
 }
 
 export default Sitemap
