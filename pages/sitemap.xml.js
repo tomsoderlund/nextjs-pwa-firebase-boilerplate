@@ -23,7 +23,7 @@ const Sitemap = () => {
   )
 }
 
-Sitemap.getInitialProps = async ({ res }) => { // { req, res, pathname, asPath, query }
+export async function getServerSideProps ({ res }) { // { req, res, query }
   if (res.write) {
     res.setHeader('Content-Type', 'text/xml')
     res.write(
@@ -33,7 +33,7 @@ Sitemap.getInitialProps = async ({ res }) => { // { req, res, pathname, asPath, 
     )
     res.end()
   }
-  return {}
+  return { props: {} }
 }
 
 export default Sitemap
