@@ -273,6 +273,7 @@ select:disabled {
 
 @media only screen and (max-width: 480px) {
   button,
+  .button,
   input:not([type="radio"]):not([type="checkbox"]),
   .input,
   textarea,
