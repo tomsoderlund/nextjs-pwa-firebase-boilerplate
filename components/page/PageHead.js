@@ -4,10 +4,12 @@ import manifest from 'public/manifest.json'
 import { config } from 'config/config'
 import isDevelopment from 'lib/isDevelopment'
 
-const PageHead = ({ title, description = config.appDescription, path = '/' }) => {
+const PageHead = ({ title, description, path = '/' }) => {
   const pageTitle = title
     ? `${title} – ${config.appName}`
     : `${config.appName} – ${config.appTagline}`
+
+  const pageDescription = description || config.appDescription
 
   // SEO: title 60 characters, description 160 characters
   if (isDevelopment()) console.log('PageHead (dev):', [60 - pageTitle.length, 160 - pageDescription.length, pageTitle, pageDescription])
@@ -21,7 +23,7 @@ const PageHead = ({ title, description = config.appDescription, path = '/' }) =>
   return (
     <Head>
       <title>{pageTitle}</title>
-      <meta name='description' content={description} />
+      <meta name='description' content={pageDescription} />
 
       <meta charSet='utf-8' />
       <meta httpEquiv='content-language' content={config.locale.split('_')[0]} />
@@ -36,12 +38,12 @@ const PageHead = ({ title, description = config.appDescription, path = '/' }) =>
 
       <meta property='og:site_name' content={config.appName} />
       <meta property='og:title' content={pageTitle} />
-      <meta property='og:description' content={description} />
+      <meta property='og:description' content={pageDescription} />
       <meta property='og:locale' content={config.locale} />
 
       <meta name='twitter:card' content='summary' />
       <meta name='twitter:title' content={pageTitle} />
-      <meta name='twitter:description' content={description} />
+      <meta name='twitter:description' content={pageDescription} />
 
       <meta name='theme-color' content={manifest.theme_color} />
       <link rel='apple-touch-icon' href={iconUrl} />
