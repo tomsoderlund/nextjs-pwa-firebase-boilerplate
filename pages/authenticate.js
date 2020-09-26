@@ -7,6 +7,9 @@ import { firebaseApp } from 'lib/firebase'
 
 import Page from 'components/Page'
 
+const titleCase = str => str.replace(/(?:^|\s|[-"'([{])+\S/g, (c) => c.toUpperCase())
+const emailToName = (email) => titleCase(email.split('@')[0].replace(/\./g, ' '))
+
 function EmailAuthenticatePage ({ query }) {
   useEffect(() => {
     async function loginUserAndRedirect () {
@@ -18,8 +21,11 @@ function EmailAuthenticatePage ({ query }) {
           email = window.prompt('Please provide your email again for confirmation (the email was opened in a new window):')
         }
         try {
-          // const result =
-          await firebaseApp.auth().signInWithEmailLink(email, window.location.href)
+          const { user } = await firebaseApp.auth().signInWithEmailLink(email, window.location.href)
+          // Add user.displayName if missing
+          if (!user.displayName) {
+            user.updateProfile({ displayName: emailToName(user.email) })
+          }
           // Clear email from storage
           window.localStorage.removeItem('emailForSignIn')
           // Redirect browser
