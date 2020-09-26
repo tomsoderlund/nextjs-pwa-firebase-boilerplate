@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 
 import { config } from 'config/config'
 import { firebaseApp } from 'lib/firebase'
-import { googleEvent } from 'components/GoogleAnalytics'
-// import createNotification from 'lib/createNotification'
+import { googleEvent } from 'components/page/GoogleAnalytics'
+import createNotification from 'lib/createNotification'
 
-import Page from 'components/Page'
+import Page from 'components/page/Page'
 
-const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for a login link!', googleEventAction = 'Log in' }) => {
+const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for a login link!', googleEventAction = 'user_login', redirectTo, onCompleted }) => {
   const [personInfo, setPersonInfo] = useState({ email: '' })
   const setPersonInfoField = (field, value) => setPersonInfo({ ...personInfo, [field]: value })
 
@@ -19,7 +19,7 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
     setInProgress(true)
 
     const actionCodeSettings = {
-      url: config.appUrl + 'authenticate',
+      url: `${config.appUrl}authenticate${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
       handleCodeInApp: true
     }
 
@@ -29,10 +29,11 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
       setPersonInfoField('email', '')
       setIsSubmitted(true)
       if (googleEventAction) googleEvent(googleEventAction)
+      if (onCompleted) onCompleted(null, personInfo)
     } catch (error) {
       console.warn(error.message || error)
-      window.alert(error.message)
-      // createNotification(`Could not log in: ${err.message}`, 'error')
+      createNotification(`Could not log in: ${error.message}`, 'error')
+      if (onCompleted) onCompleted(error)
     } finally {
       setInProgress(false)
     }
