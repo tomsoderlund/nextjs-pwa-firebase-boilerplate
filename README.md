@@ -10,13 +10,13 @@ _Note: this is my v4 boilerplate for React web apps. See also [nextjs-pwa-graphq
 This is a great template for a any project where you want **React (with Hooks)** (with server-side rendering, powered by [Next.js](https://github.com/zeit/next.js)) as frontend and **Firebase** as backend.
 _Lightning fast, all JavaScript._
 
-* Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications).
+* Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications), which you can add to your Home Screen and use as a full-screen app.
+* PWA features such as `manifest.json` and offline support (`next-offline`).
 * Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying-serverless-on-vercelzeit-now).
 * The new Firebase database, [Cloud Firestore](https://firebase.google.com/docs/firestore), as database.
 * Login/Signup with Firebase Authentication.
 * React Hooks for business logic.
 * Free-form database model. No GraphQL or REST API, just add React Hooks and modify `[page].getServerSideProps` (for server-side rendering, SSR) when changing/adding database tables.
-* PWA features such as `manifest.json` and offline support (`next-offline`).
 * Easy to style the visual theme using CSS (e.g. using [Design Profile Generator](https://tomsoderlund.github.io/design-profile-generator/)).
 * `sitemap.xml` and `robots.txt` support.
 * Google Analytics and `google-site-verification` support (see `config/config.js`).
