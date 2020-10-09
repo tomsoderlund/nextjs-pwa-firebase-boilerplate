@@ -5,8 +5,6 @@ import { firebaseApp } from 'lib/firebase'
 import { googleEvent } from 'components/page/GoogleAnalytics'
 import createNotification from 'lib/createNotification'
 
-import Page from 'components/page/Page'
-
 const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for a login link!', googleEventAction = 'user_login', redirectTo, onCompleted }) => {
   const [personInfo, setPersonInfo] = useState({ email: '' })
   const setPersonInfoField = (field, value) => setPersonInfo({ ...personInfo, [field]: value })
@@ -19,7 +17,7 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
     setInProgress(true)
 
     const actionCodeSettings = {
-      url: `${config.appUrl}authenticate${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
+      url: `${window.location.origin}/authenticate${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
       handleCodeInApp: true
     }
 
@@ -69,12 +67,21 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
 
 function LoginPage ({ query }) {
   return (
-    <Page title='Log in'>
-      <h2>Log in to {config.appName}</h2>
-      <p>No password necessary – we will send a magic login link to your email inbox.</p>
+    <>
+      <h1>Log in to {config.appName}</h1>
+
       <LoginForm />
-    </Page>
+
+      <p>No password necessary – we will send a magic login link to your email inbox.</p>
+    </>
   )
 }
 
 export default LoginPage
+
+export const getStaticProps = () => ({
+  props: {
+    title: 'Log in' // used in _app.js
+  },
+  revalidate: 31536000 // refresh once a year
+})

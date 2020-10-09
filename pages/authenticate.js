@@ -5,8 +5,6 @@ import querystring from 'querystring'
 import { config } from 'config/config'
 import { firebaseApp } from 'lib/firebase'
 
-import Page from 'components/Page'
-
 const titleCase = str => str.replace(/(?:^|\s|[-"'([{])+\S/g, (c) => c.toUpperCase())
 const emailToName = (email) => titleCase(email.split('@')[0].replace(/\./g, ' '))
 
@@ -43,10 +41,17 @@ function EmailAuthenticatePage ({ query }) {
   }, [query])
 
   return (
-    <Page title='Logging in'>
-      <h2>Logging in to {config.appName}...</h2>
-    </Page>
+    <>
+      <h1>Logging in to {config.appName}...</h1>
+    </>
   )
 }
 
 export default EmailAuthenticatePage
+
+export const getStaticProps = () => ({
+  props: {
+    title: 'Logging in' // used in _app.js
+  },
+  revalidate: 31536000 // refresh once a year
+})

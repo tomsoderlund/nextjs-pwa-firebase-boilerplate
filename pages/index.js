@@ -8,18 +8,14 @@ import { createErrorNotification } from 'lib/createNotification'
 import { articlesCollection, ArticlesContextProvider } from 'hooks/articles'
 import useUser from 'hooks/useUser'
 
-import Page from 'components/page/Page'
 import ArticleList from 'components/articles/ArticleList'
 
 function ArticleListPage ({ articles }) {
   // Note: 'query' contains both /:params and ?query=value from url
-  const { query, asPath } = useRouter()
+  const { query } = useRouter()
   const { user } = useUser()
   return (
-    <Page
-      title={undefined}
-      path={asPath}
-    >
+    <>
       <h1>{config.appName}</h1>
 
       <p><em>{config.appTagline}</em></p>
@@ -47,7 +43,7 @@ function ArticleListPage ({ articles }) {
 
       <h2>Source code</h2>
       <p>Get the <a target='_blank' rel='noopener noreferrer' href='https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate'>source code for nextjs-pwa-firebase-boilerplate</a></p>
-    </Page>
+    </>
   )
 }
 
