@@ -1,5 +1,5 @@
 import React from 'react'
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 import { config } from 'config/config'
 
@@ -8,7 +8,7 @@ export default class MyDocument extends Document {
   // Page props in: this.props.__NEXT_DATA__.props.pageProps
   render () {
     return (
-      <html lang={config.locale.split('_')[0]}>
+      <Html lang={config.locale.split('_')[0]}>
         <Head>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {config.googleAnalyticsId ? (
@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     )
   }
 }
