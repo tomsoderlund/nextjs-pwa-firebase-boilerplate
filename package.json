@@ -6,13 +6,13 @@
   "license": "ISC",
   "scripts": {
     "dev": "next dev -p 3004",
+    "vercel": "echo 'Running as Vercel serverless'; vercel dev --listen 3004",
     "build": "next build",
     "start": "next start -p 3004",
     "test": "echo 'Running Standard.js and Jasmine unit tests...\n' && yarn lint && yarn unit",
     "unit": "jasmine",
     "lint": "standard",
     "fix": "standard --fix",
-    "vercel": "echo 'Running as Vercel serverless'; vercel dev --listen 3004",
     "deploy": "vercel --prod"
   },
   "dependencies": {
