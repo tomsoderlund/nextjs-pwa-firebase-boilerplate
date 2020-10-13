@@ -47,10 +47,15 @@ function ArticleListPage ({ articles }) {
   )
 }
 
-export async function getServerSideProps ({ req, res, query }) {
+export async function getStaticProps({ params }) {
   const articlesRaw = await getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
-  const articles = articlesRaw.map(article => ({ ...article, dateCreated: article.dateCreated.toString() })) // To avoid “cannot be serialized as JSON” error
-  return { props: { articles } }
+  const articles = articlesRaw.map(article => ({ ...article, dateCreated: article.dateCreated ? article.dateCreated.toString() : null })) // To avoid “cannot be serialized as JSON” error
+  return {
+    props: {
+      articles
+    },
+    revalidate: 60 // Seconds. This refresh time could be longer depending on how often data changes.
+  }
 }
 
 export default ArticleListPage
