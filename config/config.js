@@ -12,7 +12,7 @@ const completeConfig = {
     appName: manifest.name,
     appTagline: manifest.description,
     appDescription: manifest.description,
-    locale: 'en_US',
+    locale: 'en_US', // sv_SE
     googleAnalyticsId: 'UA-XXXXXXX-X',
     googleSiteVerification: false
   },
