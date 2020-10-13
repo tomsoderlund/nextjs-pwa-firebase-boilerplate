@@ -88,9 +88,10 @@ Rename the files:
     mv hooks/articles.js hooks/{newName}s.js
 
     mkdir -p components/{newName}s
+    mv components/articles/AddArticleForm.js components/{newName}s/Add{NewName}Form.js
+    mv components/articles/ArticleDetails.js components/{newName}s/{NewName}Details.js
     mv components/articles/ArticleList.js components/{newName}s/{NewName}List.js
     mv components/articles/ArticleListItem.js components/{newName}s/{NewName}ListItem.js
-    mv components/articles/ArticleDetails.js components/{newName}s/{NewName}Details.js
     rm -r components/articles
 
     mkdir pages/{newName}s
