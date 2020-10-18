@@ -49,8 +49,8 @@ export const ArticlesContextProvider = (props) => {
   const updateArticle = async ({ variables }) => {
     const { id, ...values } = variables
     await articleRef(id).update(values)
-    const articleSnapshot = await articleRef(id).get()
     // Update client-side state
+    const articleSnapshot = await articleRef(id).get()
     setArticles(articles.map(article => article.id === id ? docWithId(articleSnapshot) : article))
     return docWithId(articleSnapshot)
   }
