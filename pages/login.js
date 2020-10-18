@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { config } from 'config/config'
 import { firebaseApp } from 'lib/firebase'
 import { googleEvent } from 'components/page/GoogleAnalytics'
-import createNotification from 'lib/createNotification'
+import showNotification from 'lib/showNotification'
 
 const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for a login link!', googleEventAction = 'user_login', redirectTo, onCompleted }) => {
   const [personInfo, setPersonInfo] = useState({ email: '' })
@@ -30,7 +30,7 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
       if (onCompleted) onCompleted(null, personInfo)
     } catch (error) {
       console.warn(error.message || error)
-      createNotification(`Could not log in: ${error.message}`, 'error')
+      showNotification(`Could not log in: ${error.message}`, 'error')
       if (onCompleted) onCompleted(error)
     } finally {
       setInProgress(false)

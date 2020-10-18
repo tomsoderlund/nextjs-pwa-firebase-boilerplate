@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import createNotification from 'lib/createNotification'
+import showNotification from 'lib/showNotification'
 import { useArticles } from 'hooks/articles'
 
 const usePromptAndUpdateArticle = (article, fieldName) => {
@@ -9,13 +9,13 @@ const usePromptAndUpdateArticle = (article, fieldName) => {
   const handleUpdate = async () => {
     const newValue = window.prompt(`New value for ${fieldName}?`, article[fieldName])
     if (newValue) {
-      const notificationId = createNotification('Updating article...')
+      const notificationId = showNotification('Updating article...')
       const variables = {
         id: article.id,
         [fieldName]: newValue
       }
       await updateArticle({ variables })
-      createNotification('Article updated', 'success', { notificationId })
+      showNotification('Article updated', 'success', { notificationId })
     }
   }
 
@@ -30,9 +30,9 @@ const usePromptAndDeleteArticle = (article) => {
       const variables = {
         id: article.id
       }
-      const notificationId = createNotification('Deleting article...')
+      const notificationId = showNotification('Deleting article...')
       await deleteArticle({ variables })
-      createNotification('Article deleted', 'success', { notificationId })
+      showNotification('Article deleted', 'success', { notificationId })
     }
   }
 

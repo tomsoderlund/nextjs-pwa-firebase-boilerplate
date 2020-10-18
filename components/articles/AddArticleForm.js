@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import createNotification from 'lib/createNotification'
+import showNotification from 'lib/showNotification'
 import { useArticles } from 'hooks/articles'
 
 const DEFAULT_INPUTS = { title: '' }
@@ -13,12 +13,12 @@ const useAddArticleForm = () => {
   const handleSubmit = async (event) => {
     if (event) event.preventDefault()
     setInProgress(true)
-    const notificationId = createNotification('Creating new article...')
+    const notificationId = showNotification('Creating new article...')
     await addArticle({ variables: { ...inputs, content: 'This is the article content.' } })
     // Clear input form when done
     setInputs(DEFAULT_INPUTS)
     setInProgress(false)
-    createNotification('Article created', 'success', { notificationId })
+    showNotification('Article created', 'success', { notificationId })
   }
 
   const handleInputChange = (event) => {

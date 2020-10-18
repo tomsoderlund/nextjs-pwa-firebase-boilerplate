@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { config } from 'config/config'
 import { getCollectionItems } from 'lib/firebase'
-import { createErrorNotification } from 'lib/createNotification'
+import { showErrorNotification } from 'lib/showNotification'
 import { articlesCollection, ArticlesContextProvider } from 'hooks/articles'
 import useUser from 'hooks/useUser'
 
@@ -22,7 +22,7 @@ function ArticleListPage ({ articles }) {
 
       <ArticlesContextProvider
         articles={articles}
-        onError={createErrorNotification}
+        onError={showErrorNotification}
       >
         <ArticleList />
       </ArticlesContextProvider>
@@ -47,7 +47,7 @@ function ArticleListPage ({ articles }) {
   )
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps ({ params }) {
   const articlesRaw = await getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
   const articles = articlesRaw.map(article => ({ ...article, dateCreated: article.dateCreated ? article.dateCreated.toString() : null })) // To avoid “cannot be serialized as JSON” error
   return {
