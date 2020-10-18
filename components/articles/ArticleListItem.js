@@ -52,7 +52,7 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
       title={`id: ${article.id}`}
     >
       <Link
-        href={`/articles/[article]?article=${getArticleSlug(article)}`}
+        href={`/articles/[slug]?slug=${getArticleSlug(article)}`}
         as={`/articles/${getArticleSlug(article)}`}
       >
         <a>{article.title}</a>
