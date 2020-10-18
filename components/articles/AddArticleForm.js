@@ -10,6 +10,11 @@ const useAddArticleForm = () => {
   const { addArticle } = useArticles()
   const [inProgress, setInProgress] = useState(false)
 
+  const handleInputChange = ({ target }) => {
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    setInputs({ ...inputs, [target.name]: value })
+  }
+
   const handleSubmit = async (event) => {
     if (event) event.preventDefault()
     setInProgress(true)
@@ -19,11 +24,6 @@ const useAddArticleForm = () => {
     setInputs(DEFAULT_INPUTS)
     setInProgress(false)
     showNotification('Article created', 'success', { notificationId })
-  }
-
-  const handleInputChange = (event) => {
-    event.persist()
-    setInputs(inputs => ({ ...inputs, [event.target.name]: event.target.value }))
   }
 
   return { inputs, inProgress, handleInputChange, handleSubmit }
@@ -37,6 +37,7 @@ const AddArticleForm = () => {
         type='text'
         placeholder='Enter an article title'
         name='title'
+        autoComplete='off'
         required
         value={inputs.title}
         onChange={handleInputChange}
