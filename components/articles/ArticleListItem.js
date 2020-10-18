@@ -48,7 +48,7 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
 
   return (
     <div
-      className={inProgress === article.id ? 'in-progress' : ''}
+      className={'article' + (inProgress === article.id ? ' in-progress' : '')}
       title={`id: ${article.id}`}
     >
       <Link
@@ -57,20 +57,24 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
       >
         <a>{article.title}</a>
       </Link>
-      <a
-        className='action update'
-        onClick={promptAndUpdateArticle}
-      >
-        Update
-      </a>
-      <a
-        className='action delete'
-        onClick={promptAndDeleteArticle}
-      >
-        Delete
-      </a>
+
+      <span className='actions'>
+        <a
+          className='action update'
+          onClick={promptAndUpdateArticle}
+        >
+          Update
+        </a>
+        <a
+          className='action delete'
+          onClick={promptAndDeleteArticle}
+        >
+          Delete
+        </a>
+      </span>
+
       <style jsx>{`
-        div {
+        .article {
           margin: 0.3em 0;
         }
 

@@ -12,12 +12,14 @@ const ArticleList = () => {
 
   return (
     <>
-      {articles && articles.map(article => (
-        <ArticleListItem
-          key={article.id}
-          article={article}
-        />
-      ))}
+      <div className='article-list'>
+        {articles && articles.map(article => (
+          <ArticleListItem
+            key={article.id}
+            article={article}
+          />
+        ))}
+      </div>
 
       <AddArticleForm />
     </>
