@@ -81,11 +81,13 @@ export const ArticleContext = createContext()
 
 export const ArticleContextProvider = (props) => {
   // Use State to keep the values. Initial values are obtained from ArticleContextProvider’s props.
-  const [article] = useState(props.article)
+  const [article, setArticle] = useState(props.article)
 
-  // const { data, loading, error } = useGetArticle('slug-1')
-  const getArticle = async (slugAndId) => {
-  }
+  // Real-time updates from Firebase
+  useEffect(
+    () => articleRef && articleRef.onSnapshot(snapshot => setArticle(docWithId(snapshot))),
+    [articleRef]
+  )
 
   // updateArticle({ variables })
   const updateArticle = async ({ variables }) => {
