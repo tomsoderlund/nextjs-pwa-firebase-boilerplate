@@ -37,7 +37,8 @@ const getArticleProps = async (slug) => {
     throw notFoundError
   }
   const article = docWithId(articleSnapshot)
-  article.dateCreated = article.dateCreated ? article.dateCreated.toDate().toString() : null // To avoid “cannot be serialized as JSON” error
+  if (article.dateCreated) article.dateCreated = article.dateCreated.toDate().toString() // To avoid “cannot be serialized as JSON” error
+  if (article.dateUpdated) article.dateUpdated = article.dateUpdated.toDate().toString()
   return {
     article,
     title: article.title,
