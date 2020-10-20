@@ -27,14 +27,14 @@ export const ArticlesContextProvider = (props) => {
   // addArticle({ variables })
   const addArticle = async ({ variables }) => {
     // if (props.onError) props.onError('An error happened!')
-    const variablesWithTimestamp = { ...variables, dateCreated: firebase.firestore.FieldValue.serverTimestamp() }
+    const valuesWithTimestamp = { ...variables, dateCreated: firebase.firestore.FieldValue.serverTimestamp() }
 
     // Create new with a generated key
-    const newArticleRef = await articlesCollection().add(variablesWithTimestamp)
+    const newArticleRef = await articlesCollection().add(valuesWithTimestamp)
 
     // // Create new with a specified key
     // const newArticleRef = articleRef(articleId)
-    // await newArticleRef.set(variablesWithTimestamp)
+    // await newArticleRef.set(valuesWithTimestamp)
 
     // Update client-side state
     const newArticleSnapshot = await newArticleRef.get()
@@ -48,7 +48,8 @@ export const ArticlesContextProvider = (props) => {
   // updateArticle({ variables })
   const updateArticle = async ({ variables }) => {
     const { id, ...values } = variables
-    await articleRef(id).update(values)
+    const valuesWithTimestamp = { ...values, dateUpdated: firebase.firestore.FieldValue.serverTimestamp() }
+    await articleRef(id).update(valuesWithTimestamp)
     // Update client-side state
     const articleSnapshot = await articleRef(id).get()
     setArticles(articles.map(article => article.id === id ? docWithId(articleSnapshot) : article))
