@@ -29,10 +29,10 @@ export const ArticlesContextProvider = (props) => {
     // if (props.onError) props.onError('An error happened!')
     const valuesWithTimestamp = { ...variables, dateCreated: firebase.firestore.FieldValue.serverTimestamp() }
 
-    // Create new with a generated key
+    // Create new article with a generated key
     const newArticleRef = await articlesCollection().add(valuesWithTimestamp)
 
-    // // Create new with a specified key
+    // // Create new article with a specified key
     // const newArticleRef = articleRef(articleId)
     // await newArticleRef.set(valuesWithTimestamp)
 
