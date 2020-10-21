@@ -42,7 +42,7 @@ export const ArticlesContextProvider = (props) => {
       ...articles,
       docWithId(newArticleSnapshot)
     ])
-    return newArticleRef
+    return docWithId(newArticleSnapshot)
   }
 
   // updateArticle({ variables })
