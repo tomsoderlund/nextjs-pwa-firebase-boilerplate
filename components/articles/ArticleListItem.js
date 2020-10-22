@@ -10,11 +10,10 @@ const usePromptAndUpdateArticle = (article, fieldName) => {
     const newValue = window.prompt(`New value for ${fieldName}?`, article[fieldName])
     if (newValue) {
       const notificationId = showNotification('Updating article...')
-      const variables = {
+      await updateArticle({
         id: article.id,
         [fieldName]: newValue
-      }
-      await updateArticle({ variables })
+      })
       showNotification('Article updated', 'success', { notificationId })
     }
   }
@@ -27,11 +26,10 @@ const usePromptAndDeleteArticle = (article) => {
 
   const handleDelete = async () => {
     if (window.confirm(`Delete ${article.title}?`)) {
-      const variables = {
-        id: article.id
-      }
       const notificationId = showNotification('Deleting article...')
-      await deleteArticle({ variables })
+      await deleteArticle({
+        id: article.id
+      })
       showNotification('Article deleted', 'success', { notificationId })
     }
   }

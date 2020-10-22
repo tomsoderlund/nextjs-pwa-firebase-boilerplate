@@ -19,7 +19,7 @@ const useAddArticleForm = () => {
     if (event) event.preventDefault()
     setInProgress(true)
     const notificationId = showNotification('Creating new article...')
-    await addArticle({ variables: { ...inputs, content: 'This is the article content.' } })
+    await addArticle({ ...inputs, content: 'This is the article content.' })
     // Clear input form when done
     setInputs(DEFAULT_INPUTS)
     setInProgress(false)

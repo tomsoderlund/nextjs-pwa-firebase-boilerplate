@@ -24,8 +24,8 @@ export const ArticlesContextProvider = (props) => {
     []
   )
 
-  // addArticle({ variables })
-  const addArticle = async ({ variables }) => {
+  // addArticle(variables)
+  const addArticle = async (variables) => {
     // if (props.onError) props.onError('An error happened!')
     const valuesWithTimestamp = { ...variables, dateCreated: firebase.firestore.FieldValue.serverTimestamp() }
 
@@ -45,8 +45,8 @@ export const ArticlesContextProvider = (props) => {
     return docWithId(newArticleSnapshot)
   }
 
-  // updateArticle({ variables })
-  const updateArticle = async ({ variables }) => {
+  // updateArticle(variables)
+  const updateArticle = async (variables) => {
     const { id, ...values } = variables
     const valuesWithTimestamp = { ...values, dateUpdated: firebase.firestore.FieldValue.serverTimestamp() }
     await articleRef(id).update(valuesWithTimestamp)
@@ -56,8 +56,8 @@ export const ArticlesContextProvider = (props) => {
     return docWithId(articleSnapshot)
   }
 
-  // deleteArticle({ variables })
-  const deleteArticle = async ({ variables }) => {
+  // deleteArticle(variables)
+  const deleteArticle = async (variables) => {
     const { id } = variables
     await articleRef(id).delete()
     // Update client-side state
@@ -90,12 +90,12 @@ export const ArticleContextProvider = (props) => {
     [articleRef]
   )
 
-  // updateArticle({ variables })
-  const updateArticle = async ({ variables }) => {
+  // updateArticle(variables)
+  const updateArticle = async (variables) => {
   }
 
-  // deleteArticle({ variables })
-  const deleteArticle = async ({ variables }) => {
+  // deleteArticle(variables)
+  const deleteArticle = async (variables) => {
   }
 
   // Make the context object
