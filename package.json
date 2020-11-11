@@ -13,7 +13,9 @@
     "unit": "jasmine",
     "lint": "standard",
     "fix": "standard --fix",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "v+": "yarn version --patch",
+    "v++": "yarn version --minor"
   },
   "dependencies": {
     "firebase": "^7.15.5",
