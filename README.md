@@ -95,7 +95,7 @@ Rename the files:
     rm -r components/articles
 
     mkdir pages/{newName}s
-    mv "pages/articles/[article].js" "pages/{newName}s/[{newName}].js"
+    mv "pages/articles/[slug].js" "pages/{newName}s/[{newName}].js"
     rm -r pages/articles
 
 Then, do search/replace inside the files for different casing: `article`, `Article`, `ARTICLE`.
