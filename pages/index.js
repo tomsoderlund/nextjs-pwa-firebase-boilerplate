@@ -43,6 +43,8 @@ function ArticleListPage ({ articles }) {
 
       <h2>Source code</h2>
       <p>Get the <a target='_blank' rel='noopener noreferrer' href='https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate'>source code for nextjs-pwa-firebase-boilerplate</a></p>
+
+      <p>Version {config.appVersion}</p>
     </>
   )
 }
