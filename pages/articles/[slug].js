@@ -12,9 +12,11 @@ function ArticleDetailsPage ({ article }) {
   const { query } = useRouter()
   return (
     <>
-      <ArticleDetails
-        article={article}
-      />
+      {article && (
+        <ArticleDetails
+          article={article}
+        />
+      )}
 
       <h2>Routing</h2>
       <p>Current query: <strong>{JSON.stringify(query)}</strong></p>
