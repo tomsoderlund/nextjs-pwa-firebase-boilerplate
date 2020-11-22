@@ -10,15 +10,15 @@ const Notifications = () => {
 
       <style jsx>{`
         :global(.Toastify__toast) {
-          border-radius: 0.5em;
-          box-shadow: 0 0.2em 0.4em rgba(0,0,0, 0.3);
-          padding: 0.8em;
+          border-radius: 0.25em;
+          box-shadow: 0 0.2em 1em rgba(0,0,0, 0.3);
+          padding: 1em;
           background-color: #EDF1F7;
-          color: black;
+          color: #0A0A0A;
+          font-weight: 500;
         }
         :global(.Toastify__toast--success) {
           background-color: #D6FFC8;
-          color: black;
         }
         :global(.Toastify__toast--warning) {
           background-color: #FFFBE6;
