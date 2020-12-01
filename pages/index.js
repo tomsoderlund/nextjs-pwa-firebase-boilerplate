@@ -49,6 +49,8 @@ function ArticleListPage ({ articles }) {
   )
 }
 
+export default ArticleListPage
+
 export async function getStaticProps ({ params }) {
   const articlesRaw = await getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
   const articles = articlesRaw.map(article => ({
@@ -63,5 +65,3 @@ export async function getStaticProps ({ params }) {
     revalidate: 60 // Seconds. This refresh time could be longer depending on how often data changes.
   }
 }
-
-export default ArticleListPage
