@@ -6,6 +6,16 @@ import { firebase, firebaseDB, docWithId, getCollectionItems } from 'lib/firebas
 export const articlesCollection = () => firebaseDB.collection('articles')
 export const articleRef = (articleId) => articlesCollection().doc(articleId)
 
+const toSlug = str => str && str.replace(/ /g, '-').replace(/[^\w-]+/g, '').toLowerCase()
+const getArticleSlug = (article) => `${toSlug(article.title)}-${article.id}`
+
+export const articlePath = (article) => {
+  return {
+    href: `/articles/[slug]?slug=${getArticleSlug(article)}`,
+    as: `/articles/${getArticleSlug(article)}`
+  }
+}
+
 // Example: extending the database with Comments
 // export const commentsCollection = (articleId) => articleRef(articleId).collection('comments')
 // export const commentRef = (articleId, commentId) => commentsCollection(articleId).doc(commentId)

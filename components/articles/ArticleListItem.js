@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import showNotification from 'lib/showNotification'
-import { useArticles } from 'hooks/articles'
+import { useArticles, articlePath } from 'hooks/articles'
 
 const usePromptAndUpdateArticle = (article, fieldName) => {
   const { updateArticle } = useArticles()
@@ -37,9 +37,6 @@ const usePromptAndDeleteArticle = (article) => {
   return handleDelete
 }
 
-const toSlug = str => str && str.replace(/ /g, '-').replace(/[^\w-]+/g, '').toLowerCase()
-const getArticleSlug = (article) => `${toSlug(article.title)}-${article.id}`
-
 const ArticleListItem = ({ article, index, inProgress = false }) => {
   const promptAndUpdateArticle = usePromptAndUpdateArticle(article, 'title')
   const promptAndDeleteArticle = usePromptAndDeleteArticle(article)
@@ -49,10 +46,7 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
       className={'article' + (inProgress === article.id ? ' in-progress' : '')}
       title={`id: ${article.id}`}
     >
-      <Link
-        href={`/articles/[slug]?slug=${getArticleSlug(article)}`}
-        as={`/articles/${getArticleSlug(article)}`}
-      >
+      <Link {...articlePath(article)}>
         <a>{article.title}</a>
       </Link>
 
