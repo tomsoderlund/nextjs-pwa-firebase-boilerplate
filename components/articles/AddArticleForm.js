@@ -34,12 +34,12 @@ const AddArticleForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        type='text'
-        placeholder='Enter an article title'
         name='title'
+        value={inputs.title}
+        placeholder='Enter an article title'
+        type='text'
         autoComplete='off'
         required
-        value={inputs.title}
         onChange={handleInputChange}
         disabled={inProgress}
       />
