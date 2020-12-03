@@ -1,6 +1,9 @@
 import React from 'react'
 import Router from 'next/router'
 
+// Import global CSS files here
+// import '../node_modules/aether-css-framework/dist/aether.min.css'
+
 import { config } from 'config/config'
 
 import PageHead from 'components/page/PageHead'
