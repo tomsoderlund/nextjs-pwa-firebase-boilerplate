@@ -52,6 +52,7 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
             onChange={handleInputChange}
             disabled={inProgress}
           />
+
           <button
             type='submit'
             className={'progress-animation' + (inProgress ? ' in-progress' : '')}
@@ -59,6 +60,8 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
           >
             {buttonText}
           </button>
+
+          <p>No password necessary – we will send a login link to your email inbox.</p>
         </>
       ) : (
         <p className='thankyou'>{thankyouText}</p>

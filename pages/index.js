@@ -55,9 +55,10 @@ export async function getStaticProps ({ params }) {
   const articlesRaw = await getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
   const articles = articlesRaw.map(article => ({
     ...article,
+    // To avoid “cannot be serialized as JSON” error:
     dateCreated: article.dateCreated ? article.dateCreated.toString() : null,
     dateUpdated: article.dateUpdated ? article.dateUpdated.toString() : null
-  })) // To avoid “cannot be serialized as JSON” error
+  }))
   return {
     props: {
       articles

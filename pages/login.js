@@ -10,8 +10,6 @@ function LoginPage ({ query }) {
       <h1>Log in to {config.appName}</h1>
 
       <LoginForm />
-
-      <p>No password necessary – we will send a login link to your email inbox.</p>
     </>
   )
 }
