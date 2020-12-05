@@ -46,7 +46,7 @@ const AddArticleForm = () => {
 
       <button
         type='submit'
-        className={'progress-button' + (inProgress ? ' in-progress' : '')}
+        className={'progress-animation' + (inProgress ? ' in-progress' : '')}
         disabled={inProgress}
       >
         Add article
