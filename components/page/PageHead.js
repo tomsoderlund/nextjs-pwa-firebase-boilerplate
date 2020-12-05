@@ -14,7 +14,7 @@ const PageHead = ({ title, description, path = '/' }) => {
   // SEO: title 60 characters, description 160 characters
   if (isDevelopment()) console.log('PageHead (dev):', [60 - pageTitle.length, 160 - pageDescription.length, pageTitle, pageDescription])
 
-  // const thumbnailUrl = `https://screens.myserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
+  const thumbnailUrl = undefined // `https://screens.myscreenshooterserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
   const iconUrl = '/favicon.png'
   const fonts = [
     // ['Source Sans Pro', '300,400,700']
@@ -41,6 +41,13 @@ const PageHead = ({ title, description, path = '/' }) => {
       <meta property='og:description' content={pageDescription} />
       <meta property='og:locale' content={config.locale} />
 
+      {thumbnailUrl && (
+        <>
+          <meta property='og:image' content={thumbnailUrl} />
+          <meta name='twitter:image' content={thumbnailUrl} />
+        </>
+      )}
+
       <meta name='twitter:card' content='summary' />
       <meta name='twitter:title' content={pageTitle} />
       <meta name='twitter:description' content={pageDescription} />
@@ -56,9 +63,6 @@ const PageHead = ({ title, description, path = '/' }) => {
 
         <link rel='canonical' href={websiteUrl} />
         <meta property='og:url' content={websiteUrl} />
-
-        <meta property='og:image' content={thumbnailUrl} />
-        <meta name='twitter:image' content={thumbnailUrl} />
 
         <meta name='twitter:site' content={`@${config.landingPage.social.twitter}`} />
       */}
