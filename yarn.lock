@@ -1773,6 +1773,11 @@ adjust-sourcemap-loader@2.0.0:
     object-path "0.11.4"
     regex-parser "2.2.10"
 
+aether-css-framework@^1.6.8:
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/aether-css-framework/-/aether-css-framework-1.6.8.tgz#91a1fc5458747435933cc66f9db35ec64f752fcb"
+  integrity sha512-/uUplj7eKhXcI/nH7EU1TgDnPu7TVWvoVIAdu4s/VWPHehhIkMcMBKL+q59nqA7I2qcX9/8lC0qRXmrRM/Vj5Q==
+
 agent-base@6:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.1.tgz#808007e4e5867decb0ab6ab2f928fbdb5a596db4"

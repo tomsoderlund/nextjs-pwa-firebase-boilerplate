@@ -1,8 +1,9 @@
 import React from 'react'
 import Router from 'next/router'
+import Link from 'next/link'
 
 // Import global CSS files here
-// import '../node_modules/aether-css-framework/dist/aether.min.css'
+import 'node_modules/aether-css-framework/dist/aether.min.css'
 
 import { config } from 'config/config'
 
@@ -24,9 +25,11 @@ const MyApp = ({ Component, pageProps, router }) => {
         path={router.asPath}
       />
 
+      {/*
       <Header
         title={config.appName}
       />
+ */}
 
       <main>
         <Component
@@ -34,6 +37,10 @@ const MyApp = ({ Component, pageProps, router }) => {
           {...router}
         />
       </main>
+
+      <Link href='/'><a class='button circle-menu-button'><img src='/icons/menu.svg' /></a></Link>
+      <button class='circle-menu-button right'><img src='/icons/person.svg' /></button>
+      <button class='circle-menu-button bottom right'><img src='/icons/help.svg' /></button>
 
       <Notifications />
     </>
