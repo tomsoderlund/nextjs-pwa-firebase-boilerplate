@@ -5,10 +5,10 @@ import Link from 'next/link'
 // Import global CSS files here
 import 'node_modules/aether-css-framework/dist/aether.min.css'
 
-import { config } from 'config/config'
+// import { config } from 'config/config'
 
 import PageHead from 'components/page/PageHead'
-import Header from 'components/page/Header'
+// import Header from 'components/page/Header'
 import Notifications from 'components/page/Notifications'
 import { googlePageview } from 'components/page/GoogleAnalytics'
 
