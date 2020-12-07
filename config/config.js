@@ -12,7 +12,7 @@ const completeConfig = {
     appUrl: process.env.NEXT_PUBLIC_APP_URL,
     appName: manifest.name,
     appTagline: manifest.description,
-    appDescription: manifest.description,
+    appDescription: `${manifest.name} – ${manifest.description}`,
     locale: 'en_US', // sv_SE
     googleAnalyticsId: 'UA-XXXXXXX-X',
     googleSiteVerification: false
