@@ -17,7 +17,7 @@ const PageHead = ({ title, description, path = '/' }) => {
   const thumbnailUrl = undefined // `https://screens.myscreenshooterserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
   const iconUrl = '/favicon.png'
   const fonts = [
-    // ['Source Sans Pro', '300,400,700']
+    ['Inter', '300,400,700']
   ]
 
   return (
