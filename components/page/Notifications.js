@@ -22,7 +22,6 @@ const Notifications = () => {
         }
         :global(.Toastify__toast--warning) {
           background-color: #FFFBE6;
-          color: white;
         }
         :global(.Toastify__toast--error) {
           background-color: #ED7070;
