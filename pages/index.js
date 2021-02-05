@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import { config } from 'config/config'
-import { getCollectionItems } from 'lib/firebase'
 import { showErrorNotification } from 'lib/showNotification'
+import { getCollectionItems } from 'lib/firebase'
 import { articlesCollection, ArticlesContextProvider } from 'hooks/articles'
 import useUser from 'hooks/useUser'
 
