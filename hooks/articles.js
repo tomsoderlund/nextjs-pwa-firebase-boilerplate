@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react'
 
 import { firebase, firebaseDB, docWithId, getCollectionItems } from 'lib/firebase'
 
@@ -75,8 +75,13 @@ export const ArticlesContextProvider = (props) => {
     return variables
   }
 
-  // Make the context object
-  const articlesContext = { articles, addArticle, updateArticle, deleteArticle }
+  // Make the context object (i.e. the “API” for Articles)
+  const articlesContext = {
+    articles,
+    addArticle,
+    updateArticle,
+    deleteArticle
+  }
   // Pass the value in Provider and return
   return <ArticlesContext.Provider value={articlesContext}>{props.children}</ArticlesContext.Provider>
 }
@@ -108,8 +113,12 @@ export const ArticleContextProvider = (props) => {
   const deleteArticle = async (variables) => {
   }
 
-  // Make the context object
-  const articleContext = { article, getArticle, updateArticle, deleteArticle }
+  // Make the context object (i.e. the “API” for Article)
+  const articleContext = {
+    article,
+    updateArticle,
+    deleteArticle
+  }
   // Pass the value in Provider and return
   return <ArticleContext.Provider value={articleContext}>{props.children}</ArticleContext.Provider>
 }
