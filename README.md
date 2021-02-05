@@ -2,8 +2,13 @@
 
 ![nextjs-pwa-firebase-boilerplate demo on phone](docs/github_preview.jpg)
 
-_Note: this is my v4 boilerplate for React web apps. See also [nextjs-pwa-graphql-sql-boilerplate](https://github.com/tomsoderlund/nextjs-pwa-graphql-sql-boilerplate), [nextjs-sql-rest-api-boilerplate](https://github.com/tomsoderlund/nextjs-sql-rest-api-boilerplate) and [nextjs-express-mongoose-crudify-boilerplate](https://github.com/tomsoderlund/nextjs-express-mongoose-crudify-boilerplate)._
+_Note: this is my v4 boilerplate for React web apps. See also my [GraphQL + Postgres SQL boilerplate](https://github.com/tomsoderlund/nextjs-pwa-graphql-sql-boilerplate), [REST + Postgres SQL boilerplate](https://github.com/tomsoderlund/nextjs-sql-rest-api-boilerplate) and [REST + MongoDB boilerplate](https://github.com/tomsoderlund/nextjs-express-mongoose-crudify-boilerplate)._
 
+## Support this project
+
+Did you or your company find this `nextjs-pwa-firebase-boilerplate` useful? Please consider giving a small donation, it helps me spend more time on open-source projects:
+
+[![Support Tom on Ko-Fi.com](https://www.tomsoderlund.com/ko-fi_tomsoderlund_50.png)](https://ko-fi.com/tomsoderlund)
 
 ## Why is this awesome?
 
@@ -13,12 +18,12 @@ _Lightning fast, all JavaScript._
 * Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications), which you can add to your Home Screen and use as a full-screen app.
 * PWA features such as `manifest.json` and offline support (`next-offline`).
 * Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying-serverless-on-vercelzeit-now).
-* The new Firebase database, [Cloud Firestore](https://firebase.google.com/docs/firestore), as database.
+* The new Firebase [Firestore](https://firebase.google.com/docs/firestore) database.
 * Login/Signup with Firebase Authentication.
 * React Hooks for business logic.
 * Free-form database model. No GraphQL or REST API, just add React Hooks and modify `[page].getServerSideProps` (for server-side rendering, SSR) when changing/adding database tables.
 * Easy to style the visual theme using CSS (e.g. using [Design Profile Generator](https://tomsoderlund.github.io/design-profile-generator/)).
-* `sitemap.xml` and `robots.txt` support.
+* SEO support with `sitemap.xml` and `robots.txt`.
 * Google Analytics and `google-site-verification` support (see `config/config.js`).
 * Flexible configuration with `config/config.js` and `.env.local` file.
 * Code linting and formatting with StandardJS (`yarn lint`/`yarn fix`).
