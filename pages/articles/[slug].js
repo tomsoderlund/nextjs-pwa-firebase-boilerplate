@@ -44,7 +44,7 @@ const getArticleProps = async (slug) => {
   return {
     article,
     title: article.title,
-    description: article.content
+    description: article.content || null
   }
 }
 
