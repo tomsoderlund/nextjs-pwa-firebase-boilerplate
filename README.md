@@ -17,7 +17,7 @@ _Lightning fast, all JavaScript._
 
 * Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications), which you can add to your Home Screen and use as a full-screen app.
 * PWA features such as `manifest.json` and offline support (`next-offline`).
-* Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying-serverless-on-vercelzeit-now).
+* Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying).
 * The new Firebase [Firestore](https://firebase.google.com/docs/firestore) database.
 * Login/Signup with Firebase Authentication.
 * React Hooks for business logic.
@@ -34,7 +34,7 @@ _Lightning fast, all JavaScript._
 
 ## Demo
 
-See [**nextjs-pwa-firebase-boilerplate** running on Vercel/Zeit Now here](https://nextjs-pwa-firebase-boilerplate.vercel.app/).
+See [**nextjs-pwa-firebase-boilerplate** running on Vercel here](https://nextjs-pwa-firebase-boilerplate.vercel.app/).
 
 ![nextjs-pwa-firebase-boilerplate demo on phone](docs/demo.jpg)
 
@@ -63,11 +63,13 @@ Install dependencies:
 
 Set up the database:
 
-Configure the `.env.local` file.
+1. Go to https://console.firebase.google.com/ and create a new project, a new web app, and a new Cloud Firestore database.
+2. Copy the `firebaseConfig` (from when setting up the Firebase web app) to `lib/firebase.js`
+3. Edit the `.env.local` file, setting the `NEXT_PUBLIC_FIREBASE_API_KEY` value.
 
 Start it by doing the following:
 
-    yarn dev  # or 'yarn vercel' to run with Vercel/Zeit Now serverless
+    yarn dev
 
 In production:
 
@@ -121,6 +123,4 @@ Delete `lib/firebase.js` and modify `hooks/articles.js`.
 
 ### Login/Signup with Firebase Authentication
 
-You need to enable Email/Password authentication in https://console.firebase.google.com/u/0/project/MYAPP/authentication/providers
-
-TODO: add SSR support: https://github.com/vercel/next.js/tree/canary/examples/with-firebase-authentication
+You need to enable Email/Password authentication in https://console.firebase.google.com/u/0/project/YOURAPP/authentication/providers
