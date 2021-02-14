@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
 import { firebase, firebaseDB, docWithId, getCollectionItems } from 'lib/firebase'
+import toSlug from 'lib/toSlug'
 
 // Tip: if you don’t need SSR, you can move these inside the ArticlesContextProvider and create “chains” of child Firebase collections that depend on their parents
 export const articlesCollection = () => firebaseDB.collection('articles')
 export const articleRef = (articleId) => articlesCollection().doc(articleId)
 
-const toSlug = str => str && str.replace(/ /g, '-').replace(/[^\w-]+/g, '').toLowerCase()
 const getArticleSlug = (article) => `${toSlug(article.title)}-${article.id}`
 
 export const articlePath = (article) => {
