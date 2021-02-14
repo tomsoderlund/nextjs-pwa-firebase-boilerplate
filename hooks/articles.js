@@ -99,10 +99,15 @@ export const ArticleContextProvider = (props) => {
   // Use State to keep the values. Initial values are obtained from ArticleContextProvider’s props.
   const [article, setArticle] = useState(props.article)
 
+  const thisArticleRef = useMemo(
+    () => articleRef(props.article.id),
+    [props.article.id]
+  )
+
   // Real-time updates from Firebase
   useEffect(
-    () => articleRef && articleRef.onSnapshot(snapshot => setArticle(docWithId(snapshot))),
-    [articleRef]
+    () => thisArticleRef && thisArticleRef.onSnapshot(snapshot => setArticle(docWithId(snapshot))),
+    [thisArticleRef]
   )
 
   // updateArticle(variables)
