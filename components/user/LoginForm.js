@@ -5,7 +5,7 @@ import showNotification from 'lib/showNotification'
 
 import { googleEvent } from 'components/page/GoogleAnalytics'
 
-const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for a login link!', googleEventAction = 'user_login', redirectTo, onCompleted }) => {
+const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for a login link!', googleEventName = 'user_login', redirectTo, onCompleted }) => {
   const [inProgress, setInProgress] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -26,7 +26,7 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
       window.localStorage.setItem('emailForSignIn', inputs.email)
       handleInputChange({ target: { name: 'email', value: '' } })
       setIsSubmitted(true)
-      if (googleEventAction) googleEvent(googleEventAction)
+      if (googleEventName) googleEvent(googleEventName)
       if (onCompleted) onCompleted(null, inputs)
     } catch (error) {
       console.warn(error.message || error)
