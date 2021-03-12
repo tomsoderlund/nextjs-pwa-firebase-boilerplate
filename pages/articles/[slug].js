@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-import { docWithId } from 'lib/firebase'
+import { docWithId } from 'lib/data/firebase'
 import { articleRef } from 'hooks/articles'
 
 import ArticleDetails from 'components/articles/ArticleDetails'

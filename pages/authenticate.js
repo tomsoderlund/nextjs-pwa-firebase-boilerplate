@@ -3,7 +3,7 @@ import Router from 'next/router'
 import querystring from 'querystring'
 
 import { config } from 'config/config'
-import { firebaseApp } from 'lib/firebase'
+import { firebaseApp } from 'lib/data/firebase'
 
 const titleCase = str => str.replace(/(?:^|\s|[-"'([{])+\S/g, (c) => c.toUpperCase())
 const emailToName = (email) => titleCase(email.split('@')[0].replace(/\./g, ' '))

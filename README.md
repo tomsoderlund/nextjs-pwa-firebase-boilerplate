@@ -64,7 +64,7 @@ Install dependencies:
 Set up the database:
 
 1. Go to https://console.firebase.google.com/ and create a new project, a new web app, and a new Cloud Firestore database.
-2. Copy the `firebaseConfig` (from when setting up the Firebase web app) to `lib/firebase.js`
+2. Copy the `firebaseConfig` (from when setting up the Firebase web app) to `lib/data/firebase.js`
 3. Edit the `.env.local` file, setting the `NEXT_PUBLIC_FIREBASE_API_KEY` value.
 
 Start it by doing the following:
@@ -113,7 +113,7 @@ Do search/replace for “3004” to something else.
 
 ### How to remove/replace database
 
-Delete `lib/firebase.js` and modify `hooks/articles.js`.
+Delete `lib/data/firebase.js` and modify `hooks/articles.js`.
 
 ### Change visual theme (CSS)
 

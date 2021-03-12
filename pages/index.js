@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { config } from 'config/config'
 import { showErrorNotification } from 'lib/showNotification'
-import { getCollectionItems } from 'lib/firebase'
+import { getCollectionItems } from 'lib/data/firebase'
 import { articlesCollection, ArticlesContextProvider } from 'hooks/articles'
 import useUser from 'hooks/useUser'
 

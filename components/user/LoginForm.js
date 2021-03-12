@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { firebaseApp } from 'lib/firebase'
+import { firebaseApp } from 'lib/data/firebase'
 import showNotification from 'lib/showNotification'
 
 import { googleEvent } from 'components/page/GoogleAnalytics'

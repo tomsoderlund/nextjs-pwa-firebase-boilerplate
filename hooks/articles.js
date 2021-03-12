@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
-import { firebase, firebaseDB, docWithId, getCollectionItems } from 'lib/firebase'
+import { firebase, firebaseDB, docWithId, getCollectionItems } from 'lib/data/firebase'
 import toSlug from 'lib/toSlug'
 
 // Tip: if you don’t need SSR, you can move these inside the ArticlesContextProvider and create “chains” of child Firebase collections that depend on their parents
