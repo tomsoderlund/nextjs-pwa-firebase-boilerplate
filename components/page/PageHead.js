@@ -32,7 +32,6 @@ const PageHead = ({ title, description, path = '/' }) => {
       <link rel='manifest' href='/manifest.json' />
 
       {fonts.map(font => <link key={font[0]} rel='stylesheet' href={`https://fonts.googleapis.com/css?family=${`${font[0].replace(/ /g, '+')}${font[1] ? ':' + font[1] : ''}`}&display=swap`} />)}
-      <link rel='stylesheet' href='/app.css' />
 
       <link rel='shortcut icon' type='image/x-icon' href={iconUrl} />
 

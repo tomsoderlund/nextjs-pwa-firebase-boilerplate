@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 // Import global CSS files here
 import 'node_modules/aether-css-framework/dist/aether.min.css'
+import 'public/app.css'
 
 // import { config } from 'config/config'
 
