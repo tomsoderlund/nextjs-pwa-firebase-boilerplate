@@ -11,8 +11,7 @@ const getArticleSlug = (article) => `${toSlug(article.title)}-${article.id}`
 
 export const articlePath = (article) => {
   return {
-    href: `/articles/[slug]?slug=${getArticleSlug(article)}`,
-    as: `/articles/${getArticleSlug(article)}`
+    href: `/articles/${getArticleSlug(article)}`
   }
 }
 
