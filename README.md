@@ -20,8 +20,9 @@ _Lightning fast, all JavaScript._
 * Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying).
 * The new Firebase [Firestore](https://firebase.google.com/docs/firestore) database.
 * Login/Signup with Firebase Authentication.
+* Can use SSG `getStaticProps` or SSR `getServerSideProps`.
 * React Hooks for business logic.
-* Free-form database model. No GraphQL or REST API, just add React Hooks and modify `[page].getServerSideProps` (for server-side rendering, SSR) when changing/adding database tables.
+* Free-form database model. No GraphQL or REST API, just add React Hooks and modify `getStaticProps`/`getServerSideProps` when changing/adding database tables.
 * Easy to style the visual theme using CSS (e.g. using [Design Profile Generator](https://tomsoderlund.github.io/design-profile-generator/)).
 * SEO support with `sitemap.xml` and `robots.txt`.
 * Google Analytics and `google-site-verification` support (see `config/config.js`).
