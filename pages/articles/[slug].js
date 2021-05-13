@@ -48,18 +48,23 @@ const getArticleProps = async (slug) => {
   }
 }
 
-export async function getStaticProps ({ params: { slug } }) {
+// SSG
+export async function getStaticProps ({ params: { slug }, locale = 'en' }) {
   return {
     props: await getArticleProps(slug),
-    revalidate: 30
+    revalidate: 60 // Seconds. This refresh time could be longer depending on how often data changes.
   }
 }
 
-export const getStaticPaths = () => ({
-  paths: [],
-  fallback: true
+export const getStaticPaths = ({ locales }) => ({
+  // const paths = (await getCollectionItems(articlesCollection())).map(({ slug }) => ({ params: { slug }, locale: 'en' }))
+  paths: [
+    // { params: { propNameThatMustBePartOfFolderStructure: 'value' }, locale: 'en' }
+  ],
+  fallback: true // true -> build page if missing, false -> serve 404
 })
 
+// SSR
 // export async function getServerSideProps ({ req, res, query: { slug } }) {
 //   return {
 //     props: await getArticleProps(slug)
