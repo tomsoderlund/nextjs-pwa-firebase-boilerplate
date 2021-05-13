@@ -54,7 +54,7 @@ const AddArticleForm = () => {
 
       <style jsx>{`
         form {
-          margin-top: 1em
+          margin-top: 1em;
         }
       `}
       </style>
