@@ -18,9 +18,9 @@
     "v++": "yarn version --minor"
   },
   "dependencies": {
-    "aether-css-framework": "latest",
+    "aether-css-framework": "^1.6.17",
     "firebase": "^7.15.5",
-    "next": "latest",
+    "next": "^10.2.0",
     "next-offline": "^5.0.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
