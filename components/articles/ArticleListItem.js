@@ -74,9 +74,12 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
           font-size: 0.6em;
           text-transform: uppercase;
           border-bottom: none;
+          background-color: rgba(0,0,0, 0.1);
+          padding: 0.5em;
+          border-radius: 0.5em;
         }
         a.update {
-          color: lime;
+          color: limegreen;
         }
         a.delete {
           color: tomato;
