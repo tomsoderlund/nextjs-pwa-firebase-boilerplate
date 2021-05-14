@@ -20,7 +20,7 @@ export const articleObject = async (articleId) => {
   return docWithId(articleSnapshot)
 }
 
-const getArticleSlug = (article) => `${toSlug(article.title)}-${article.id}`
+export const getArticleSlug = (article) => `${toSlug(article.title)}-${article.id}`
 
 export const articlePath = (article) => {
   return {

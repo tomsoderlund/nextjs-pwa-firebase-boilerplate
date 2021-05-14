@@ -49,13 +49,15 @@ export async function getStaticProps ({ params: { slug }, locale = 'en' }) {
   }
 }
 
-export const getStaticPaths = ({ locales }) => ({
-  // const paths = (await articlesCollectionObjects().map(({ slug }) => ({ params: { slug }, locale: 'en' }))
-  paths: [
-    // { params: { propNameThatMustBePartOfFolderStructure: 'value' }, locale: 'en' }
-  ],
-  fallback: true // true -> build page if missing, false -> serve 404
-})
+export async function getStaticPaths ({ locales }) {
+  // const paths = (await articlesCollection()).map(article => ({ params: { slug: getArticleSlug(article) }, locale: 'en' }))
+  return {
+    paths: [
+      // { params: { propNameThatMustBePartOfFolderStructure: 'value' }, locale: 'en' }
+    ],
+    fallback: true // true -> build page if missing, false -> serve 404
+  }
+}
 
 // SSR
 // export async function getServerSideProps ({ req, res, query: { slug } }) {
