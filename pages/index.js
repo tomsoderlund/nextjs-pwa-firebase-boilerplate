@@ -52,7 +52,7 @@ function ArticleListPage ({ articles }) {
 export default ArticleListPage
 
 // SSG
-export async function getStaticProps ({ params: { slug }, locale = 'en' }) {
+export async function getStaticProps ({ params, locale = 'en' }) {
   const articlesRaw = await getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
   const articles = articlesRaw.map(article => ({
     ...article,
