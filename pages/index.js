@@ -4,8 +4,7 @@ import Link from 'next/link'
 
 import { config } from 'config/config'
 import { showErrorNotification } from 'lib/showNotification'
-import { getCollectionItems } from 'lib/data/firebase'
-import { articlesCollection, ArticlesContextProvider } from 'hooks/articles'
+import { articlesCollectionObjects, ArticlesContextProvider } from 'hooks/articles'
 import useUser from 'hooks/useUser'
 
 import ArticleList from 'components/articles/ArticleList'
@@ -53,7 +52,7 @@ export default ArticleListPage
 
 // SSG
 export async function getStaticProps ({ params, locale = 'en' }) {
-  const articlesRaw = await getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
+  const articlesRaw = await articlesCollectionObjects()
   const articles = articlesRaw.map(article => ({
     ...article,
     // To avoid “cannot be serialized as JSON” error:

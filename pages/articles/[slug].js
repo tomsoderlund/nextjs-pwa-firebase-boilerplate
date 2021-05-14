@@ -2,8 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-import { docWithId } from 'lib/data/firebase'
-import { articleRef } from 'hooks/articles'
+import { articleObject } from 'hooks/articles'
 
 import ArticleDetails from 'components/articles/ArticleDetails'
 
@@ -32,13 +31,7 @@ export default ArticleDetailsPage
 
 const getArticleProps = async (slug) => {
   const articleId = slug.split('-').pop()
-  const articleSnapshot = await articleRef(articleId).get()
-  if (!articleSnapshot.exists) {
-    const notFoundError = new Error(`Not found: ${articleId}`)
-    notFoundError.code = 'ENOENT'
-    throw notFoundError
-  }
-  const article = docWithId(articleSnapshot)
+  const article = await articleObject(articleId)
   if (article.dateCreated) article.dateCreated = article.dateCreated.toDate().toString() // To avoid “cannot be serialized as JSON” error
   if (article.dateUpdated) article.dateUpdated = article.dateUpdated.toDate().toString()
   return {

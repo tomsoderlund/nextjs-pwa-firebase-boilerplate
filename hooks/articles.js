@@ -4,8 +4,21 @@ import { firebase, firebaseDB, docWithId, getCollectionItems } from 'lib/data/fi
 import toSlug from 'lib/toSlug'
 
 // Tip: if you don’t need SSR, you can move these inside the ArticlesContextProvider and create “chains” of child Firebase collections that depend on their parents
+// Collection/Item as Firebase references
 export const articlesCollection = () => firebaseDB.collection('articles')
 export const articleRef = (articleId) => articlesCollection().doc(articleId)
+
+// Collection/Item as objects
+export const articlesCollectionObjects = () => getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
+export const articleObject = async (articleId) => {
+  const articleSnapshot = await articleRef(articleId).get()
+  if (!articleSnapshot.exists) {
+    const notFoundError = new Error(`Not found: ${articleId}`)
+    notFoundError.code = 'ENOENT'
+    throw notFoundError
+  }
+  return docWithId(articleSnapshot)
+}
 
 const getArticleSlug = (article) => `${toSlug(article.title)}-${article.id}`
 
@@ -29,7 +42,7 @@ export const ArticlesContextProvider = (props) => {
 
   // Real-time updates from Firebase
   useEffect(
-    () => articlesCollection().onSnapshot(snapshot => getCollectionItems(articlesCollection()).then(setArticles)),
+    () => articlesCollection().onSnapshot(snapshot => articlesCollectionObjects().then(setArticles)),
     []
   )
 

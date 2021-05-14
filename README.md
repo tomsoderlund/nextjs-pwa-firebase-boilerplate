@@ -18,7 +18,7 @@ _Lightning fast, all JavaScript._
 * Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications), which you can add to your Home Screen and use as a full-screen app.
 * PWA features such as `manifest.json` and offline support (`next-offline`).
 * Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying).
-* The new Firebase [Firestore](https://firebase.google.com/docs/firestore) database.
+* Uses the new Firebase [Firestore](https://firebase.google.com/docs/firestore) database, but easy to replace/remove database.
 * Login/Signup with Firebase Authentication.
 * Can use SSG `getStaticProps` or SSR `getServerSideProps`.
 * React Hooks for business logic.
