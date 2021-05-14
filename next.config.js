@@ -27,6 +27,10 @@ const nextConfig = {
         }
       }
     ]
+  },
+
+  future: {
+    webpack5: true
   }
 
   // // For <Icon /> support:
