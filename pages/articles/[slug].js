@@ -50,7 +50,7 @@ export async function getStaticProps ({ params: { slug }, locale = 'en' }) {
 }
 
 export const getStaticPaths = ({ locales }) => ({
-  // const paths = (await getCollectionItems(articlesCollection())).map(({ slug }) => ({ params: { slug }, locale: 'en' }))
+  // const paths = (await articlesCollectionObjects().map(({ slug }) => ({ params: { slug }, locale: 'en' }))
   paths: [
     // { params: { propNameThatMustBePartOfFolderStructure: 'value' }, locale: 'en' }
   ],

@@ -5,11 +5,11 @@ import toSlug from 'lib/toSlug'
 
 // Tip: if you don’t need SSR, you can move these inside the ArticlesContextProvider and create “chains” of child Firebase collections that depend on their parents
 // Collection/Item as Firebase references
-export const articlesCollection = () => firebaseDB.collection('articles')
-export const articleRef = (articleId) => articlesCollection().doc(articleId)
+export const articlesCollectionRef = () => firebaseDB.collection('articles')
+export const articleRef = (articleId) => articlesCollectionRef().doc(articleId)
 
 // Collection/Item as objects
-export const articlesCollectionObjects = () => getCollectionItems(articlesCollection()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
+export const articlesCollectionObjects = () => getCollectionItems(articlesCollectionRef()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
 export const articleObject = async (articleId) => {
   const articleSnapshot = await articleRef(articleId).get()
   if (!articleSnapshot.exists) {
@@ -42,7 +42,7 @@ export const ArticlesContextProvider = (props) => {
 
   // Real-time updates from Firebase
   useEffect(
-    () => articlesCollection().onSnapshot(snapshot => articlesCollectionObjects().then(setArticles)),
+    () => articlesCollectionRef().onSnapshot(snapshot => articlesCollectionObjects().then(setArticles)),
     []
   )
 
@@ -52,7 +52,7 @@ export const ArticlesContextProvider = (props) => {
     const valuesWithTimestamp = { ...variables, dateCreated: firebase.firestore.FieldValue.serverTimestamp() }
 
     // Create new article with a generated key
-    const newArticleRef = await articlesCollection().add(valuesWithTimestamp)
+    const newArticleRef = await articlesCollectionRef().add(valuesWithTimestamp)
 
     // // Create new article with a specified key
     // const newArticleRef = articleRef(articleId)
