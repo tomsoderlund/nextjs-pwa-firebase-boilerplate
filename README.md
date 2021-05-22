@@ -51,6 +51,7 @@ Setup and deploy your own project using this template with [Vercel](https://verc
 Clone this repository:
 
     git clone https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate.git [MY_APP]
+    cd [MY_APP]
 
 Remove the `.git` folder since you want to create a new repository
 
@@ -58,7 +59,6 @@ Remove the `.git` folder since you want to create a new repository
 
 Install dependencies:
 
-    cd [MY_APP]
     yarn  # or npm install
 
 Set up the database (if you don’t need a database, see “How to remove/replace Firebase as database” below):
