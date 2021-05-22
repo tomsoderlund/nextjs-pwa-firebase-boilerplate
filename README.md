@@ -12,7 +12,7 @@ Did you or your company find `nextjs-pwa-firebase-boilerplate` useful? Please co
 
 ## Why is this awesome?
 
-This is a great template for a any project where you want **React (with Hooks)** (with static site generation (SSG) or server-side rendering (SSR), powered by [Next.js](https://github.com/zeit/next.js)) as frontend and **Firebase** as backend. _Lightning fast, all JavaScript._
+This is a great template for a any project where you want **React (with Hooks)** (with **static site generation (SSG)** or **server-side rendering (SSR)**, powered by [Next.js](https://github.com/zeit/next.js)) as frontend and **Firebase** as backend. *Lightning fast, all JavaScript.*
 
 * Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications), which you can add to your Home Screen and use as a full-screen app.
 * PWA features such as `manifest.json` and offline support (`next-offline`).
@@ -38,15 +38,7 @@ See [**nextjs-pwa-firebase-boilerplate** running on Vercel here](https://nextjs-
 
 ![nextjs-pwa-firebase-boilerplate demo on phone](docs/demo.jpg)
 
-## Deploying
-
-Setup and deploy your own project using this template with [Vercel](https://vercel.com). All you'll need is your Firebase Public API Key.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Ftomsoderlund%2Fnextjs-pwa-firebase-boilerplate&env=NEXT_PUBLIC_FIREBASE_API_KEY&envDescription=Enter%20your%20public%20Firebase%20API%20Key&envLink=https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate#deploying-with-vercel)
-
 ## How to use
-
-> Note: If you set up your project using the Deploy button above, you only need to clone your own repo instead of this repository.
 
 Clone this repository:
 
@@ -82,7 +74,7 @@ If you navigate to `http://localhost:3004/` you will see a web page with a list 
 
 ### Change app name and description
 
-Do search/replace for the name `nextjs-pwa-firebase-boilerplate` and description `Next.js serverless PWA with Firebase and React Hooks` to something else.
+Do search/replace for the `name` “nextjs-pwa-firebase-boilerplate” and `description` “Next.js serverless PWA with Firebase and React Hooks” to something else.
 
 Change the `name` and `short_name` in `public/manifest.json`.
 
@@ -127,3 +119,11 @@ Delete `lib/data/firebase.js` and modify `hooks/articles.js`.
 ### Login/Signup with Firebase Authentication
 
 You need to enable Email/Password authentication in https://console.firebase.google.com/project/YOURAPP/authentication/providers
+
+## Deploying on Vercel
+
+> Note: If you set up your project using the Deploy button, you need to clone your own repo instead of this repository.
+
+Setup and deploy your own project using this template with [Vercel](https://vercel.com). All you’ll need is your Firebase Public API Key.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Ftomsoderlund%2Fnextjs-pwa-firebase-boilerplate&env=NEXT_PUBLIC_FIREBASE_API_KEY&envDescription=Enter%20your%20public%20Firebase%20API%20Key&envLink=https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate#deploying-with-vercel)
