@@ -12,8 +12,7 @@ Did you or your company find `nextjs-pwa-firebase-boilerplate` useful? Please co
 
 ## Why is this awesome?
 
-This is a great template for a any project where you want **React (with Hooks)** (with server-side rendering, powered by [Next.js](https://github.com/zeit/next.js)) as frontend and **Firebase** as backend.
-_Lightning fast, all JavaScript._
+This is a great template for a any project where you want **React (with Hooks)** (with static site generation (SSG) or server-side rendering (SSR), powered by [Next.js](https://github.com/zeit/next.js)) as frontend and **Firebase** as backend. _Lightning fast, all JavaScript._
 
 * Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications), which you can add to your Home Screen and use as a full-screen app.
 * PWA features such as `manifest.json` and offline support (`next-offline`).
@@ -53,7 +52,7 @@ Clone this repository:
 
     git clone https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate.git [MY_APP]
 
-Remove the .git folder since you want to create a new repository
+Remove the `.git` folder since you want to create a new repository
 
     rm -rf .git
 
@@ -62,7 +61,7 @@ Install dependencies:
     cd [MY_APP]
     yarn  # or npm install
 
-Set up the database:
+Set up the database (if you don’t need a database, see “How to remove/replace Firebase as database” below):
 
 1. Go to https://console.firebase.google.com/ and create a new project, a new web app, and a new Cloud Firestore database.
 2. Copy the `firebaseConfig` (from when setting up the Firebase web app) to `lib/data/firebase.js`
@@ -81,15 +80,17 @@ If you navigate to `http://localhost:3004/` you will see a web page with a list 
 
 ## Modifying the app to your needs
 
-### Change app name
+### Change app name and description
 
-Do search/replace for “nextjs-pwa-firebase-boilerplate” to something else.
+Do search/replace for the name `nextjs-pwa-firebase-boilerplate` and description `Next.js serverless PWA with Firebase and React Hooks` to something else.
 
-Change name in `public/manifest.json`
+Change the `name` and `short_name` in `public/manifest.json`.
+
+Change the `version` in `package.json` to `0.1.0` or similar.
 
 ### Renaming “Article” to something else
 
-The database item is called “Article”, but you probably want something else in your app.
+The main database item is called `Article`, but you probably want something else in your app.
 
 Rename the files:
 
@@ -110,18 +111,19 @@ Then, do search/replace inside the files for different casing: `article`, `Artic
 
 ### Change port number
 
-Do search/replace for “3004” to something else.
+Do search/replace for `3004` to something else.
 
-### How to remove/replace database
+### How to remove/replace Firebase as database
 
 Delete `lib/data/firebase.js` and modify `hooks/articles.js`.
 
 ### Change visual theme (CSS)
 
-1. Change colors in `public/manifest.json`
+1. Change included CSS files in `pages/_app.js`
 2. Change CSS in `public/app.css`
 3. Change font(s) in `PageHead.js`
+4. Change colors in `public/manifest.json`
 
 ### Login/Signup with Firebase Authentication
 
-You need to enable Email/Password authentication in https://console.firebase.google.com/u/0/project/YOURAPP/authentication/providers
+You need to enable Email/Password authentication in https://console.firebase.google.com/project/YOURAPP/authentication/providers
