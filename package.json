@@ -1,7 +1,7 @@
 {
   "name": "nextjs-pwa-firebase-boilerplate",
   "description": "Next.js serverless PWA with Firebase and React Hooks",
-  "version": "1.14.2",
+  "version": "1.15.0",
   "author": "Tom Söderlund <tom@tomsoderlund.com>",
   "license": "ISC",
   "scripts": {
@@ -20,7 +20,7 @@
   "dependencies": {
     "aether-css-framework": "^1.6.17",
     "firebase": "^7.15.5",
-    "next": "^10.2.0",
+    "next": "^11.0.0",
     "next-offline": "^5.0.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
