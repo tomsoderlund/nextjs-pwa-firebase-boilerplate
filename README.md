@@ -2,7 +2,7 @@
 
 ![nextjs-pwa-firebase-boilerplate demo on phone](docs/github_preview.jpg)
 
-_Note: this is my v4 boilerplate for React web apps. See also my [GraphQL + Postgres SQL boilerplate](https://github.com/tomsoderlund/nextjs-pwa-graphql-sql-boilerplate), [Redux + REST + Postgres SQL boilerplate](https://github.com/tomsoderlund/nextjs-sql-rest-api-boilerplate) and [Redux + REST + MongoDB boilerplate](https://github.com/tomsoderlund/nextjs-express-mongoose-crudify-boilerplate)._
+_Note: this is my v4 boilerplate for React web apps. See also my [GraphQL + Postgres SQL boilerplate](https://github.com/tomsoderlund/nextjs-pwa-graphql-sql-boilerplate), [Redux + REST + Postgres SQL boilerplate](https://github.com/tomsoderlund/nextjs-sql-rest-api-boilerplate) and [Redux + REST + MongoDB boilerplate](https://github.com/tomsoderlund/nextjs-express-mongoose-crudify-boilerplate). For a simple Next.js landing page, see [nextjs-generic-landing-page](https://github.com/tomsoderlund/nextjs-generic-landing-page)._
 
 ## Support this project
 
