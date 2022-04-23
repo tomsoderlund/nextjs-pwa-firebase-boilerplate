@@ -20,7 +20,7 @@ This is a great template for a any project where you want **React (with Hooks)**
 * Uses the new Firebase [Firestore](https://firebase.google.com/docs/firestore) database, but easy to replace/remove database.
 * Login/Signup with Firebase Authentication.
 * Can use SSG `getStaticProps` or SSR `getServerSideProps`.
-* React Hooks for business logic.
+* React Hooks and Context for state management and business logic.
 * Free-form database model. No GraphQL or REST API, just add React Hooks and modify `getStaticProps`/`getServerSideProps` when changing/adding database tables.
 * Easy to style the visual theme using CSS (e.g. using [Design Profile Generator](https://tomsoderlund.github.io/design-profile-generator/)).
 * SEO support with `sitemap.xml` and `robots.txt`.
