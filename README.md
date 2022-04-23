@@ -120,6 +120,14 @@ Delete `lib/data/firebase.js` and modify `hooks/articles.js`.
 
 You need to enable Email/Password authentication in https://console.firebase.google.com/project/YOURAPP/authentication/providers
 
+### Replace Firebase with Supabase (Postgres SQL)
+
+- Remove Firebase: `yarn remove firebase`
+- Add Supabase: `yarn add @supabase/supabase-js`
+- Add `NEXT_PUBLIC_SUPABASE_API_KEY` to `.env.local`
+- Create a `lib/data/supabase.js`
+- Update the JS files that reference `lib/data/firebase`
+
 ## Deploying on Vercel
 
 > Note: If you set up your project using the Deploy button, you need to clone your own repo instead of this repository.
