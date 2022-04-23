@@ -109,17 +109,6 @@ Do search/replace for `3004` to something else.
 
 Delete `lib/data/firebase.js` and modify `hooks/articles.js`.
 
-### Change visual theme (CSS)
-
-1. Change included CSS files in `pages/_app.js`
-2. Change CSS in `public/app.css`
-3. Change font(s) in `PageHead.js`
-4. Change colors in `public/manifest.json`
-
-### Login/Signup with Firebase Authentication
-
-You need to enable Email/Password authentication in https://console.firebase.google.com/project/YOURAPP/authentication/providers
-
 ### Replace Firebase with Supabase (Postgres SQL)
 
 - Remove Firebase: `yarn remove firebase`
@@ -133,6 +122,17 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_API_KEY
 export const supabase = createClient(supabaseUrl, supabaseKey)
 ```
 - Update the JS files that reference `lib/data/firebase`
+
+### Change visual theme (CSS)
+
+1. Change included CSS files in `pages/_app.js`
+2. Change CSS in `public/app.css`
+3. Change font(s) in `PageHead.js`
+4. Change colors in `public/manifest.json`
+
+### Login/Signup with Firebase Authentication
+
+You need to enable Email/Password authentication in https://console.firebase.google.com/project/YOURAPP/authentication/providers
 
 ## Deploying on Vercel
 
