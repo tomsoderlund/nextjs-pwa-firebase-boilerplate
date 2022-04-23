@@ -18,7 +18,7 @@ NOTE: must be wrapped on higher level than where useArticles is used.
     ...
   </ArticlesContextProvider>
 
-Then to use (“consume”) inside component or hook:  
+Then to use (“consume”) inside component or hook:
 
   import { useArticles } from 'hooks/articles'
 
