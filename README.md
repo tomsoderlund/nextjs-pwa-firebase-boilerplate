@@ -126,12 +126,12 @@ You need to enable Email/Password authentication in https://console.firebase.goo
 - Add Supabase: `yarn add @supabase/supabase-js`
 - Add `NEXT_PUBLIC_SUPABASE_API_KEY` to `.env.local`
 - Create a `lib/data/supabase.js`:
-
-```import { createClient } from '@supabase/supabase-js'
+```
+import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_API_KEY
-export const supabase = createClient(supabaseUrl, supabaseKey)```
-
+export const supabase = createClient(supabaseUrl, supabaseKey)
+```
 - Update the JS files that reference `lib/data/firebase`
 
 ## Deploying on Vercel
