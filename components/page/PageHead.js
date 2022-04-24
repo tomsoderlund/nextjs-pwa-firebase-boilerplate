@@ -31,7 +31,7 @@ const PageHead = ({ title, description, path = '/' }) => {
 
       <link rel='manifest' href='/manifest.json' />
 
-      {fonts.map(([fontName, fontWeights]) => <link key={fontName} rel='stylesheet' href={`https://fonts.googleapis.com/css?family=${`${fontName.replace(/ /g, '+')}${fontWeights === undefined ? `:${fontWeights}` : ''}`}&display=swap`} />)}
+      {fonts.map(([fontName, fontWeights]) => <link key={fontName} rel='stylesheet' href={`https://fonts.googleapis.com/css?family=${`${fontName.replace(/ /g, '+')}${fontWeights !== undefined ? `:${fontWeights}` : ''}`}&display=swap`} />)}
 
       <link rel='shortcut icon' type='image/x-icon' href={iconUrl} />
 
