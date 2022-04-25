@@ -8,6 +8,7 @@ import { firebaseApp } from 'lib/data/firebase'
 const titleCase = str => str.replace(/(?:^|\s|[-"'([{])+\S/g, (c) => c.toUpperCase())
 const emailToName = (email) => titleCase(email.split('@')[0].replace(/\./g, ' '))
 
+
 function EmailAuthenticatePage ({ query }) {
   useEffect(() => {
     async function loginUserAndRedirect () {

@@ -12,3 +12,4 @@ const ProductDetails = ({ product }) => {
   )
 }
 export default ProductDetails
+

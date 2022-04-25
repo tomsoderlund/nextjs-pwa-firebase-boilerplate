@@ -7,6 +7,7 @@ import { googleEvent } from 'components/page/GoogleAnalytics'
 
 import { Container, Form, Button } from 'react-bootstrap';
 
+
 const LoginForm = ({ buttonText = 'Entrar', thankyouText = '', googleEventName = 'user_login', redirectTo, onCompleted }) => {
   const [inProgress, setInProgress] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)

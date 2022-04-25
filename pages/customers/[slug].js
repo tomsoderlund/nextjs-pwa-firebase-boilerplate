@@ -6,6 +6,7 @@ import { articleObject } from 'hooks/articles'
 
 import ArticleDetails from 'components/articles/ArticleDetails'
 
+
 function ArticleDetailsPage ({ article }) {
   // Note: 'query' contains both /:params and ?query=value from url
   const { query } = useRouter()

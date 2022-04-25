@@ -116,6 +116,7 @@ export const ArticlesContextProvider = (props) => {
     return variables
   }
 
+  
   // Make the context object (i.e. the “API” for Articles)
   const articlesContext = {
     articles,

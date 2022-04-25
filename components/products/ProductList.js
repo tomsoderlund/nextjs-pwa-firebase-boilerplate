@@ -14,6 +14,7 @@ const ProductList = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  
   if (!products) return 'Loading...'
 
   return (

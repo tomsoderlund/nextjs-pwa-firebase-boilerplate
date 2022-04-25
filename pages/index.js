@@ -53,6 +53,7 @@ export async function getStaticProps ({ params, locale = 'en' }) {
   }
 }
 
+
 // SSR
 // export async function getServerSideProps ({ req, res, query: { slug } }) {
 //   return {

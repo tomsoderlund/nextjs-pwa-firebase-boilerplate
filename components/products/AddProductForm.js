@@ -10,6 +10,7 @@ const DEFAULT_INPUTS = {
   type: '',
 }
 
+
 const useAddProductForm = () => {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS)
   const { addProduct } = useProducts()

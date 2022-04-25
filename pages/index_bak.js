@@ -13,6 +13,7 @@ function ArticleListPage ({ articles }) {
   // Note: 'query' contains both /:params and ?query=value from url
   const { query } = useRouter()
   const { user } = useUser()
+  
   return (
     <>
       <h1>{config.appName}</h1>

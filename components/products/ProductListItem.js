@@ -23,6 +23,7 @@ const usePromptAndUpdateProduct = (product, fieldName) => {
   return handleUpdate
 }
 
+
 const usePromptAndDeleteProduct = (product) => {
   const { deleteProduct } = useProducts(product)
 

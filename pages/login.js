@@ -14,6 +14,7 @@ function LoginPage ({ query }) {
   )
 }
 
+
 export default LoginPage
 
 export const getStaticProps = () => ({

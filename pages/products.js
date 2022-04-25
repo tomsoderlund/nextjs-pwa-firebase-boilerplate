@@ -16,6 +16,7 @@ function ProductListPage ({ products }) {
   const { query } = useRouter()
   const { user } = useUser()
 
+  
   if(user) {
     return (
         <Container>

@@ -15,6 +15,7 @@ function ArticleListPage ({ articles }) {
   const { user } = useUser()
   return (
     <>
+    
       <h1>{config.appName}</h1>
 
       <p><em>{config.appTagline}</em></p>

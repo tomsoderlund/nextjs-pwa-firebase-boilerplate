@@ -6,6 +6,7 @@ import { productObject } from 'hooks/products'
 
 import ProductDetails from 'components/products/ProductDetails'
 
+
 function ProductDetailsPage ({ product }) {
   // Note: 'query' contains both /:params and ?query=value from url
   const { query } = useRouter()

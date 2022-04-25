@@ -96,6 +96,7 @@ export const ProductsContextProvider = (props) => {
     return docWithId(newProductSnapshot)
   }
 
+  
   // updateProduct(variables)
   const updateProduct = async (variables) => {
     const { id, ...values } = variables

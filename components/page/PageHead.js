@@ -11,6 +11,7 @@ const PageHead = ({ title, description, path = '/' }) => {
 
   const pageDescription = description || config.appDescription
 
+  
   // SEO: title 60 characters, description 160 characters
   if (isDevelopment()) console.log(`PageHead (dev):\n\ntitle (${60 - pageTitle.length}): “${pageTitle}”\n\ndescription (${160 - pageDescription.length}): “${pageDescription}”`)
 
