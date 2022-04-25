@@ -6,13 +6,12 @@ import { Navbar, Container } from 'react-bootstrap';
 
 import { config } from 'config/config'
 import { showErrorNotification } from 'lib/showNotification'
-import { articlesCollectionObjects, ArticlesContextProvider } from 'hooks/articles'
+import { productsCollectionObjects, ProductsContextProvider } from 'hooks/products'
 import useUser from 'hooks/useUser'
 
-import LoginForm from 'components/user/LoginForm'
-import ArticleList from 'components/articles/ArticleList'
+import ProductList from 'components/products/ProductList'
 
-function ArticleListPage ({ articles }) {
+function ProductListPage ({ products }) {
   // Note: 'query' contains both /:params and ?query=value from url
   const { query } = useRouter()
   const { user } = useUser()
@@ -20,34 +19,39 @@ function ArticleListPage ({ articles }) {
   if(user) {
     return (
         <Container>
-            <p><strong>{user.email}</strong></p>
+            <p>You are logged in as <strong>{user.email}</strong></p>
+            
+            <ProductsContextProvider
+                products={products}
+                onError={showErrorNotification}
+            >
+                <ProductList />
+            </ProductsContextProvider>
         </Container>
       )
   } else {
     return (
-      <Container>
-      <h1>Login</h1>
-
-      <LoginForm />
-    </Container>
+        <>
+            <p>Forbiden Access</p>
+        </>
     )
   }
 }
 
-export default ArticleListPage
+export default ProductListPage
 
 // SSG
 export async function getStaticProps ({ params, locale = 'en' }) {
-  const articlesRaw = await articlesCollectionObjects()
-  const articles = articlesRaw.map(article => ({
-    ...article,
+  const productsRaw = await productsCollectionObjects()
+  const products = productsRaw.map(product => ({
+    ...product,
     // To avoid “cannot be serialized as JSON” error:
-    dateCreated: article.dateCreated ? article.dateCreated.toString() : null,
-    dateUpdated: article.dateUpdated ? article.dateUpdated.toString() : null
+    dateCreated: product.dateCreated ? product.dateCreated.toString() : null,
+    dateUpdated: product.dateUpdated ? product.dateUpdated.toString() : null
   }))
   return {
     props: {
-      articles
+      products
     },
     revalidate: 60 // Seconds. This refresh time could be longer depending on how often data changes.
   }
@@ -56,6 +60,6 @@ export async function getStaticProps ({ params, locale = 'en' }) {
 // SSR
 // export async function getServerSideProps ({ req, res, query: { slug } }) {
 //   return {
-//     articles
+//     products
 //   }
 // }

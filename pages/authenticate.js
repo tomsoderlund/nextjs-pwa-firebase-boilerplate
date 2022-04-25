@@ -28,7 +28,7 @@ function EmailAuthenticatePage ({ query }) {
           window.localStorage.removeItem('emailForSignIn')
           // Redirect browser
           const { redirectTo } = querystring.parse(window.location.href.split('?')[1])
-          Router.push(redirectTo ? decodeURIComponent(redirectTo) : '/')
+          Router.push(redirectTo ? decodeURIComponent(redirectTo) : '/home')
           // You can access the new user via result.user
           // Additional user info profile not available via: result.additionalUserInfo.profile == null
           // You can check if the user is new or existing: result.additionalUserInfo.isNewUser

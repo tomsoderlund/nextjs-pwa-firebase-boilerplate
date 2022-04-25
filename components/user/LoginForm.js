@@ -5,11 +5,13 @@ import showNotification from 'lib/showNotification'
 
 import { googleEvent } from 'components/page/GoogleAnalytics'
 
-const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for a login link!', googleEventName = 'user_login', redirectTo, onCompleted }) => {
+import { Container, Form, Button } from 'react-bootstrap';
+
+const LoginForm = ({ buttonText = 'Entrar', thankyouText = '', googleEventName = 'user_login', redirectTo, onCompleted }) => {
   const [inProgress, setInProgress] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const [inputs, setInputs] = useState({ email: '' })
+  const [inputs, setInputs] = useState({ email: '', password: '' })
   const handleInputChange = ({ target }) => setInputs({ ...inputs, [target.name]: target.value })
 
   const handleSubmit = async (event) => {
@@ -19,10 +21,10 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
     try {
       // Firebase login with just email link, no password
       const actionCodeSettings = {
-        url: `${window.location.origin}/authenticate${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
+        url: `${window.location.origin}/authenticate${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : '/home'}`,
         handleCodeInApp: true
       }
-      await firebaseApp.auth().sendSignInLinkToEmail(inputs.email, actionCodeSettings)
+      await firebaseApp.auth().signInWithEmailAndPassword(inputs.email, inputs.password)
       window.localStorage.setItem('emailForSignIn', inputs.email)
       handleInputChange({ target: { name: 'email', value: '' } })
       setIsSubmitted(true)
@@ -38,35 +40,55 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
   }
 
   return (
-    <form className='login-form' onSubmit={handleSubmit}>
+    <Form className='login-form' onSubmit={handleSubmit}>
       {!isSubmitted ? (
-        <>
-          <input
+        <Container>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
+            
+          <Form.Control
             id='email'
             name='email'
             type='email'
             autoComplete='email'
             value={inputs.email}
             required
-            placeholder='Your email'
+            placeholder='Seu email'
             onChange={handleInputChange}
             disabled={inProgress}
           />
-
-          <button
+          </Form.Group>
+          
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Senha</Form.Label>
+            
+          <Form.Control
+            id='password'
+            name='password'
+            type='password'
+            autoComplete='password'
+            value={inputs.password}
+            required
+            placeholder='Seu password'
+            onChange={handleInputChange}
+            disabled={inProgress}
+          />
+          </Form.Group>
+          
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Button
             type='submit'
             className={'progress-animation' + (inProgress ? ' in-progress' : '')}
             disabled={inProgress}
           >
             {buttonText}
-          </button>
-
-          <p>No password necessary – we will send a login link to your email inbox.</p>
-        </>
+          </Button>
+          </Form.Group>
+        </Container>
       ) : (
         <p className='thankyou'>{thankyouText}</p>
       )}
-    </form>
+    </Form>
   )
 }
 

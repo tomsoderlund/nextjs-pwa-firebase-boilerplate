@@ -1,57 +1,55 @@
 import React from 'react'
 import Link from 'next/link'
 
+import useUser from 'hooks/useUser'
+import { firebaseApp } from 'lib/data/firebase'
 import { config } from 'config/config'
 
-const AppIcon = () => (
-  <Link href='/'>
-    <a className='app-icon' title={config.appName}>
-      <img src='/favicon.png' alt={config.appName} />
-      <style jsx>{`
-        a:hover {
-          filter: none;
-        }
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
-        img {
-          position: absolute;
-          left: 10px;
-          top: 10px;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-        }
-      `}
-      </style>
-    </a>
-  </Link>
-)
+const logout = () => {
+  firebaseApp.auth().signOut().then(function() {
+    // Sign-out successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
 
-const Header = ({ title = config.appName, children }) => (
-  <header
-    className='color-header-bg color-background-fg'
-  >
-    <AppIcon />
-    {title}
-    {children}
-    <style jsx>{`
-      header {
-        position: fixed;
-        z-index: 1000;
-        width: 100%;
-        left: 0;
-        top: 0;
-        height: 50px;
-        line-height: 50px;
-        font-weight: normal;
-        text-align: center;
-      }
-
-      :global(main) {
-        margin-top: 50px;
-        min-height: calc(100vh - 50px);
-      }
-    `}
-    </style>
-  </header>
-)
+function Header(){
+  const { user } = useUser()
+  if(user){
+    return (
+      <header>
+        <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+          <Container>
+          <Navbar.Brand href="/home">App</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/products">Produtos</Nav.Link>
+              <Nav.Link href="/customers">Clientes</Nav.Link>
+              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+            <Nav>
+              <Nav.Link onClick={logout} href="/">Sair</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </header>
+      )
+    }  else {
+      return (
+          <>
+              
+          </>
+      )
+    }
+  }
 export default Header

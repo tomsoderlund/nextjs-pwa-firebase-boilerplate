@@ -1,16 +1,16 @@
 import React from 'react'
 
-import { config } from 'config/config'
-
 import LoginForm from 'components/user/LoginForm'
+
+import { Container } from 'react-bootstrap';
 
 function LoginPage ({ query }) {
   return (
-    <>
-      <h1>Log in to {config.appName}</h1>
+    <Container>
+      <h1>Login</h1>
 
       <LoginForm />
-    </>
+    </Container>
   )
 }
 

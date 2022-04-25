@@ -3,13 +3,12 @@ import Router from 'next/router'
 import Link from 'next/link'
 
 // Import global CSS files here
-import 'node_modules/aether-css-framework/dist/aether.min.css'
-import 'public/app.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import { config } from 'config/config'
 
 import PageHead from 'components/page/PageHead'
-// import Header from 'components/page/Header'
+import Header from 'components/page/Header'
 import Notifications from 'components/page/Notifications'
 import { googlePageview } from 'components/page/GoogleAnalytics'
 
@@ -26,11 +25,7 @@ const MyApp = ({ Component, pageProps, router }) => {
         path={router.asPath}
       />
 
-      {/*
-      <Header
-        title={config.appName}
-      />
- */}
+      <Header />
 
       <main>
         <Component
@@ -38,10 +33,6 @@ const MyApp = ({ Component, pageProps, router }) => {
           {...router}
         />
       </main>
-
-      <Link href='/'><a className='button circle-menu-button'><img src='/icons/menu.svg' /></a></Link>
-      <button className='circle-menu-button right'><img src='/icons/person.svg' /></button>
-      <button className='circle-menu-button bottom right'><img src='/icons/help.svg' /></button>
 
       <Notifications />
     </>
