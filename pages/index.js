@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { config } from 'config/config'
 import { showErrorNotification } from 'lib/showNotification'
-import { articlesCollectionObjects, ArticlesContextProvider } from 'hooks/articles'
+import { articlesCollection, ArticlesContextProvider } from 'hooks/articles'
 import useUser from 'hooks/useUser'
 
 import ArticleList from 'components/articles/ArticleList'
@@ -52,7 +52,7 @@ export default ArticleListPage
 
 // SSG
 export async function getStaticProps ({ params, locale = 'en' }) {
-  const articlesRaw = await articlesCollectionObjects()
+  const articlesRaw = await articlesCollection()
   const articles = articlesRaw.map(article => ({
     ...article,
     // To avoid “cannot be serialized as JSON” error:

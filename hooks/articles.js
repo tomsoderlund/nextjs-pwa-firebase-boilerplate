@@ -38,7 +38,8 @@ export const articlesCollectionRef = () => firebaseDB.collection('articles')
 export const articleRef = (articleId) => articlesCollectionRef().doc(articleId)
 
 // Collection/Item as objects
-export const articlesCollectionObjects = () => getCollectionItems(articlesCollectionRef()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
+export const articlesCollection = () => getCollectionItems(articlesCollectionRef()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
+
 export const articleObject = async (articleId) => {
   const articleSnapshot = await articleRef(articleId).get()
   if (!articleSnapshot.exists) {
@@ -71,7 +72,7 @@ export const ArticlesContextProvider = (props) => {
 
   // Real-time updates from Firebase
   useEffect(
-    () => articlesCollectionRef().onSnapshot(snapshot => articlesCollectionObjects().then(setArticles)),
+    () => articlesCollectionRef().onSnapshot(snapshot => articlesCollection().then(setArticles)),
     []
   )
 
