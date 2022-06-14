@@ -12,7 +12,7 @@ const PageHead = ({ title, description, path = '/' }) => {
   const pageDescription = description || config.appDescription
 
   // SEO: title 60 characters, description 160 characters
-  if (isDevelopment()) console.log(`PageHead (dev):\n\ntitle (${60 - pageTitle.length}): “${pageTitle}”\n\ndescription (${160 - pageDescription.length}): “${pageDescription}”`)
+  if (isDevelopment()) console.log(`PageHead (dev):\n• title (${60 - pageTitle.length}): “${pageTitle}”\n• description (${160 - pageDescription.length}): “${pageDescription}”`)
 
   const thumbnailUrl = undefined // `https://screens.myscreenshooterserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
   const iconUrl = '/favicon.png'
