@@ -14,21 +14,27 @@ const SiteUrl = ({ path }) => {
   )
 }
 
-const Sitemap = () => {
-  const allPaths = ['/']
+const Sitemap = ({ pagePaths }) => {
   return (
     <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
-      {allPaths.map((path, index) => <SiteUrl key={index} path={path} />)}
+      {pagePaths.map((path, index) => <SiteUrl key={index} path={path} />)}
     </urlset>
   )
 }
 
+const getPagePaths = async () => {
+  return ['/']
+}
+
 export async function getServerSideProps ({ res }) { // { req, res, query }
   if (res.write) {
+    const pagePaths = await getPagePaths()
     res.setHeader('Content-Type', 'text/xml')
     res.write(
       ReactDOMServer.renderToStaticMarkup(
-        <Sitemap />
+        <Sitemap
+          pagePaths={pagePaths}
+        />
       )
     )
     res.end()
