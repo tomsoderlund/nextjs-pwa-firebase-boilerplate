@@ -4,7 +4,7 @@ import manifest from 'public/manifest.json'
 import { config } from 'config/config'
 import isDevelopment from 'lib/isDevelopment'
 
-const PageHead = ({ title, description, path = '/' }) => {
+const PageHead = ({ title, description, imageUrl, iconUrl = '/favicon.png', path = '/' }) => {
   const pageTitle = title
     ? `${title} – ${config.appName}`
     : `${config.appName} – ${config.appTagline}`
@@ -14,8 +14,8 @@ const PageHead = ({ title, description, path = '/' }) => {
   // SEO: title 60 characters, description 160 characters
   if (isDevelopment()) console.log(`PageHead (dev):\n• title (${60 - pageTitle.length}): “${pageTitle}”\n• description (${160 - pageDescription.length}): “${pageDescription}”`)
 
-  const thumbnailUrl = undefined // `https://screens.myscreenshooterserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
-  const iconUrl = '/favicon.png'
+  const thumbnailUrl = imageUrl // ?? `https://screens.myscreenshooterserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
+
   const fonts = [
     ['Inter', '300,400,500,700']
   ]

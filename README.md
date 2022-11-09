@@ -144,4 +144,4 @@ Setup and deploy your own project using this template with [Vercel](https://verc
 
 ## Todo
 
-- [ ] Optional unique title/description/image for each page (via `_app.js`)
+- [x] Optional unique title/description/image for each page (via `_app.js`)
