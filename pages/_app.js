@@ -17,11 +17,10 @@ Router.events.on('routeChangeComplete', path => googlePageview(path))
 
 const MyApp = ({ Component, pageProps, router }) => {
   // props (Server + Client): Component, err, pageProps, router
-  const { title, description, imageUrl, iconUrl } = pageProps
   return (
     <>
       <PageHead
-        {...{ title, description, imageUrl, iconUrl }}
+        {...pageProps}
         path={router.asPath}
       />
 
