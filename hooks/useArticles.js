@@ -99,7 +99,7 @@ export const ArticlesContextProvider = (props) => {
 
   // updateArticle(variables)
   const updateArticle = async (variables) => {
-    const { id, ...values } = variables
+    const { id, dateCreated, ...values } = variables
     const valuesWithTimestamp = { ...values, dateUpdated: firebase.firestore.FieldValue.serverTimestamp() }
     await articleRef(id).update(valuesWithTimestamp) // will merge data – use set() to overwrite
     // Update client-side state
