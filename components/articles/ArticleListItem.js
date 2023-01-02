@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import showNotification from 'lib/showNotification'
-import { useArticles, articlePath } from 'hooks/articles'
+import { useArticles, articlePath } from 'hooks/useArticles'
 
 const usePromptAndUpdateArticle = (article, fieldName) => {
   const { updateArticle } = useArticles()

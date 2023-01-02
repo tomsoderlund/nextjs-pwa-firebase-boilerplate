@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import showNotification from 'lib/showNotification'
-import { useArticles } from 'hooks/articles'
+import { useArticles } from 'hooks/useArticles'
 
 const DEFAULT_INPUTS = { title: '' }
 

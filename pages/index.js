@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { config } from 'config/config'
 import { showErrorNotification } from 'lib/showNotification'
-import { articlesCollection, ArticlesContextProvider } from 'hooks/articles'
+import { articlesCollection, ArticlesContextProvider } from 'hooks/useArticles'
 import useUser from 'hooks/useUser'
 
 import ArticleList from 'components/articles/ArticleList'

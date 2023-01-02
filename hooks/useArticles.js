@@ -9,7 +9,7 @@ How to use the first:
 Wrap your component/page with the ArticlesContextProvider.
 NOTE: must be wrapped on higher level than where useArticles is used.
 
-  import { ArticlesContextProvider } from 'hooks/articles'
+  import { ArticlesContextProvider } from 'hooks/useArticles'
 
   <ArticlesContextProvider
     articles={articles}
@@ -20,7 +20,7 @@ NOTE: must be wrapped on higher level than where useArticles is used.
 
 Then to use (“consume”) inside component or hook:
 
-  import { useArticles } from 'hooks/articles'
+  import { useArticles } from 'hooks/useArticles'
 
   const { articles, addArticle } = useArticles()
   await addArticle(data)

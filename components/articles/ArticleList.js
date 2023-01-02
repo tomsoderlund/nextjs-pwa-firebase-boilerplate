@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useArticles } from 'hooks/articles'
+import { useArticles } from 'hooks/useArticles'
 
 import ArticleListItem from './ArticleListItem'
 import AddArticleForm from './AddArticleForm'

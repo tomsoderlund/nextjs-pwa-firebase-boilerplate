@@ -85,7 +85,7 @@ The main database item is called `Article`, but you probably want something else
 
 Rename the files:
 
-    mv hooks/articles.js hooks/{newName}s.js
+    mv hooks/useArticles.js hooks/use{NewName}s.js
 
     mkdir -p components/{newName}s
     mv components/articles/AddArticleForm.js components/{newName}s/Add{NewName}Form.js
@@ -106,7 +106,7 @@ Do search/replace for `3004` to something else.
 
 ### How to remove/replace Firebase as database
 
-Delete `lib/data/firebase.js` and modify `hooks/articles.js`.
+Delete `lib/data/firebase.js` and modify `hooks/useArticles.js`.
 
 ### Replace Firebase with Supabase (Postgres SQL)
 

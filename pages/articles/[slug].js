@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-import { articleObject } from 'hooks/articles'
+import { articleObject } from 'hooks/useArticles'
 
 import ArticleDetails from 'components/articles/ArticleDetails'
 
