@@ -2,7 +2,6 @@
   "name": "Next.js PWA Firebase",
   "short_name": "Next.js PWA",
   "description": "Next.js serverless PWA with Firebase and React Hooks",
-  "background_color": "#663399",
   "icons": [
     {
       "src": "favicon.png",
