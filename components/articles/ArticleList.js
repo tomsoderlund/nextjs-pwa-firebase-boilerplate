@@ -3,7 +3,6 @@ import React from 'react'
 import { useArticles } from 'hooks/useArticles'
 
 import ArticleListItem from './ArticleListItem'
-import AddArticleForm from './AddArticleForm'
 
 const ArticleList = () => {
   const { articles } = useArticles()
@@ -11,18 +10,14 @@ const ArticleList = () => {
   if (!articles) return 'Loading...'
 
   return (
-    <>
-      <div className='article-list'>
-        {articles && articles.map(article => (
-          <ArticleListItem
-            key={article.id}
-            article={article}
-          />
-        ))}
-      </div>
-
-      <AddArticleForm />
-    </>
+    <div className='article-list'>
+      {articles && articles.map(article => (
+        <ArticleListItem
+          key={article.id}
+          article={article}
+        />
+      ))}
+    </div>
   )
 }
 export default ArticleList

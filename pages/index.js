@@ -8,6 +8,7 @@ import { articlesCollection, ArticlesContextProvider } from 'hooks/useArticles'
 import useUser from 'hooks/useUser'
 
 import ArticleList from 'components/articles/ArticleList'
+import AddArticleForm from './AddArticleForm'
 
 function ArticleListPage ({ articles }) {
   // Note: 'query' contains both /:params and ?query=value from url
@@ -24,6 +25,7 @@ function ArticleListPage ({ articles }) {
         onError={showErrorNotification}
       >
         <ArticleList />
+        <AddArticleForm />
       </ArticlesContextProvider>
 
       <h2>Routing</h2>
