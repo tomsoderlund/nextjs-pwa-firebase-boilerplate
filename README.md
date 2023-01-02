@@ -14,21 +14,21 @@ Did you or your company find `nextjs-pwa-firebase-boilerplate` useful? Please co
 
 This is a great template for a any project where you want **React (with Hooks)** (with **static site generation (SSG)** or **server-side rendering (SSR)**, powered by [Next.js](https://github.com/zeit/next.js)) as frontend and **Firebase** as backend. *Lightning fast, all JavaScript.*
 
-* Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications), which you can add to your Home Screen and use as a full-screen app.
-* PWA features such as `manifest.json` and offline support (`next-offline`).
-* Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying).
-* Uses the new Firebase [Firestore](https://firebase.google.com/docs/firestore) database, but easy to replace/remove database.
-* Login/Signup with Firebase Authentication.
-* Can use SSG `getStaticProps` or SSR `getServerSideProps`.
-* React Hooks and Context for state management and business logic.
-* Free-form database model. No GraphQL or REST API, just add React Hooks and modify `getStaticProps`/`getServerSideProps` when changing/adding database tables.
-* Easy to style the visual theme using CSS (e.g. using [Design Profile Generator](https://tomsoderlund.github.io/design-profile-generator/)).
-* SEO support with `sitemap.xml` and `robots.txt`.
-* Google Analytics and `google-site-verification` support (see `config/config.js`).
-* Flexible configuration with `config/config.js` and `.env.local` file.
-* Code linting and formatting with StandardJS (`yarn lint`/`yarn fix`).
-* Unit testing with Jasmine (`yarn unit`, not yet included).
-* Great page speed, see [Lighthouse](https://developers.google.com/web/tools/lighthouse) score:
+- Great starting point for a [PWA (Progressive Web App)](https://en.wikipedia.org/wiki/Progressive_web_applications), which you can add to your Home Screen and use as a full-screen app.
+- PWA features such as `manifest.json` and offline support (`next-offline`).
+- Can be deployed as [serverless functions on Vercel/Zeit Now](#deploying).
+- Uses the new Firebase [Firestore](https://firebase.google.com/docs/firestore) database, but easy to replace/remove database.
+- Login/Signup with Firebase Authentication.
+- Can use SSG `getStaticProps` or SSR `getServerSideProps`.
+- React Hooks and Context for state management and business logic.
+- Free-form database model. No GraphQL or REST API, just add React Hooks and modify `getStaticProps`/`getServerSideProps` when changing/adding database tables.
+- Easy to style the visual theme using CSS (e.g. using [Design Profile Generator](https://tomsoderlund.github.io/design-profile-generator/)).
+- SEO support with `sitemap.xml` and `robots.txt`.
+- Google Analytics and `google-site-verification` support (see `config/config.js`).
+- Flexible configuration with `config/config.js` and `.env.local` file.
+- Code linting and formatting with StandardJS (`yarn lint`/`yarn fix`).
+- Unit testing with Jasmine (`yarn unit`, not yet included).
+- Great page speed, see [Lighthouse](https://developers.google.com/web/tools/lighthouse) score:
 
 ![Lighthouse score](docs/lighthouse_score.png)
 
@@ -52,12 +52,6 @@ Remove the `.git` folder since you want to create a new repository
 Install dependencies:
 
     yarn  # or npm install
-
-Set up the database (if you don’t need a database, see “How to remove/replace Firebase as database” below):
-
-1. Go to https://console.firebase.google.com/ and create a new project, a new web app, and a new Cloud Firestore database.
-2. Copy the `firebaseConfig` (from when setting up the Firebase web app) to `lib/data/firebase.js`
-3. Edit the `.env.local` file, setting the `NEXT_PUBLIC_FIREBASE_API_KEY` value.
 
 Start it by doing the following:
 
@@ -104,9 +98,18 @@ Then, do search/replace inside the files for different casing: `article`, `Artic
 
 Do search/replace for `3004` to something else.
 
-### How to remove/replace Firebase as database
+### Set up Firebase database (Firestore)
 
-Delete `lib/data/firebase.js` and modify `hooks/useArticles.js`.
+Set up the database (if you don’t need a database, see “How to remove/replace Firebase as database” below):
+
+1. Go to https://console.firebase.google.com/ and create a new project, a new web app, and a new Cloud Firestore database.
+2. Copy the `firebaseConfig` (from when setting up the Firebase web app) to `lib/data/firebase.js`
+3. Edit the `.env.local` file, setting the `NEXT_PUBLIC_FIREBASE_API_KEY` value.
+
+### How to remove the Firebase dependency
+
+- Run `yarn remove firebase`
+- Delete `lib/data/firebase.js` and modify `hooks/useArticles.js`.
 
 ### Replace Firebase with Supabase (Postgres SQL)
 
