@@ -17,6 +17,14 @@
     "v+": "yarn version --patch",
     "v++": "yarn version --minor"
   },
+  "standard": {
+    "ignore": [
+      ".next"
+    ],
+    "globals": [
+      "fetch"
+    ]
+  },
   "dependencies": {
     "aether-css-framework": "^1.6.17",
     "firebase": "^7.15.5",
