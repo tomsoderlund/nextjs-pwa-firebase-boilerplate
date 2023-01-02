@@ -8,7 +8,7 @@ import { articlesCollection, ArticlesContextProvider } from 'hooks/useArticles'
 import useUser from 'hooks/useUser'
 
 import ArticleList from 'components/articles/ArticleList'
-import AddArticleForm from './AddArticleForm'
+import AddArticleForm from 'components/articles/AddArticleForm'
 
 function ArticleListPage ({ articles }) {
   // Note: 'query' contains both /:params and ?query=value from url
