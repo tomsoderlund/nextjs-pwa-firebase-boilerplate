@@ -1,21 +1,25 @@
 import { handleRestRequest, CustomError } from 'lib/handleRestRequest'
-// import { config } from 'config/config'
+import { config } from 'config/config'
 
-// const DOMAINS_ALLOWED_LIST = [`http://localhost:${config.serverPort}`, config.appUrl.slice(0, -1)]
+const DOMAINS_ALLOWED_LIST = [`localhost:${config.serverPort}`, (new URL(config.appUrl)).host]
 
 export default (req, res) => handleRestRequest(async (req, res) => {
+  if (!DOMAINS_ALLOWED_LIST.includes(req.headers.host)) throw new CustomError('Request not authorized', 401, { host: req.headers.host })
   switch (req.method) {
     case 'GET':
-      await returnSomething(req, res)
+      await exampleFunction(req, res)
       break
     default:
       throw new CustomError('Method not allowed', 405)
   }
 }, { req, res })
 
-const returnSomething = async (req, res) => {
-  // if (!DOMAINS_ALLOWED_LIST.includes(req.headers.origin)) throw new CustomError('Request not authorized', 401, { origin: req.headers.origin })
-  const results = 'Hello World'
-  res.statusCode = 200
-  res.json({ results })
+const exampleFunction = async (req, res) => {
+  try {
+    const results = 'Hello World'
+    res.statusCode = 200
+    res.json({ results })
+  } catch (error) {
+    throw new CustomError(error.message, 400)
+  }
 }
