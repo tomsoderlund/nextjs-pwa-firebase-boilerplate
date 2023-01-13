@@ -52,6 +52,5 @@ export default EmailAuthenticatePage
 export const getStaticProps = () => ({
   props: {
     title: 'Logging in' // used in _app.js
-  },
-  revalidate: 31536000 // refresh once a year
+  }
 })

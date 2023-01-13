@@ -45,7 +45,7 @@ const getArticleProps = async (slug) => {
 export async function getStaticProps ({ params: { slug }, locale = 'en' }) {
   return {
     props: await getArticleProps(slug),
-    revalidate: 60 // Seconds. This refresh time could be longer depending on how often data changes.
+    revalidate: 10 * 60 // Refresh page every 10 minutes
   }
 }
 
