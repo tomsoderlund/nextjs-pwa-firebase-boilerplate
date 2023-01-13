@@ -55,7 +55,7 @@ export async function getStaticPaths ({ locales }) {
     paths: [
       // { params: { propNameThatMustBePartOfFolderStructure: 'value' }, locale: 'en' }
     ],
-    fallback: true // true -> build page if missing, false -> serve 404
+    fallback: true // true → build page if missing, false → serve 404
   }
 }
 
