@@ -35,7 +35,7 @@
     "react-toastify": "^9.1.1"
   },
   "devDependencies": {
-    "standard": "^14.3.4",
+    "standard": "^17.0.0",
     "webpack": "^5.25.0"
   }
 }
