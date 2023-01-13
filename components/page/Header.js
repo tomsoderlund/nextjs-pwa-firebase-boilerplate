@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { config } from 'config/config'
 
 const AppIcon = () => (
-  <Link href='/'>
+  <Link legacyBehavior href='/'>
     <a className='app-icon' title={config.appName}>
       <img src='/favicon.png' alt={config.appName} />
       <style jsx>{`

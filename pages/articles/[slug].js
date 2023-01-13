@@ -22,7 +22,7 @@ function ArticleDetailsPage ({ article }) {
       <p>Current query: <strong>{JSON.stringify(query)}</strong></p>
 
       <ul>
-        <li><Link href='/'><a>Home</a></Link></li>
+        <li><Link legacyBehavior href='/'><a>Home</a></Link></li>
       </ul>
     </>
   )

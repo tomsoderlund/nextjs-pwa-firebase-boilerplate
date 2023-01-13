@@ -44,7 +44,7 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
       className={'article' + (inProgress === article.id ? ' in-progress' : '')}
       title={`id: ${article.id}`}
     >
-      <Link {...articlePath(article)}>
+      <Link legacyBehavior {...articlePath(article)}>
         <a>{article.title}</a>
       </Link>
 

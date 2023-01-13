@@ -37,7 +37,7 @@ const MyApp = ({ Component, pageProps, router }) => {
         />
       </main>
 
-      <Link href='/'><a className='button circle-menu-button'><img src='/icons/menu.svg' /></a></Link>
+      <Link legacyBehavior href='/'><a className='button circle-menu-button'><img src='/icons/menu.svg' /></a></Link>
       <button className='circle-menu-button right'><img src='/icons/person.svg' /></button>
       <button className='circle-menu-button bottom right'><img src='/icons/help.svg' /></button>
 

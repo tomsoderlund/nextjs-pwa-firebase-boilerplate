@@ -35,7 +35,7 @@ function ArticleListPage ({ articles }) {
       {user && (
         <p>You are logged in as <strong>{user.email}</strong></p>
       )}
-      <Link href='/login'>
+      <Link legacyBehavior href='/login'>
         <a>Click here to log in</a>
       </Link>
 
