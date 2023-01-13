@@ -2,6 +2,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
+import { convertDates } from 'lib/data/firebase'
 import { articleObject } from 'hooks/useArticles'
 
 import ArticleDetails from 'components/articles/ArticleDetails'
@@ -31,9 +32,7 @@ export default ArticleDetailsPage
 
 const getArticleProps = async (slug) => {
   const articleId = slug.split('-').pop()
-  const article = await articleObject(articleId)
-  if (article.dateCreated) article.dateCreated = article.dateCreated.toDate().toString() // To avoid “cannot be serialized as JSON” error
-  if (article.dateUpdated) article.dateUpdated = article.dateUpdated.toDate().toString()
+  const article = convertDates(await articleObject(articleId))
   return {
     article,
     title: article.title,
