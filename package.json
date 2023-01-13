@@ -26,7 +26,7 @@
     ]
   },
   "dependencies": {
-    "aether-css-framework": "^1.6.17",
+    "aether-css-framework": "^1.7.1",
     "firebase": "^7.15.5",
     "next": "^11.0.0",
     "next-offline": "^5.0.2",

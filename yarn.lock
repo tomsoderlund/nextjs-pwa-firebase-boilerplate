@@ -1534,10 +1534,10 @@ acorn@^8.2.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.2.4.tgz#caba24b08185c3b56e3168e97d15ed17f4d31fd0"
   integrity sha512-Ibt84YwBDDA890eDiDCEqcbwvHlBvzzDkU2cGBBDDI1QWT12jTiXIOn2CIw5KK4i6N5Z2HUxwYjzriDyqaqqZg==
 
-aether-css-framework@^1.6.17:
-  version "1.6.17"
-  resolved "https://registry.yarnpkg.com/aether-css-framework/-/aether-css-framework-1.6.17.tgz#635bc4396092af4854bdf55c16ff70ce23fdf914"
-  integrity sha512-Q8bA30xk/rnHsGEm0S7jMnFB6W7j1+6khddsUiEnQ22f2OLnFIi+zuSQYjsGa96BFSFYg2Jb0MbkUuw4S1PTCg==
+aether-css-framework@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/aether-css-framework/-/aether-css-framework-1.7.1.tgz#ab64af04951056542b5efbcb0d4f1289db1a8330"
+  integrity sha512-ZdAWo5MSlthC90Zj/46012KgV4RQs6GzVpKseY0QQf/phylO2O4RQGz2voDSxcK9ZChPbld5RT43DE/nDuEHQg==
 
 agent-base@6:
   version "6.0.2"
