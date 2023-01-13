@@ -11,16 +11,18 @@ export default class MyDocument extends Document {
       <Html lang={config.locale.split('_')[0]}>
         <Head>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          {config.googleAnalyticsId ? (
-            <>
-              <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.googleAnalyticsId}`} />
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)}; gtag('js', new Date()); gtag('config', '${config.googleAnalyticsId}');`
-                }}
-              />
-            </>
-          ) : null}
+          {config.googleAnalyticsId
+            ? (
+              <>
+                <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.googleAnalyticsId}`} />
+                <script
+                  dangerouslySetInnerHTML={{
+                    __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments)}; gtag('js', new Date()); gtag('config', '${config.googleAnalyticsId}');`
+                  }}
+                />
+              </>
+              )
+            : null}
         </Head>
         <body>
           <Main />

@@ -39,33 +39,35 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
 
   return (
     <form className='login-form' onSubmit={handleSubmit}>
-      {!isSubmitted ? (
-        <>
-          <input
-            id='email'
-            name='email'
-            type='email'
-            autoComplete='email'
-            value={inputs.email}
-            required
-            placeholder='Your email'
-            onChange={handleInputChange}
-            disabled={inProgress}
-          />
+      {!isSubmitted
+        ? (
+          <>
+            <input
+              id='email'
+              name='email'
+              type='email'
+              autoComplete='email'
+              value={inputs.email}
+              required
+              placeholder='Your email'
+              onChange={handleInputChange}
+              disabled={inProgress}
+            />
 
-          <button
-            type='submit'
-            className={'progress-animation' + (inProgress ? ' in-progress' : '')}
-            disabled={inProgress}
-          >
-            {buttonText}
-          </button>
+            <button
+              type='submit'
+              className={'progress-animation' + (inProgress ? ' in-progress' : '')}
+              disabled={inProgress}
+            >
+              {buttonText}
+            </button>
 
-          <p>No password necessary – we will send a login link to your email inbox.</p>
-        </>
-      ) : (
-        <p className='thankyou'>{thankyouText}</p>
-      )}
+            <p>No password necessary – we will send a login link to your email inbox.</p>
+          </>
+          )
+        : (
+          <p className='thankyou'>{thankyouText}</p>
+          )}
     </form>
   )
 }
