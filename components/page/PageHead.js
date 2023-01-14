@@ -16,10 +16,6 @@ const PageHead = ({ title, description, imageUrl, iconUrl = '/favicon.png', path
 
   const thumbnailUrl = imageUrl // ?? `https://screens.myscreenshooterserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
 
-  const fonts = [
-    ['Inter', '300,400,500,700']
-  ]
-
   return (
     <Head>
       <title>{pageTitle}</title>
@@ -30,8 +26,6 @@ const PageHead = ({ title, description, imageUrl, iconUrl = '/favicon.png', path
       <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
       <link rel='manifest' href='/manifest.json' />
-
-      {fonts.map(([fontName, fontWeights]) => <link key={fontName} rel='stylesheet' href={`https://fonts.googleapis.com/css?family=${`${fontName.replace(/ /g, '+')}${fontWeights !== undefined ? `:${fontWeights}` : ''}`}&display=swap`} />)}
 
       <link rel='shortcut icon' type='image/x-icon' href={iconUrl} />
 

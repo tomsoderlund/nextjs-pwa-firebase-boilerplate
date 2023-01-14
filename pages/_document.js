@@ -10,6 +10,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang={config.locale.split('_')[0]}>
         <Head>
+          <link rel='stylesheet' href={`https://fonts.googleapis.com/css2?${config.fonts.map(([fontName, fontWeight]) => `family=${`${fontName.replace(/ /g, '+')}${fontWeight ? ':' + fontWeight : ''}`}`).join('&')}&display=swap`} />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {config.googleAnalyticsId
             ? (

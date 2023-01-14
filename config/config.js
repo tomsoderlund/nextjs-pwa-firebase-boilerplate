@@ -15,7 +15,10 @@ const completeConfig = {
     appDescription: `${manifest.name} – ${manifest.description}`,
     locale: 'en_US', // sv_SE
     googleAnalyticsId: 'UA-XXXXXXX-X',
-    googleSiteVerification: false
+    googleSiteVerification: false,
+    fonts: [
+      ['Inter', 'wght@300;400;500;700']
+    ]
   },
 
   development: {
