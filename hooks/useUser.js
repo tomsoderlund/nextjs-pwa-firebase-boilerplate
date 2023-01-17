@@ -1,8 +1,11 @@
+/*
+  import useUser from 'hooks/useUser'
+  const { user } = useUser()
+*/
 import { useState, useEffect } from 'react'
 
 import { firebaseApp } from 'lib/data/firebase'
 
-// const { user } = useUser()
 export default function useUser () {
   const [user, setUser] = useState(null)
   useEffect(() => {
