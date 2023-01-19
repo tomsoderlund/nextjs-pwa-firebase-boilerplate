@@ -90,11 +90,12 @@ export const ArticlesContextProvider = (props) => {
 
     // Update client-side state
     const newArticleSnapshot = await newArticleRef.get()
+    const newArticleWithId = docWithId(newArticleSnapshot)
     setArticles([
       ...articles,
-      docWithId(newArticleSnapshot)
+      newArticleWithId
     ])
-    return docWithId(newArticleSnapshot)
+    return newArticleWithId
   }
 
   // updateArticle(variables)
@@ -104,8 +105,9 @@ export const ArticlesContextProvider = (props) => {
     await articleRef(id).update(valuesWithTimestamp) // will merge data – use set() to overwrite
     // Update client-side state
     const articleSnapshot = await articleRef(id).get()
-    setArticles(articles.map(article => article.id === id ? docWithId(articleSnapshot) : article))
-    return docWithId(articleSnapshot)
+    const articleWithId = docWithId(articleSnapshot)
+    setArticles(articles.map(article => article.id === id ? articleWithId : article))
+    return articleWithId
   }
 
   // deleteArticle(variables)
