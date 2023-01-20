@@ -31,6 +31,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 
 import { firebase, firebaseDB, docWithId, getCollectionItems } from 'lib/data/firebase'
 import toSlug from 'lib/toSlug'
+import makeRestRequest from 'lib/makeRestRequest'
 
 // Tip: if you don’t need SSR, you can move these inside the ArticlesContextProvider and create “chains” of child Firebase collections that depend on their parents
 // Collection/Item as Firebase references
@@ -76,6 +77,11 @@ export const ArticlesContextProvider = (props) => {
     []
   )
 
+  // Refresh SSG cache
+  const revalidateArticle = async (article) => {
+    await makeRestRequest('/api/revalidate', { path: articlePath(article).href }, { method: 'POST' })
+  }
+
   // addArticle(variables)
   const addArticle = async (variables) => {
     // if (props.onError) props.onError('An error happened!')
@@ -95,6 +101,8 @@ export const ArticlesContextProvider = (props) => {
       ...articles,
       newArticleWithId
     ])
+    // Refresh SSG cache
+    revalidateArticle(newArticleWithId)
     return newArticleWithId
   }
 
@@ -107,6 +115,8 @@ export const ArticlesContextProvider = (props) => {
     const articleSnapshot = await articleRef(id).get()
     const articleWithId = docWithId(articleSnapshot)
     setArticles(articles.map(article => article.id === id ? articleWithId : article))
+    // Refresh SSG cache
+    revalidateArticle(articleWithId)
     return articleWithId
   }
 
