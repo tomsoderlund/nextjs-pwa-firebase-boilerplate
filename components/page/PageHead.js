@@ -14,7 +14,7 @@ const PageHead = ({ title, description, imageUrl, iconUrl = '/favicon.png', path
   // SEO: title 60 characters, description 160 characters
   if (isDevelopment()) console.log(`PageHead (dev):\n• title (${60 - pageTitle.length}): “${pageTitle}”\n• description (${160 - pageDescription.length}): “${pageDescription}”`)
 
-  const thumbnailUrl = imageUrl // ?? `https://screens.myscreenshooterserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
+  const thumbnailUrl = imageUrl ?? `${config.appUrl}share_preview.jpg` // ?? `https://screens.myscreenshooterserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
 
   return (
     <Head>
