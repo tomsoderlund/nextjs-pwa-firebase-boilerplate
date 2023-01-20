@@ -3,33 +3,8 @@ import Link from 'next/link'
 
 import { config } from 'config/config'
 
-const AppIcon = () => (
-  <Link legacyBehavior href='/'>
-    <a className='app-icon' title={config.appName}>
-      <img src='/favicon.png' alt={config.appName} />
-      <style jsx>{`
-        a:hover {
-          filter: none;
-        }
-
-        img {
-          position: absolute;
-          left: 10px;
-          top: 10px;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-        }
-      `}
-      </style>
-    </a>
-  </Link>
-)
-
 const Header = ({ title = config.appName, children }) => (
-  <header
-    className='color-header-bg color-background-fg'
-  >
+  <header>
     <AppIcon />
     {title}
     {children}
@@ -55,3 +30,26 @@ const Header = ({ title = config.appName, children }) => (
   </header>
 )
 export default Header
+
+const AppIcon = () => (
+  <Link legacyBehavior href='/'>
+    <a className='app-icon' title={config.appName}>
+      <img src='/favicon.png' alt={config.appName} />
+      <style jsx>{`
+        a:hover {
+          filter: none;
+        }
+
+        img {
+          position: absolute;
+          left: 10px;
+          top: 10px;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+      `}
+      </style>
+    </a>
+  </Link>
+)
