@@ -10,6 +10,7 @@ import 'public/app.css'
 
 import PageHead from 'components/page/PageHead'
 // import Header from 'components/page/Header'
+import Footer from 'components/page/Footer'
 import Notifications from 'components/page/Notifications'
 import { googlePageview } from 'components/page/GoogleAnalytics'
 
@@ -36,6 +37,8 @@ const MyApp = ({ Component, pageProps, router }) => {
           {...router}
         />
       </main>
+
+      <Footer />
 
       <Link legacyBehavior href='/'><a className='button circle-menu-button'><img src='/icons/menu.svg' /></a></Link>
       <button className='circle-menu-button right'><img src='/icons/person.svg' /></button>
