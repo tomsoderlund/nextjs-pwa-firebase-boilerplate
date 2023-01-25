@@ -41,7 +41,7 @@ export default Footer
 const TomorroworldLogo = () => (
   <a href='http://www.tomorroworld.com' target='_blank' rel='noopener noreferrer' className='no-link'>
     <img
-      src='/tomorroworld/tomorroworld_t_icon.svg'
+      src='https://www.tomorroworld.com/favicon.png'
       alt='Tomorroworld'
       title='Tomorroworld'
     />
@@ -50,6 +50,11 @@ const TomorroworldLogo = () => (
         margin-right: 0.5em;
         border-bottom: none;
         line-height: 0;
+      }
+      img {
+        width: 20px;
+        height: 20px;
+        border-radius: 2px;
       }
     `}
     </style>
