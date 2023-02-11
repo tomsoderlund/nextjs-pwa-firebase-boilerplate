@@ -30,7 +30,7 @@ function ArticleDetailsPage ({ article }) {
 
 export default ArticleDetailsPage
 
-const getArticleProps = async (slug) => {
+const getArticlePageProps = async (slug) => {
   const articleId = slug.split('-').pop()
   const article = convertDates(await articleObject(articleId))
   return {
@@ -43,7 +43,7 @@ const getArticleProps = async (slug) => {
 // SSG
 export async function getStaticProps ({ params: { slug }, locale = 'en' }) {
   return {
-    props: await getArticleProps(slug),
+    props: await getArticlePageProps(slug),
     revalidate: 10 * 60 // Refresh page every 10 minutes
   }
 }
@@ -61,6 +61,6 @@ export async function getStaticPaths ({ locales }) {
 // SSR
 // export async function getServerSideProps ({ req, res, query: { slug } }) {
 //   return {
-//     props: await getArticleProps(slug)
+//     props: await getArticlePageProps(slug)
 //   }
 // }
