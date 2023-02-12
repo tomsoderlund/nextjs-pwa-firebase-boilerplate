@@ -3,38 +3,6 @@ import Link from 'next/link'
 import showNotification from 'lib/showNotification'
 import { useArticles, articlePath } from 'hooks/useArticles'
 
-const usePromptAndUpdateArticle = (article, fieldName) => {
-  const { updateArticle } = useArticles()
-
-  const handleUpdate = async () => {
-    const newValue = window.prompt(`New value for ${fieldName}?`, article[fieldName])
-    if (newValue !== null) {
-      const notificationId = showNotification('Updating article...')
-      await updateArticle({
-        id: article.id,
-        [fieldName]: (newValue === '' ? null : newValue)
-      })
-      showNotification('Article updated', 'success', { notificationId })
-    }
-  }
-
-  return handleUpdate
-}
-
-const usePromptAndDeleteArticle = (article) => {
-  const { deleteArticle } = useArticles(article)
-
-  const handleDelete = async () => {
-    if (window.confirm(`Delete ${article.title}?`)) {
-      const notificationId = showNotification('Deleting article...')
-      await deleteArticle({ id: article.id })
-      showNotification('Article deleted', 'success', { notificationId })
-    }
-  }
-
-  return handleDelete
-}
-
 const ArticleListItem = ({ article, index, inProgress = false }) => {
   const promptAndUpdateArticle = usePromptAndUpdateArticle(article, 'title')
   const promptAndDeleteArticle = usePromptAndDeleteArticle(article)
@@ -98,3 +66,35 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
   )
 }
 export default ArticleListItem
+
+const usePromptAndUpdateArticle = (article, fieldName) => {
+  const { updateArticle } = useArticles()
+
+  const handleUpdate = async () => {
+    const newValue = window.prompt(`New value for ${fieldName}?`, article[fieldName])
+    if (newValue !== null) {
+      const notificationId = showNotification('Updating article...')
+      await updateArticle({
+        id: article.id,
+        [fieldName]: (newValue === '' ? null : newValue)
+      })
+      showNotification('Article updated', 'success', { notificationId })
+    }
+  }
+
+  return handleUpdate
+}
+
+const usePromptAndDeleteArticle = (article) => {
+  const { deleteArticle } = useArticles(article)
+
+  const handleDelete = async () => {
+    if (window.confirm(`Delete ${article.title}?`)) {
+      const notificationId = showNotification('Deleting article...')
+      await deleteArticle({ id: article.id })
+      showNotification('Article deleted', 'success', { notificationId })
+    }
+  }
+
+  return handleDelete
+}
