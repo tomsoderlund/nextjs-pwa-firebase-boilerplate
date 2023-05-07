@@ -16,6 +16,8 @@ const PageHead = ({ title, description, imageUrl, iconUrl = '/favicon.png', path
 
   const thumbnailUrl = imageUrl ?? `${config.appUrl}share_preview.jpg` // ?? `https://screens.myscreenshooterserver.com/?url=${config.appUrl}${path.slice(1)}${(path.includes('?') ? '&' : '?')}thumbnail=true`
 
+  const pageUrl = `${config.appUrl}${path.slice(1)}`
+
   return (
     <Head>
       <title>{pageTitle}</title>
@@ -33,6 +35,8 @@ const PageHead = ({ title, description, imageUrl, iconUrl = '/favicon.png', path
       <meta property='og:title' content={pageTitle} />
       <meta property='og:description' content={pageDescription} />
       <meta property='og:locale' content={config.locale} />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content={pageUrl} />
 
       {thumbnailUrl && (
         <>
