@@ -91,6 +91,7 @@ export const ArticlesContextProvider = (props) => {
     const newArticleRef = await articlesCollectionRef().add(valuesWithTimestamp)
 
     // // Create new article with a specified key
+    // const articleId = toSlug(variables.title)
     // const newArticleRef = articleRef(articleId)
     // await newArticleRef.set(valuesWithTimestamp)
 
