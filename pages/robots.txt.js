@@ -4,6 +4,8 @@ const robotsTxt = `# robotstxt.org
 
 User-agent: *
 
+Disallow: /articles/[slug]
+
 Sitemap: ${config.appUrl}sitemap.xml`
 
 const RobotsTxt = () => ''
