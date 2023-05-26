@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 
 import { firebaseApp } from 'lib/data/firebase'
 import showNotification from 'lib/showNotification'
+import makeRestRequest from 'lib/makeRestRequest'
 
 import { googleEvent } from 'components/page/GoogleAnalytics'
+
+const anonymizeEmail = email => email.split('@').map((part, isDomain) => isDomain ? part : part[0] + new Array(part.length).join('•')).join('@')
 
 const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for a login link!', googleEventName = 'user_login', redirectTo, onCompleted }) => {
   const [inProgress, setInProgress] = useState(false)
@@ -24,6 +27,7 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
       }
       await firebaseApp.auth().sendSignInLinkToEmail(inputs.email, actionCodeSettings)
       window.localStorage.setItem('emailForSignIn', inputs.email)
+      makeRestRequest('/api/notifications', { email: anonymizeEmail(inputs.email) }, { method: 'POST' })
       handleInputChange({ target: { name: 'email', value: '' } })
       setIsSubmitted(true)
       if (googleEventName) googleEvent(googleEventName)
