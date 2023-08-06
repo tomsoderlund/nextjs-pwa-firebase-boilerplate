@@ -2,19 +2,19 @@ import React from 'react'
 
 import { config } from 'config/config'
 
-import LoginForm from 'components/user/LoginForm'
+import SigninWithEmailForm from 'components/user/SigninWithEmailForm'
 
-function LoginPage ({ query }) {
+function SigninPage ({ query }) {
   return (
     <>
       <h1>Sign in to {config.appName}</h1>
 
-      <LoginForm />
+      <SigninWithEmailForm />
     </>
   )
 }
 
-export default LoginPage
+export default SigninPage
 
 export const getStaticProps = () => ({
   props: {

@@ -3,10 +3,10 @@ import { useRouter } from 'next/router'
 
 import { firebase } from 'lib/data/firebase'
 
-const GoogleLoginButton = () => {
+const SigninWithGoogleButton = () => {
   const router = useRouter()
 
-  const handleGoogleLogin = async (event) => {
+  const handleGoogleSignin = async (event) => {
     event.preventDefault()
     // See https://firebase.google.com/docs/auth/web/google-signin
     const provider = new firebase.auth.GoogleAuthProvider()
@@ -16,16 +16,16 @@ const GoogleLoginButton = () => {
         router.push('/')
         // ...
       }).catch((error) => {
-        console.warn('GoogleLogin error:', error)
+        console.warn('Google signin error:', error)
       })
   }
   return (
-    <div className='google-login-container'>
-      <button onClick={handleGoogleLogin} className='google-login-button'>
+    <div className='google-signin-container'>
+      <button onClick={handleGoogleSignin} className='google-signin-button'>
         <img src='/images/google_g.svg' />Sign in with Google
       </button>
       <style jsx>{`
-        .google-login-button {
+        .google-signin-button {
           background: white;
           color: black;
           border: 1px solid #DADCE0;
@@ -33,7 +33,7 @@ const GoogleLoginButton = () => {
           min-width: unset;
           margin: 1em 0;
         }
-        .google-login-button img {
+        .google-signin-button img {
           margin-right: 10px;
         }
       `}
@@ -41,4 +41,4 @@ const GoogleLoginButton = () => {
     </div>
   )
 }
-export default GoogleLoginButton
+export default SigninWithGoogleButton

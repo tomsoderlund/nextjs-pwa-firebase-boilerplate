@@ -5,11 +5,11 @@ import showNotification from 'lib/showNotification'
 import makeRestRequest from 'lib/makeRestRequest'
 
 import { googleEvent } from 'components/page/GoogleAnalytics'
-import GoogleLoginButton from './GoogleLoginButton'
+import SigninWithGoogleButton from './SigninWithGoogleButton'
 
 const anonymizeEmail = email => email.split('@').map((part, isDomain) => isDomain ? part : part[0] + new Array(part.length).join('•')).join('@')
 
-const LoginForm = ({ buttonText = 'Sign in', thankyouText = 'Check your email for a sign-in link!', googleEventName = 'user_login', redirectTo, onCompleted }) => {
+const SigninWithEmailForm = ({ buttonText = 'Sign in', thankyouText = 'Check your email for a sign-in link!', googleEventName = 'user_login', redirectTo, onCompleted }) => {
   const [inProgress, setInProgress] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -21,7 +21,7 @@ const LoginForm = ({ buttonText = 'Sign in', thankyouText = 'Check your email fo
     setInProgress(true)
 
     try {
-      // Firebase login with just email link, no password
+      // Firebase sign-in with just email link, no password
       const actionCodeSettings = {
         url: `${window.location.origin}/signin/authenticate${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
         handleCodeInApp: true
@@ -43,11 +43,11 @@ const LoginForm = ({ buttonText = 'Sign in', thankyouText = 'Check your email fo
   }
 
   return (
-    <form className='login-form' onSubmit={handleSubmit}>
+    <form className='signin-form' onSubmit={handleSubmit}>
       {!isSubmitted
         ? (
           <>
-            <GoogleLoginButton />
+            <SigninWithGoogleButton />
 
             <p>or sign in with email:</p>
 
@@ -81,4 +81,4 @@ const LoginForm = ({ buttonText = 'Sign in', thankyouText = 'Check your email fo
   )
 }
 
-export default LoginForm
+export default SigninWithEmailForm

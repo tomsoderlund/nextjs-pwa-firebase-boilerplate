@@ -10,7 +10,7 @@ const emailToName = (email) => titleCase(email.split('@')[0].replace(/\./g, ' ')
 
 function EmailAuthenticatePage ({ query }) {
   useEffect(() => {
-    async function loginUserAndRedirect () {
+    async function signinUserAndRedirect () {
       // Confirm the link is a sign-in with email link.
       if (firebaseApp.auth().isSignInWithEmailLink(window.location.href)) {
         let email = window.localStorage.getItem('emailForSignIn')
@@ -37,7 +37,7 @@ function EmailAuthenticatePage ({ query }) {
         }
       }
     }
-    loginUserAndRedirect()
+    signinUserAndRedirect()
   }, [query])
 
   return (
