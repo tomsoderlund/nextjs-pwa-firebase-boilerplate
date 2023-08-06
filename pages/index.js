@@ -31,12 +31,12 @@ function ArticleListPage ({ articles }) {
       <h2>Routing</h2>
       <p>Current query: <strong>{JSON.stringify(query)}</strong></p>
 
-      <h2>Log in (using Firebase Authentication)</h2>
+      <h2>Sign in (using Firebase Authentication)</h2>
       {user && (
         <p>You are logged in as <strong>{user.email}</strong></p>
       )}
-      <Link legacyBehavior href='/login'>
-        <a>Click here to log in</a>
+      <Link legacyBehavior href='/signin'>
+        <a>Click here to sign in</a>
       </Link>
 
       <h2>Add to Home Screen</h2>

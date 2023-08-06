@@ -8,7 +8,7 @@ import { googleEvent } from 'components/page/GoogleAnalytics'
 
 const anonymizeEmail = email => email.split('@').map((part, isDomain) => isDomain ? part : part[0] + new Array(part.length).join('•')).join('@')
 
-const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for a login link!', googleEventName = 'user_login', redirectTo, onCompleted }) => {
+const LoginForm = ({ buttonText = 'Sign in', thankyouText = 'Check your email for a sign-in link!', googleEventName = 'user_login', redirectTo, onCompleted }) => {
   const [inProgress, setInProgress] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -22,7 +22,7 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
     try {
       // Firebase login with just email link, no password
       const actionCodeSettings = {
-        url: `${window.location.origin}/authenticate${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
+        url: `${window.location.origin}/signin/authenticate${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
         handleCodeInApp: true
       }
       await firebaseApp.auth().sendSignInLinkToEmail(inputs.email, actionCodeSettings)
@@ -34,7 +34,7 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
       if (onCompleted) onCompleted(null, inputs)
     } catch (error) {
       console.warn(error.message || error)
-      showNotification(`Could not log in: ${error.message}`, 'error')
+      showNotification(`Could not sign in: ${error.message}`, 'error')
       if (onCompleted) onCompleted(error)
     } finally {
       setInProgress(false)
@@ -66,7 +66,7 @@ const LoginForm = ({ buttonText = 'Log in', thankyouText = 'Check your email for
               {buttonText}
             </button>
 
-            <p>No password necessary – we will send a login link to your email inbox.</p>
+            <p>No password necessary – we will send a sign-in link to your email inbox.</p>
           </>
           )
         : (

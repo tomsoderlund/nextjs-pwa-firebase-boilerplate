@@ -10,7 +10,7 @@ const Footer = () => (
       {/*
         <Link href='/about'><a>About</a></Link>
         {' | '}
-        <Link href='/projects'><a>Log in</a></Link>
+        <Link href='/projects'><a>Sign in</a></Link>
         {' | '}
     */}
       {config.appName} is an early access product from <a href='http://www.tomorroworld.com' target='_blank' rel='noopener noreferrer'>Tomorroworld</a>
