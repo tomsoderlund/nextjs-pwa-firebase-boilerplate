@@ -5,6 +5,7 @@ import showNotification from 'lib/showNotification'
 import makeRestRequest from 'lib/makeRestRequest'
 
 import { googleEvent } from 'components/page/GoogleAnalytics'
+import GoogleLoginButton from './GoogleLoginButton'
 
 const anonymizeEmail = email => email.split('@').map((part, isDomain) => isDomain ? part : part[0] + new Array(part.length).join('•')).join('@')
 
@@ -46,6 +47,10 @@ const LoginForm = ({ buttonText = 'Sign in', thankyouText = 'Check your email fo
       {!isSubmitted
         ? (
           <>
+            <GoogleLoginButton />
+
+            <p>or sign in with email:</p>
+
             <input
               id='email'
               name='email'
@@ -66,7 +71,7 @@ const LoginForm = ({ buttonText = 'Sign in', thankyouText = 'Check your email fo
               {buttonText}
             </button>
 
-            <p>No password necessary – we will send a sign-in link to your email inbox.</p>
+            <p>(No password necessary, we will send a sign-in link to your email inbox)</p>
           </>
           )
         : (
