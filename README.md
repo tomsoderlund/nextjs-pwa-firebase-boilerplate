@@ -1,3 +1,5 @@
+![App icon](public/favicon.png)
+
 # Next.js PWA Firebase
 
 **Next.js serverless PWA with Firebase and React Hooks**
