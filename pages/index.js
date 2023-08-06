@@ -33,7 +33,7 @@ function ArticleListPage ({ articles }) {
 
       <h2>Sign in (using Firebase Authentication)</h2>
       {user && (
-        <p>You are logged in as <strong>{user.email}</strong></p>
+        <p>You are signed in as <strong>{user.email ?? user.displayName}</strong></p>
       )}
       <Link legacyBehavior href='/signin'>
         <a>Click here to sign in</a>
