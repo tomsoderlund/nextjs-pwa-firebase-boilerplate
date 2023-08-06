@@ -1,6 +1,5 @@
 {
   "name": "Next.js PWA Firebase",
-  "short_name": "Next.js PWA",
   "description": "Next.js serverless PWA with Firebase and React Hooks",
   "icons": [
     {
