@@ -13,7 +13,7 @@ const GoogleLoginButton = () => {
     firebase.auth()
       .signInWithPopup(provider)
       .then((result) => {
-        router.push('/welcome')
+        router.push('/')
         // ...
       }).catch((error) => {
         console.warn('GoogleLogin error:', error)
