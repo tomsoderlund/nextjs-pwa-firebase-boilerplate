@@ -112,7 +112,12 @@ Set up the database (if you don’t need a database, see “How to remove/replac
 - Run `yarn remove firebase`
 - Delete `lib/data/firebase.js` and modify `hooks/useArticles.js`.
 
-### Replace Firebase with Supabase (Postgres SQL)
+### Replace Firebase with Postgres SQL
+
+- Use a Postgres hosting provider (e.g. https://www.elephantsql.com/)
+- Use [`createSqlRestRoutesServerless` in `sql-wizard`](https://github.com/tomsoderlund/sql-wizard#creating-rest-routes-serverless-eg-for-nextjs-and-vercel) to set up your own API routes.
+
+### Replace Firebase with Supabase (Postgres SQL, real-time updates)
 
 - Remove Firebase: `yarn remove firebase`
 - Add Supabase: `yarn add @supabase/supabase-js`
