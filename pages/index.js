@@ -13,7 +13,7 @@ import AddArticleForm from 'components/articles/AddArticleForm'
 function ArticleListPage ({ articles }) {
   // Note: 'query' contains both /:params and ?query=value from url
   const { query } = useRouter()
-  const { user } = useUser()
+  const { user, signOut } = useUser()
   return (
     <>
       <h1>{config.appName}</h1>
@@ -32,12 +32,18 @@ function ArticleListPage ({ articles }) {
       <p>Current query: <strong>{JSON.stringify(query)}</strong></p>
 
       <h2>Sign in (using Firebase Authentication)</h2>
-      {user && (
-        <p>You are signed in as <strong>{user.email ?? user.displayName}</strong></p>
-      )}
-      <Link legacyBehavior href='/signin'>
-        <a>Click here to sign in</a>
-      </Link>
+      {user
+        ? (
+          <>
+            <p>You are signed in as <strong>{user.email ?? user.displayName}</strong></p>
+            <p><a onClick={signOut}>Sign out</a></p>
+          </>
+          )
+        : (
+          <Link legacyBehavior href='/signin'>
+            <a>Click here to sign in</a>
+          </Link>
+          )}
 
       <h2>Add to Home Screen</h2>
       <p>You can add this to your Home Screen on iOS/Android, it should then start full screen.</p>

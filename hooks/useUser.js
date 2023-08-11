@@ -8,6 +8,7 @@ import { firebaseApp } from 'lib/data/firebase'
 
 export default function useUser () {
   const [user, setUser] = useState(null)
+
   useEffect(() => {
     try {
       firebaseApp.auth().onAuthStateChanged(firebaseUser => setUser(firebaseUser))
@@ -15,5 +16,8 @@ export default function useUser () {
       console.warn(`Warning: ${error.message || error}`)
     }
   }, [])
-  return { user }
+
+  const signOut = () => firebaseApp.auth().signOut()
+
+  return { user, signOut }
 }
