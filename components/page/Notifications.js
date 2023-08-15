@@ -15,6 +15,7 @@ const Notifications = () => {
           padding: 1em;
           background-color: #EDF1F7;
           color: #0A0A0A;
+          font-family: 'Inter', sans-serif;
           font-weight: 500;
         }
         :global(.Toastify__toast--success) {
