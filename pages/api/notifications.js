@@ -15,7 +15,7 @@ export default (req, res) => handleRestRequest(async (req, res) => {
 }, { req, res })
 
 const createSlackNotification = async (req, res) => {
-  if (!DOMAINS_WHITELIST.includes(req.headers.origin)) throw new CustomError('Request not authorized', 401, { origin: req.headers.origin })
+  if (!DOMAINS_WHITELIST.includes(req.headers.host)) throw new CustomError('Request not authorized', 401, { origin: req.headers.origin })
   const { email = '?', id = '?', requestType = 'Firebase login' } = req.body
   const text = `New ${requestType} for ${config.appName}: ${email} (#${id})`
   const results = await postToSlack({ text })
