@@ -11,7 +11,7 @@ const ArticleList = () => {
 
   return (
     <div className='article-list'>
-      {articles && articles.map(article => (
+      {articles?.map(article => (
         <ArticleListItem
           key={article.id}
           article={article}
