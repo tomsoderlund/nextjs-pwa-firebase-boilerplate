@@ -22,8 +22,8 @@ Then to use (“consume”) inside component or hook:
 
   import { useArticles } from 'hooks/useArticles'
 
-  const { articles, addArticle } = useArticles()
-  await addArticle(data)
+  const { articles, createArticle } = useArticles()
+  await createArticle(data)
 
  */
 
@@ -82,8 +82,8 @@ export const ArticlesContextProvider = (props) => {
     await makeRestRequest('/api/revalidate', { path: articlePath(article).href }, { method: 'POST' })
   }
 
-  // addArticle(variables)
-  const addArticle = async (variables) => {
+  // createArticle(variables)
+  const createArticle = async (variables) => {
     // if (props.onError) props.onError('An error happened!')
     const valuesWithTimestamp = { ...variables, dateCreated: firebase.firestore.FieldValue.serverTimestamp() }
 
@@ -133,7 +133,7 @@ export const ArticlesContextProvider = (props) => {
   // Make the context object (i.e. the “API” for Articles)
   const articlesContext = {
     articles,
-    addArticle,
+    createArticle,
     updateArticle,
     deleteArticle
   }

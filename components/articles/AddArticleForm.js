@@ -7,7 +7,7 @@ const DEFAULT_INPUTS = { title: '' }
 
 const useAddArticleForm = () => {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS)
-  const { addArticle } = useArticles()
+  const { createArticle } = useArticles()
   const [inProgress, setInProgress] = useState(false)
 
   const handleInputChange = ({ target }) => {
@@ -19,7 +19,7 @@ const useAddArticleForm = () => {
     if (event) event.preventDefault()
     setInProgress(true)
     const notificationId = showNotification('Creating new article...')
-    await addArticle(inputs)
+    await createArticle(inputs)
     // Clear input form when done
     setInputs(DEFAULT_INPUTS)
     setInProgress(false)
