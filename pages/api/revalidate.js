@@ -14,7 +14,7 @@ export default (req, res) => handleRestRequest(async (req, res) => {
   }
 }, { req, res })
 
-// https://vercel.com/docs/concepts/next.js/incremental-static-regeneration#using-on-demand-revalidation
+// https://nextjs.org/docs/pages/building-your-application/rendering/incremental-static-regeneration#using-on-demand-revalidation
 const revalidatePagePath = async (req, res) => {
   const { path } = req.body
   // Use asPath e.g. '/blog/post-1'
