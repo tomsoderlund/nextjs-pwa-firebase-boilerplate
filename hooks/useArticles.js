@@ -87,13 +87,13 @@ export const ArticlesContextProvider = (props) => {
     // if (props.onError) props.onError('An error happened!')
     const valuesWithTimestamp = { ...variables, dateCreated: firebase.firestore.FieldValue.serverTimestamp() }
 
-    // Create new article with a generated key
-    const newArticleRef = await articlesCollectionRef().add(valuesWithTimestamp)
+    // Create new article with a specified key
+    const articleId = getArticleSlug(variables)
+    const newArticleRef = articleRef(articleId)
+    await newArticleRef.set(valuesWithTimestamp)
 
-    // // Create new article with a specified key
-    // const articleId = toSlug(variables.title)
-    // const newArticleRef = articleRef(articleId)
-    // await newArticleRef.set(valuesWithTimestamp)
+    // Create new article with an auto-generated key (UUID)
+    // const newArticleRef = await articlesCollectionRef().add(valuesWithTimestamp)
 
     // Update client-side state
     const newArticleSnapshot = await newArticleRef.get()
