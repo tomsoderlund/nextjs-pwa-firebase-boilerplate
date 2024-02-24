@@ -82,17 +82,17 @@ The main database item is called `Article`, but you probably want something else
 
 Rename the files:
 
-    mv hooks/useArticles.js hooks/use{NewName}s.js
+    git mv hooks/useArticles.js hooks/use{NewName}s.js
 
     mkdir -p components/{newName}s
-    mv components/articles/AddArticleForm.js components/{newName}s/Add{NewName}Form.js
-    mv components/articles/ArticleDetails.js components/{newName}s/{NewName}Details.js
-    mv components/articles/ArticleList.js components/{newName}s/{NewName}List.js
-    mv components/articles/ArticleListItem.js components/{newName}s/{NewName}ListItem.js
+    git mv components/articles/AddArticleForm.js components/{newName}s/Add{NewName}Form.js
+    git mv components/articles/ArticleDetails.js components/{newName}s/{NewName}Details.js
+    git mv components/articles/ArticleList.js components/{newName}s/{NewName}List.js
+    git mv components/articles/ArticleListItem.js components/{newName}s/{NewName}ListItem.js
     rm -r components/articles
 
     mkdir pages/{newName}s
-    mv "pages/articles/[slug].js" "pages/{newName}s/[slug].js"
+    git mv "pages/articles/[slug].js" "pages/{newName}s/[slug].js"
     rm -r pages/articles
 
 Then, do search/replace inside the files for different casing: `article`, `Article`, `ARTICLE`.
