@@ -60,7 +60,7 @@ export const articlePath = (article) => {
 }
 
 // Example: extending the database with Comments
-// export const commentsCollection = (articleId) => articleRef(articleId).collection('comments')
+// export const commentsCollectionRef = (articleId) => articleRef(articleId).collection('comments')
 // export const commentRef = (articleId, commentId) => commentsCollection(articleId).doc(commentId)
 
 // ----- Articles collection -----
