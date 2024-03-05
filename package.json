@@ -36,6 +36,6 @@
   },
   "devDependencies": {
     "standard": "^17.0.0",
-    "webpack": "^5.25.0"
+    "webpack": "^5.76.0"
   }
 }
