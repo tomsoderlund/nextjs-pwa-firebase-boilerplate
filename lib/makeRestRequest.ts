@@ -1,7 +1,7 @@
 import { config } from 'config/config'
 
 export const makeRestRequest = async (method = 'GET', path: string, data?: object, sessionAccessToken?: string): Promise<any> => {
-  const completeUrl = config.apiBaseUrl as string + path
+  const completeUrl = config.appUrl as string + 'api' + path
   // console.log('makeRestRequest:', { completeUrl, method, path, data, sessionAccessToken })
   return await fetch(
     completeUrl,

@@ -19,9 +19,6 @@ interface EnvironmentConfiguration {
   fonts?: string[][]
 
   startPagePath?: string
-  apiBaseUrl?: string
-  graphqlPath?: string
-  databaseUrl?: string
   allowedHostsList?: string[]
 
   isProduction?: boolean
