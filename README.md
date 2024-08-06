@@ -30,8 +30,8 @@ This is a great template for a any project where you want **React (with Hooks)**
 - Free-form database model. No GraphQL or REST API, just add React Hooks and modify `getStaticProps`/`getServerSideProps` when changing/adding database tables.
 - Easy to style the visual theme using CSS (e.g. using [Design Profile Generator](https://tomsoderlund.github.io/design-profile-generator/)).
 - SEO support with `sitemap.xml` and `robots.txt`.
-- Google Analytics and `google-site-verification` support (see `config/config.js`).
-- Flexible configuration with `config/config.js` and `.env.local` file.
+- Google Analytics and `google-site-verification` support (see `config/config.ts`).
+- Flexible configuration with `config/config.ts` and `.env.local` file.
 - Code linting and formatting with StandardJS (`yarn lint`/`yarn fix`).
 - Unit testing with Jasmine (`yarn unit`, not yet included).
 - Great page speed, see [Lighthouse](https://developers.google.com/web/tools/lighthouse) score:
@@ -84,17 +84,17 @@ The main database item is called `Article`, but you probably want something else
 
 Rename the files:
 
-    git mv hooks/useArticles.js hooks/use{NewName}s.js
+    git mv hooks/useArticles.tsx hooks/use{NewName}s.tsx
 
     mkdir -p components/{newName}s
-    git mv components/articles/CreateArticleForm.js components/{newName}s/Add{NewName}Form.js
-    git mv components/articles/ArticleDetails.js components/{newName}s/{NewName}Details.js
-    git mv components/articles/ArticleList.js components/{newName}s/{NewName}List.js
-    git mv components/articles/ArticleListItem.js components/{newName}s/{NewName}ListItem.js
+    git mv components/articles/CreateArticleForm.tsx components/{newName}s/Create{NewName}Form.tsx
+    git mv components/articles/ArticleDetails.tsx components/{newName}s/{NewName}Details.tsx
+    git mv components/articles/ArticleList.tsx components/{newName}s/{NewName}List.tsx
+    git mv components/articles/ArticleListItem.tsx components/{newName}s/{NewName}ListItem.tsx
     rm -r components/articles
 
     mkdir pages/{newName}s
-    git mv "pages/articles/[slug].js" "pages/{newName}s/[slug].js"
+    git mv "pages/articles/[slug].tsx" "pages/{newName}s/[slug].tsx"
     rm -r pages/articles
 
 Then, do search/replace inside the files for different casing: `article`, `Article`, `ARTICLE`.
@@ -108,13 +108,13 @@ Do search/replace for `3004` to something else.
 Set up the database (if you don’t need a database, see “How to remove/replace Firebase as database” below):
 
 1. Go to https://console.firebase.google.com/ and create a new project, a new web app, and a new Cloud Firestore database.
-2. Copy the `firebaseConfig` (from when setting up the Firebase web app) to `lib/data/firebase.js`
+2. Copy the `firebaseConfig` (from when setting up the Firebase web app) to `lib/data/firebase.ts`
 3. Edit the `.env.local` file, setting the `NEXT_PUBLIC_FIREBASE_API_KEY` value.
 
 ### How to remove the Firebase dependency
 
 - Run `yarn remove firebase`
-- Delete `lib/data/firebase.js` and modify `hooks/useArticles.js`.
+- Delete `lib/data/firebase.ts` and modify `hooks/useArticles.tsx`.
 
 ### Replace Firebase with Postgres SQL
 
@@ -126,7 +126,7 @@ Set up the database (if you don’t need a database, see “How to remove/replac
 - Remove Firebase: `yarn remove firebase`
 - Add Supabase: `yarn add @supabase/supabase-js`
 - Add `NEXT_PUBLIC_SUPABASE_API_KEY` to `.env.local`
-- Create a `lib/data/supabase.js`:
+- Create a `lib/data/supabase.ts`:
 ```
 import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
@@ -137,9 +137,9 @@ export const supabase = createClient(supabaseUrl, supabaseKey)
 
 ### Change visual theme (CSS)
 
-1. Change included CSS files in `pages/_app.js`
+1. Change included CSS files in `pages/_app.tsx`
 2. Change CSS in `public/app.css`
-3. Change font(s) in `PageHead.js`
+3. Change font(s) in `PageHead.tsx`
 4. Change colors in `public/manifest.json`
 
 ### Login/Signup with Firebase Authentication
@@ -153,7 +153,3 @@ You need to enable Email/Password authentication in https://console.firebase.goo
 Setup and deploy your own project using this template with [Vercel](https://vercel.com). All you’ll need is your Firebase Public API Key.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/git?s=https%3A%2F%2Fgithub.com%2Ftomsoderlund%2Fnextjs-pwa-firebase-boilerplate&env=NEXT_PUBLIC_FIREBASE_API_KEY&envDescription=Enter%20your%20public%20Firebase%20API%20Key&envLink=https://github.com/tomsoderlund/nextjs-pwa-firebase-boilerplate#deploying-with-vercel)
-
-## Todo
-
-- [x] Optional unique title/description/image for each page (via `_app.js`)
