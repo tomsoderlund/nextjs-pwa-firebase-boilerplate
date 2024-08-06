@@ -9,9 +9,9 @@ const defaultOptions = {
 
 // Type: info, success, warning, error. Returns a notificationId that you can use for follow-up notifications.
 const showNotification = (message: string, type = 'info', options?: any): any => {
-  if (options.notificationId !== undefined) {
+  if (options?.notificationId !== undefined) {
     // Update existing notification
-    return toast.update(options.notificationId, { ...defaultOptions, render: message, type, hideProgressBar: true, ...options })
+    return toast.update(options?.notificationId, { ...defaultOptions, render: message, type, hideProgressBar: true, ...options })
   } else {
     // Create new notification
     toast.dismiss()
