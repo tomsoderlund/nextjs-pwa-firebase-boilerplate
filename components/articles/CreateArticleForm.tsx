@@ -5,7 +5,7 @@ import { useArticles } from 'hooks/useArticles'
 
 const DEFAULT_INPUTS = { title: '' }
 
-const useAddArticleForm = () => {
+const useCreateArticleForm = () => {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS)
   const { createArticle } = useArticles()
   const [inProgress, setInProgress] = useState(false)
@@ -29,8 +29,8 @@ const useAddArticleForm = () => {
   return { inputs, inProgress, handleInputChange, handleSubmit }
 }
 
-const AddArticleForm = () => {
-  const { inputs, inProgress, handleInputChange, handleSubmit } = useAddArticleForm()
+const CreateArticleForm = () => {
+  const { inputs, inProgress, handleInputChange, handleSubmit } = useCreateArticleForm()
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -61,4 +61,4 @@ const AddArticleForm = () => {
     </form>
   )
 }
-export default AddArticleForm
+export default CreateArticleForm

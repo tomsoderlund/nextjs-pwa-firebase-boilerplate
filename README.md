@@ -87,7 +87,7 @@ Rename the files:
     git mv hooks/useArticles.js hooks/use{NewName}s.js
 
     mkdir -p components/{newName}s
-    git mv components/articles/AddArticleForm.js components/{newName}s/Add{NewName}Form.js
+    git mv components/articles/CreateArticleForm.js components/{newName}s/Add{NewName}Form.js
     git mv components/articles/ArticleDetails.js components/{newName}s/{NewName}Details.js
     git mv components/articles/ArticleList.js components/{newName}s/{NewName}List.js
     git mv components/articles/ArticleListItem.js components/{newName}s/{NewName}ListItem.js
