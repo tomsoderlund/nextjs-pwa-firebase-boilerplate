@@ -7,7 +7,12 @@ import { User } from 'firebase/app'
 
 import { firebaseApp } from 'lib/data/firebase'
 
-export default function useUser () {
+interface UserHook {
+  user: User | null
+  signOut: () => Promise<void>
+}
+
+export default function useUser (): UserHook {
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
