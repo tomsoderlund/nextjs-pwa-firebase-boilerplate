@@ -3,7 +3,7 @@ import { config } from 'config/config'
 
 const DOMAINS_ALLOWED_LIST = [`localhost:${config.serverPort}`, (new URL(config.appUrl)).host]
 
-export default (req, res) => handleRestRequest(async (req, res) => {
+export default async (req, res) => await handleRestRequest(async (req, res) => {
   if (!DOMAINS_ALLOWED_LIST.includes(req.headers.host)) throw new CustomError('Request not authorized', 401, { host: req.headers.host })
   switch (req.method) {
     case 'POST':

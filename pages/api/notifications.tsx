@@ -4,7 +4,7 @@ import { config } from 'config/config'
 const DOMAINS_WHITELIST = [`http://localhost:${config.serverPort}`, config.appUrl.slice(0, -1)]
 const SLACK_WEBHOOK = 'https://hooks.slack.com/services/TTUFA...'
 
-export default (req, res) => handleRestRequest(async (req, res) => {
+export default async (req, res) => await handleRestRequest(async (req, res) => {
   switch (req.method) {
     case 'POST':
       await createSlackNotification(req, res)
@@ -23,8 +23,8 @@ const createSlackNotification = async (req, res) => {
   res.json({ results })
 }
 
-function postToSlack ({ text }) {
-  return fetch(SLACK_WEBHOOK, { // eslint-disable-line no-undef
+async function postToSlack ({ text }) {
+  return await fetch(SLACK_WEBHOOK, { // eslint-disable-line no-undef
     method: 'POST',
     headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({ text })

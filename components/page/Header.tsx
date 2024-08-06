@@ -1,10 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
+import { config } from '../../config/config'
 
-import { config } from 'config/config'
+interface HeaderProps {
+  title?: string
+  children?: React.ReactNode
+}
 
-const Header = ({ title = config.appName, children }) => (
-  <header>
+const Header: React.FC<HeaderProps> = ({ title = config.appName, children }) => (
+  <header className='color-header-bg color-background-fg'>
     <AppIcon />
     {title}
     {children}
@@ -23,16 +27,16 @@ const Header = ({ title = config.appName, children }) => (
 
       :global(main) {
         margin-top: 50px;
-        min-height: calc(100vh - 50px);
       }
     `}
     </style>
   </header>
 )
+
 export default Header
 
-const AppIcon = () => (
-  <Link legacyBehavior href='/'>
+const AppIcon: React.FC = () => (
+  <Link href='/' passHref>
     <a className='app-icon' title={config.appName}>
       <img src='/favicon.png' alt={config.appName} />
       <style jsx>{`

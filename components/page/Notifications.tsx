@@ -3,7 +3,7 @@ import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 
-const Notifications = () => {
+const Notifications = (): React.ReactElement => {
   return (
     <>
       <ToastContainer />

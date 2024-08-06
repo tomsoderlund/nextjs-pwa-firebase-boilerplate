@@ -3,7 +3,7 @@ import React from 'react'
 
 import { config } from 'config/config'
 
-const Footer = () => (
+const Footer = (): React.ReactElement => (
   <footer>
     <TomorroworldLogo />
     <span>
@@ -15,7 +15,7 @@ const Footer = () => (
     */}
       {config.appName} is an early access product from <a href='http://www.tomorroworld.com' target='_blank' rel='noopener noreferrer'>Tomorroworld</a>
       {' | '}
-      <a href={`mailto:contact+${config.appSlug}@tomorroworld.com`} target='_blank' rel='noopener noreferrer'>Contact</a>
+      <a href={`mailto:contact+${config.appSlug as string}@tomorroworld.com`} target='_blank' rel='noopener noreferrer'>Contact</a>
     </span>
     <style jsx>{`
       :global(main) {
@@ -38,7 +38,7 @@ const Footer = () => (
 )
 export default Footer
 
-const TomorroworldLogo = () => (
+const TomorroworldLogo = (): React.ReactElement => (
   <a href='http://www.tomorroworld.com' target='_blank' rel='noopener noreferrer' className='no-link'>
     <img
       src='https://www.tomorroworld.com/favicon.png'

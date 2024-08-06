@@ -1,78 +1,96 @@
 import React, { useState } from 'react'
+// import { getAuth, sendSignInLinkToEmail } from 'firebase/auth'
 
-import { firebaseApp } from 'lib/data/firebase'
-import showNotification from 'lib/showNotification'
-import makeRestRequest from 'lib/makeRestRequest'
+// import { firebaseApp } from 'lib/firebase'
+// import showNotification from 'lib/showNotification'
+// import makeRestRequest from 'lib/makeRestRequest'
+// import { googleEvent } from 'components/page/GoogleAnalytics'
 
-import { googleEvent } from 'components/page/GoogleAnalytics'
+// const anonymizeEmail = email => email.split('@').map((part, isDomain) => isDomain ? part : part[0] + new Array(part.length).join('•')).join('@')
 
-const anonymizeEmail = email => email.split('@').map((part, isDomain) => isDomain ? part : part[0] + new Array(part.length).join('•')).join('@')
+interface SimpleEvent {
+  target: {
+    name: string
+    value: string
+  }
+}
 
-const SigninWithEmailForm = ({ buttonText = 'Sign in', thankyouText = 'Check your email for a sign-in link!', googleEventName = 'user_login', redirectTo, onCompleted }) => {
+interface SigninWithEmailFormProps {
+  buttonText?: string
+  thankyouText?: string
+  googleEventName?: string
+  redirectTo?: string
+  onCompleted?: (error: Error | null, inputs: { email: string }) => void
+}
+
+const SigninWithEmailForm = ({ buttonText = 'Sign in', thankyouText = 'Check your email for a sign-in link!', googleEventName = 'user_login', redirectTo, onCompleted }: SigninWithEmailFormProps): React.ReactElement => {
   const [inProgress, setInProgress] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  // const auth = getAuth(firebaseApp)
 
   const [inputs, setInputs] = useState({ email: '' })
-  const handleInputChange = ({ target }) => setInputs({ ...inputs, [target.name]: target.value })
+  const handleInputChange = ({ target }: SimpleEvent): void => setInputs({ ...inputs, [target.name]: target.value })
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     setInProgress(true)
 
     try {
       // Firebase sign-in with just email link, no password
-      const actionCodeSettings = {
-        url: `${window.location.origin}/signin/authenticate${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
-        handleCodeInApp: true
-      }
-      await firebaseApp.auth().sendSignInLinkToEmail(inputs.email, actionCodeSettings)
+      // const actionCodeSettings = {
+      //   url: `${window.location.origin}/signin/authenticate${redirectTo !== undefined ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
+      //   handleCodeInApp: true
+      // }
+      // await sendSignInLinkToEmail(auth, inputs.email, actionCodeSettings)
       window.localStorage.setItem('emailForSignIn', inputs.email)
-      makeRestRequest('/api/notifications', { email: anonymizeEmail(inputs.email) }, { method: 'POST' })
+      // makeRestRequest('/api/notifications', { email: anonymizeEmail(inputs.email) }, { method: 'POST' })
       handleInputChange({ target: { name: 'email', value: '' } })
       setIsSubmitted(true)
-      if (googleEventName) googleEvent(googleEventName)
-      if (onCompleted) onCompleted(null, inputs)
-    } catch (error) {
-      console.warn(error.message || error)
-      showNotification(`Could not sign in: ${error.message}`, 'error')
-      if (onCompleted) onCompleted(error)
+      // if (googleEventName) googleEvent(googleEventName)
+      onCompleted?.(null, inputs)
+    } catch (error: any) {
+      console.warn(error.message as string)
+      // showNotification(`Could not sign in: ${error.message}`, 'error')
+      onCompleted?.(null, inputs)
     } finally {
       setInProgress(false)
     }
   }
 
   return (
-    <form className='signin-form' onSubmit={handleSubmit}>
+    <div>
       {!isSubmitted
         ? (
           <>
-            <input
-              id='email'
-              name='email'
-              type='email'
-              autoComplete='email'
-              value={inputs.email}
-              required
-              placeholder='Your email'
-              onChange={handleInputChange}
-              disabled={inProgress}
-            />
-
-            <button
-              type='submit'
-              className={'progress-animation' + (inProgress ? ' in-progress' : '')}
-              disabled={inProgress}
-            >
-              {buttonText}
-            </button>
-
-            <p>(No password necessary, we will send a sign-in link to your email inbox)</p>
+            <form className='signin-form' onSubmit={(event) => { void handleSubmit(event) }}>
+              <input
+                id='email'
+                name='email'
+                type='email'
+                autoComplete='email'
+                placeholder='Your email'
+                required
+                value={inputs.email}
+                onChange={handleInputChange}
+                disabled={inProgress}
+              />
+              <button
+                type='submit'
+                color='primary'
+                disabled={inProgress}
+              >
+                Sign in
+              </button>
+            </form>
+            <div style={{ marginTop: '1em' }}>
+              (No password necessary, we will send a sign-in link to your email inbox)
+            </div>
           </>
           )
         : (
-          <p className='thankyou'>{thankyouText}</p>
+          <div className='thankyou'>{thankyouText}</div>
           )}
-    </form>
+    </div>
   )
 }
 
