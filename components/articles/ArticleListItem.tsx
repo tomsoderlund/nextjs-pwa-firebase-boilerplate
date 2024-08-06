@@ -1,15 +1,20 @@
 import Link from 'next/link'
 
 import showNotification from 'lib/showNotification'
-import { useArticles, articlePath } from 'hooks/useArticles'
+import { Article, useArticles, articlePath } from 'hooks/useArticles'
 
-const ArticleListItem = ({ article, index, inProgress = false }) => {
+interface ArticleListItemProps {
+  article: Article
+  inProgress: boolean
+}
+
+const ArticleListItem = ({ article, inProgress = false }: ArticleListItemProps) => {
   const promptAndUpdateArticle = usePromptAndUpdateArticle(article, 'title')
   const promptAndDeleteArticle = usePromptAndDeleteArticle(article)
 
   return (
     <div
-      className={'article' + (inProgress === article.id ? ' in-progress' : '')}
+      className={'article' + (inProgress ? ' in-progress' : '')}
       title={`id: ${article.id}`}
     >
       <Link legacyBehavior {...articlePath(article)}>
@@ -67,14 +72,14 @@ const ArticleListItem = ({ article, index, inProgress = false }) => {
 }
 export default ArticleListItem
 
-const usePromptAndUpdateArticle = (article, fieldName) => {
+const usePromptAndUpdateArticle = (article: Article, fieldName: keyof Article) => {
   const { updateArticle } = useArticles()
 
   const handleUpdate = async () => {
-    const newValue = window.prompt(`New value for ${fieldName}?`, article[fieldName])
+    const newValue = window.prompt(`New value for ${fieldName}?`, article[fieldName] as string)
     if (newValue !== null) {
       const notificationId = showNotification('Updating article...')
-      await updateArticle({
+      await updateArticle?.({
         id: article.id,
         [fieldName]: (newValue === '' ? null : newValue)
       })
@@ -85,13 +90,13 @@ const usePromptAndUpdateArticle = (article, fieldName) => {
   return handleUpdate
 }
 
-const usePromptAndDeleteArticle = (article) => {
-  const { deleteArticle } = useArticles(article)
+const usePromptAndDeleteArticle = (article: Article) => {
+  const { deleteArticle } = useArticles()
 
   const handleDelete = async () => {
     if (window.confirm(`Delete ${article.title}?`)) {
       const notificationId = showNotification('Deleting article...')
-      await deleteArticle({ id: article.id })
+      await deleteArticle?.(article.id)
       showNotification('Article deleted', 'success', { notificationId })
     }
   }

@@ -1,10 +1,11 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
+
 import { handleRestRequest, CustomError } from 'lib/handleRestRequest'
 import { config } from 'config/config'
 
-const DOMAINS_WHITELIST = [`http://localhost:${config.serverPort}`, config.appUrl.slice(0, -1)]
 const SLACK_WEBHOOK = 'https://hooks.slack.com/services/TTUFA...'
 
-export default async (req, res) => await handleRestRequest(async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => await handleRestRequest(async (req, res) => {
   switch (req.method) {
     case 'POST':
       await createSlackNotification(req, res)
@@ -14,8 +15,8 @@ export default async (req, res) => await handleRestRequest(async (req, res) => {
   }
 }, { req, res })
 
-const createSlackNotification = async (req, res) => {
-  if (!DOMAINS_WHITELIST.includes(req.headers.host)) throw new CustomError('Request not authorized', 401, { origin: req.headers.origin })
+const createSlackNotification = async (req: NextApiRequest, res: NextApiResponse) => {
+  if (!config.allowedHostsList?.includes(req.headers.host as string)) throw new CustomError('Request not authorized', 401, { origin: req.headers.origin })
   const { email = '?', id = '?', requestType = 'Firebase login' } = req.body
   const text = `New ${requestType} for ${config.appName}: ${email} (#${id})`
   const results = await postToSlack({ text })
@@ -23,7 +24,7 @@ const createSlackNotification = async (req, res) => {
   res.json({ results })
 }
 
-async function postToSlack ({ text }) {
+async function postToSlack ({ text }: { text: string }) {
   return await fetch(SLACK_WEBHOOK, { // eslint-disable-line no-undef
     method: 'POST',
     headers: { Accept: 'application/json', 'Content-Type': 'application/json' },

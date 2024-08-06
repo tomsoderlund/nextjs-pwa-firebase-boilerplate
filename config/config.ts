@@ -4,6 +4,7 @@ import manifest from '../public/manifest.json'
 export const environment = process.env.NODE_ENV
 export const isDevelopment = process.env.NODE_ENV === 'development'
 const appSlug = packageJson.name
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://nextjs-pwa-firebase-boilerplate.vercel.app/'
 const serverPort = parseInt(process.env.PORT ?? '3004')
 
 interface EnvironmentConfiguration {
@@ -38,7 +39,7 @@ const completeConfig: AllConfigurations = {
     serverPort,
     appSlug,
     appVersion: packageJson.version,
-    appUrl: process.env.NEXT_PUBLIC_APP_URL ?? 'https://nextjs-pwa-firebase-boilerplate.vercel.app/',
+    appUrl,
     appName: manifest.name,
     appTagline: manifest.description,
     appDescription: `${manifest.name} – ${manifest.description}`,
@@ -46,7 +47,8 @@ const completeConfig: AllConfigurations = {
     googleAnalyticsId: 'G-XXXXXXXXXX',
     fonts: [
       ['Inter', 'wght@300;400;500;700']
-    ]
+    ],
+    allowedHostsList: [`localhost:${serverPort}`, (new URL(appUrl)).host]
   },
 
   development: {

@@ -1,11 +1,9 @@
-const firebase = require('firebase/app')
-require('firebase/firestore')
-require('firebase/auth')
-// require('firebase/analytics')
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
+// import 'firebase/analytics'
 
-// const isClientSide = require('../isClientSide')
-
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: `${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseapp.com`,
   databaseURL: `https://${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`,
@@ -16,18 +14,30 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-const firebaseApp = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
-const firebaseDB = firebaseApp.firestore()
+export const firebaseApp = (firebase.apps.length === 0) ? firebase.initializeApp(firebaseConfig) : firebase.app()
+export const firebaseDB = firebaseApp.firestore()
 // if (isClientSide()) firebase.analytics()
 
 // Helpers
-const docWithId = (doc) => ({ id: doc.id, ...doc.data() })
+export type FirestoreDoc = firebase.firestore.DocumentData
+// export interface FirestoreDoc {
+//   id: string
+//   [key: string]: any
+// }
 
-const getDocumentItem = async (docRef) => docWithId(await docRef.get())
+export const docWithId = (doc: firebase.firestore.DocumentSnapshot): FirestoreDoc => ({
+  id: doc.id,
+  ...doc.data()
+})
 
-const getCollectionItems = async (collectionRef) => {
+export const getDocumentItem = async (docRef: firebase.firestore.DocumentReference): Promise<FirestoreDoc> => {
+  const docSnapshot = await docRef.get()
+  return docWithId(docSnapshot)
+}
+
+export const getCollectionItems = async (collectionRef: firebase.firestore.CollectionReference): Promise<FirestoreDoc[]> => {
   const collectionSnapshots = await collectionRef.get()
-  const snapshots = []
+  const snapshots: FirestoreDoc[] = []
   collectionSnapshots.forEach((snapshot) => {
     snapshots.push(docWithId(snapshot))
   })
@@ -35,20 +45,8 @@ const getCollectionItems = async (collectionRef) => {
 }
 
 // To avoid “cannot be serialized as JSON” error
-const convertDates = (doc) => ({
+export const convertDates = (doc: FirestoreDoc): FirestoreDoc => ({
   ...doc,
-  dateCreated: doc.dateCreated ? doc.dateCreated.toDate().toString() : null,
-  dateUpdated: doc.dateUpdated ? doc.dateUpdated.toDate().toString() : null
+  dateCreated: doc.dateCreated?.toDate().toString() ?? null,
+  dateUpdated: doc.dateUpdated?.toDate().toString() ?? null
 })
-
-module.exports = {
-  firebase,
-  firebaseApp,
-  firebaseDB,
-
-  docWithId,
-  getDocumentItem,
-  getCollectionItems,
-
-  convertDates
-}

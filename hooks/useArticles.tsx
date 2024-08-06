@@ -27,163 +27,178 @@ Then to use (“consume”) inside component or hook:
 
  */
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
-import { firebase, firebaseDB, docWithId, getCollectionItems } from 'lib/data/firebase'
+import firebase from 'firebase/app'
+import { firebaseDB, docWithId, getCollectionItems, FirestoreDoc } from 'lib/data/firebase'
 import toSlug from 'lib/toSlug'
 import makeRestRequest from 'lib/makeRestRequest'
+
+export interface Article extends FirestoreDoc {
+  title: string
+  content?: string
+  dateCreated: firebase.firestore.Timestamp
+  dateUpdated?: firebase.firestore.Timestamp
+}
 
 // Tip: if you don’t need SSR, you can move these inside the ArticlesContextProvider and create “chains” of child Firebase collections that depend on their parents
 // Collection/Item as Firebase references
 export const articlesCollectionRef = () => firebaseDB.collection('articles')
-export const articleRef = (articleId) => articlesCollectionRef().doc(articleId)
+export const articleRef = (articleId: string) => articlesCollectionRef().doc(articleId)
 
 // Collection/Item as objects
-export const articlesCollection = () => getCollectionItems(articlesCollectionRef()) // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
+export const articlesCollection = async (): Promise<Article[]> => await getCollectionItems(articlesCollectionRef()) as Article[] // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
 
-export const articleObject = async (articleId) => {
+export const articleObject = async (articleId: string) => {
   const articleSnapshot = await articleRef(articleId).get()
   if (!articleSnapshot.exists) {
-    const notFoundError = new Error(`Not found: ${articleId}`)
-    notFoundError.code = 'ENOENT'
+    const notFoundError = new Error(`Not found: ${articleId}`);
+    (notFoundError as any).code = 'ENOENT'
     throw notFoundError
   }
   return docWithId(articleSnapshot)
 }
 
-export const getArticleSlug = (article) => `${toSlug(article.title)}-${article.id}`
+export const getArticleSlug = (article: Article) => `${toSlug(article.title)}-${article.id}`
 
-export const articlePath = (article) => {
+export const articlePath = (article: Article) => {
   return {
     href: `/articles/${getArticleSlug(article)}`
   }
 }
 
 // Example: extending the database with Comments
-// export const commentsCollectionRef = (articleId) => articleRef(articleId).collection('comments')
-// export const commentRef = (articleId, commentId) => commentsCollection(articleId).doc(commentId)
+// export const commentsCollectionRef = (articleId: string) => articleRef(articleId).collection('comments')
+// export const commentRef = (articleId: string, commentId: string) => commentsCollection(articleId).doc(commentId)
 
 // ----- Articles collection -----
 
-export const ArticlesContext = createContext()
+interface ArticlesInputProps {
+  articles: Article[]
+  onError?: (error: string) => void
+  children: ReactNode
+}
 
-export const ArticlesContextProvider = (props) => {
-  // Use State to keep the values. Initial values are obtained from ArticlesContextProvider’s props.
-  const [articles, setArticles] = useState(props.articles)
+interface ArticlesReturnProps {
+  articles?: Article[]
+  getArticles: () => Promise<void>
+  createArticle: (variables: Partial<Article>) => Promise<Article>
+  updateArticle: (variables: Partial<Article>) => Promise<Article>
+  deleteArticle: (articleId: string) => Promise<void>
+}
 
-  // Real-time updates from Firebase
-  useEffect(
-    () => articlesCollectionRef().onSnapshot(snapshot => articlesCollection().then(setArticles)),
-    []
-  )
+const ArticlesContext = createContext<Partial<ArticlesReturnProps>>({})
 
-  // Refresh SSG cache
-  const revalidateArticle = async (article) => {
+export const ArticlesContextProvider = (props: ArticlesInputProps) => {
+  const [articles, setArticles] = useState<Article[]>(props.articles ?? [])
+
+  useEffect(() => {
+    const unsubscribe = articlesCollectionRef().onSnapshot(() => {
+      articlesCollection().then((articles) => setArticles(articles))
+    })
+    return () => unsubscribe()
+  }, [])
+
+  const revalidateArticle = async (article: Article) => {
     await makeRestRequest('POST', '/api/revalidate', { path: articlePath(article).href })
   }
 
-  // createArticle(variables)
-  const createArticle = async (variables) => {
-    // if (props.onError) props.onError('An error happened!')
+  const createArticle = async (variables: Partial<Article>) => {
     const valuesWithTimestamp = { ...variables, dateCreated: firebase.firestore.FieldValue.serverTimestamp() }
 
-    // Create new article with a specified key
-    const articleId = getArticleSlug(variables)
+    const articleId = getArticleSlug(variables as Article)
     const newArticleRef = articleRef(articleId)
     await newArticleRef.set(valuesWithTimestamp)
 
-    // Create new article with an auto-generated key (UUID)
-    // const newArticleRef = await articlesCollectionRef().add(valuesWithTimestamp)
-
-    // Update client-side state
     const newArticleSnapshot = await newArticleRef.get()
-    const newArticleWithId = docWithId(newArticleSnapshot)
-    setArticles([
-      ...articles,
-      newArticleWithId
-    ])
-    // Refresh SSG cache
+    const newArticleWithId: Article = docWithId(newArticleSnapshot) as Article
+    setArticles([...articles, newArticleWithId])
     revalidateArticle(newArticleWithId)
     return newArticleWithId
   }
 
-  // updateArticle(variables)
-  const updateArticle = async (variables) => {
+  const updateArticle = async (variables: Partial<Article>) => {
     const { id, dateCreated, ...values } = variables
     const valuesWithTimestamp = { ...values, dateUpdated: firebase.firestore.FieldValue.serverTimestamp() }
-    await articleRef(id).update(valuesWithTimestamp) // will merge data – use set() to overwrite
-    // Update client-side state
-    const articleSnapshot = await articleRef(id).get()
-    const articleWithId = docWithId(articleSnapshot)
-    setArticles(articles.map(article => article.id === id ? articleWithId : article))
-    // Refresh SSG cache
+    await articleRef(id as string).update(valuesWithTimestamp)
+    const articleSnapshot = await articleRef(id as string).get()
+    const articleWithId: Article = docWithId(articleSnapshot) as Article
+    setArticles(articles?.map((article) => (article.id === id ? articleWithId : article)))
     revalidateArticle(articleWithId)
     return articleWithId
   }
 
-  // deleteArticle(variables)
-  const deleteArticle = async (variables) => {
-    const { id } = variables
-    await articleRef(id).delete()
-    // Update client-side state
-    setArticles(articles.filter(article => article.id !== id))
-    return variables
+  const deleteArticle = async (articleId: string) => {
+    await articleRef(articleId).delete()
+    setArticles(articles?.filter(article => article.id !== articleId))
   }
 
-  // Make the context object (i.e. the “API” for Articles)
   const articlesContext = {
     articles,
     createArticle,
     updateArticle,
     deleteArticle
   }
-  // Pass the value in Provider and return
+
   return <ArticlesContext.Provider value={articlesContext}>{props.children}</ArticlesContext.Provider>
 }
 
-export const { Consumer: ArticlesContextConsumer } = ArticlesContext
-
-export const useArticles = () => useContext(ArticlesContext)
+export const useArticles = () => {
+  const context = useContext(ArticlesContext)
+  if (context == null) {
+    throw new Error('useArticles must be used within an ArticlesContextProvider')
+  }
+  return context
+}
 
 // ----- One Article -----
 /*
 
-export const ArticleContext = createContext()
+  export const ArticleContext = createContext<{
+    article: any;
+    updateArticle: (variables: Partial<Article>) => Promise<void>;
+    deleteArticle: (variables: Partial<Article>) => Promise<void>;
+  } | undefined>(undefined);
 
-export const ArticleContextProvider = (props) => {
-  // Use State to keep the values. Initial values are obtained from ArticleContextProvider’s props.
-  const [article, setArticle] = useState(props.article)
-
-  const thisArticleRef = useMemo(
-    () => articleRef(props.article.id),
-    [props.article.id]
-  )
-
-  // Real-time updates from Firebase
-  useEffect(
-    () => thisArticleRef && thisArticleRef.onSnapshot(snapshot => setArticle(docWithId(snapshot))),
-    [thisArticleRef]
-  )
-
-  // updateArticle(variables)
-  const updateArticle = async (variables) => {
+  interface ArticleContextProviderProps {
+    article: any;
+    children: ReactNode;
   }
 
-  // deleteArticle(variables)
-  const deleteArticle = async (variables) => {
-  }
+  export const ArticleContextProvider = (props: ArticleContextProviderProps) => {
+    const [article, setArticle] = useState(props.article);
 
-  // Make the context object (i.e. the “API” for Article)
-  const articleContext = {
-    article,
-    updateArticle,
-    deleteArticle
-  }
-  // Pass the value in Provider and return
-  return <ArticleContext.Provider value={articleContext}>{props.children}</ArticleContext.Provider>
-}
+    const thisArticleRef = useMemo(() => articleRef(props.article.id), [props.article.id]);
 
-export const { Consumer: ArticleContextConsumer } = ArticleContext
+    useEffect(() => {
+      const unsubscribe = thisArticleRef.onSnapshot(snapshot => {
+        setArticle(docWithId(snapshot));
+      });
+      return () => unsubscribe();
+    }, [thisArticleRef]);
 
-export const useArticle = () => useContext(ArticleContext)
-*/
+    const updateArticle = async (variables: Partial<Article>) => {
+      // implement update logic here
+    };
+
+    const deleteArticle = async (variables: Partial<Article>) => {
+      // implement delete logic here
+    };
+
+    const articleContext = {
+      article,
+      updateArticle,
+      deleteArticle
+    };
+
+    return <ArticleContext.Provider value={articleContext}>{props.children}</ArticleContext.Provider>;
+  };
+
+  export const useArticle = () => {
+    const context = useContext(ArticleContext);
+    if (!context) {
+      throw new Error('useArticle must be used within an ArticleContextProvider');
+    }
+    return context;
+  };
+  */

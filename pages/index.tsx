@@ -1,16 +1,23 @@
 import React from 'react'
+import type { GetStaticPropsContext, GetStaticPropsResult } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import { config } from 'config/config'
+import { convertDates } from 'lib/data/firebase'
 import { showErrorNotification } from 'lib/showNotification'
-import { articlesCollection, ArticlesContextProvider } from 'hooks/useArticles'
+import { PageProps } from 'components/page/PageHead'
+import { Article, articlesCollection, ArticlesContextProvider } from 'hooks/useArticles'
 import useUser from 'hooks/useUser'
 
 import ArticleList from 'components/articles/ArticleList'
 import CreateArticleForm from 'components/articles/CreateArticleForm'
 
-function ArticleListPage ({ articles }) {
+interface ArticleListPageProps extends PageProps {
+  articles: Article[]
+}
+
+function ArticleListPage ({ articles }: ArticleListPageProps) {
   // Note: 'query' contains both /:params and ?query=value from url
   const { query } = useRouter()
   const { user, signOut } = useUser()
@@ -32,7 +39,7 @@ function ArticleListPage ({ articles }) {
       <p>Current query: <strong>{JSON.stringify(query)}</strong></p>
 
       <h2>Sign in (using Firebase Authentication)</h2>
-      {user
+      {(user != null)
         ? (
           <>
             <p>You are signed in as <strong>{user.email ?? user.displayName}</strong></p>
@@ -59,14 +66,9 @@ function ArticleListPage ({ articles }) {
 export default ArticleListPage
 
 // SSG
-export async function getStaticProps ({ params, locale = 'en' }) {
+export async function getStaticProps ({ params }: GetStaticPropsContext): Promise<GetStaticPropsResult<ArticleListPageProps>> {
   const articlesRaw = await articlesCollection()
-  const articles = articlesRaw.map(article => ({
-    ...article,
-    // To avoid “cannot be serialized as JSON” error:
-    dateCreated: article.dateCreated ? article.dateCreated.toString() : null,
-    dateUpdated: article.dateUpdated ? article.dateUpdated.toString() : null
-  }))
+  const articles = articlesRaw.map(convertDates) as Article[]
   return {
     props: {
       articles

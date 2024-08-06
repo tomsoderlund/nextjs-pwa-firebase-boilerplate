@@ -10,16 +10,16 @@ const useCreateArticleForm = () => {
   const { createArticle } = useArticles()
   const [inProgress, setInProgress] = useState(false)
 
-  const handleInputChange = ({ target }) => {
+  const handleInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const value = target.type === 'checkbox' ? target.checked : target.value
     setInputs({ ...inputs, [target.name]: value })
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     if (event) event.preventDefault()
     setInProgress(true)
     const notificationId = showNotification('Creating new article...')
-    await createArticle(inputs)
+    await createArticle?.(inputs)
     // Clear input form when done
     setInputs(DEFAULT_INPUTS)
     setInProgress(false)

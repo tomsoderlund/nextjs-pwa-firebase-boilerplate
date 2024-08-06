@@ -25,7 +25,7 @@ export const handleRestRequest = async function handleRestRequest (actionFunctio
 export class CustomError extends Error {
   status?: number
 
-  constructor (message: string, status: number) {
+  constructor (message: string, status: number, metadata?: Record<string, any>) {
     super(message)
     Object.setPrototypeOf(this, CustomError.prototype)
     Error.captureStackTrace?.(this, CustomError)

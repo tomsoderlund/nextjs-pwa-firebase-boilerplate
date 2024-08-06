@@ -3,7 +3,7 @@ import Head from 'next/head'
 
 import { config } from 'config/config'
 
-interface PageHeadProps {
+export interface PageProps {
   title?: string
   description?: string
   imageUrl?: string
@@ -11,7 +11,7 @@ interface PageHeadProps {
   path?: string
 }
 
-const PageHead = ({ title, description, imageUrl, iconUrl = '/favicon.png', path = '/' }: PageHeadProps): React.ReactElement | null => {
+const PageHead = ({ title, description, imageUrl, iconUrl = '/favicon.png', path = '/' }: PageProps): React.ReactElement | null => {
   const pageTitle = (title !== undefined && title !== null)
     ? `${(title)} – ${config.appName as string}`
     : `${config.appName as string} – ${(config.appTagline as string)}`

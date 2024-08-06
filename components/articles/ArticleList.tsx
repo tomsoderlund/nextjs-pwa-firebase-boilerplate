@@ -7,7 +7,7 @@ import ArticleListItem from './ArticleListItem'
 const ArticleList = () => {
   const { articles } = useArticles()
 
-  if (!articles) return 'Loading...'
+  if (articles === null) return 'Loading...'
 
   return (
     <div className='article-list'>
@@ -15,6 +15,7 @@ const ArticleList = () => {
         <ArticleListItem
           key={article.id}
           article={article}
+          inProgress={false}
         />
       ))}
     </div>

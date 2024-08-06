@@ -1,13 +1,24 @@
 import React from 'react'
+import type { GetStaticPropsContext, GetStaticPropsResult, GetStaticPathsContext, GetStaticPathsResult } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import { convertDates } from 'lib/data/firebase'
-import { articleObject } from 'hooks/useArticles'
+import { Article, articleObject } from 'hooks/useArticles'
 
+import { PageProps } from 'components/page/PageHead'
 import ArticleDetails from 'components/articles/ArticleDetails'
 
-function ArticleDetailsPage ({ article }) {
+interface ArticleDetailsPageParams extends ParsedUrlQuery {
+  slug: string
+}
+
+interface ArticleDetailsPageProps extends PageProps {
+  article: Article
+}
+
+function ArticleDetailsPage ({ article }: ArticleDetailsPageProps): React.ReactElement {
   // Note: 'query' contains both /:params and ?query=value from url
   const { query } = useRouter()
   return (
@@ -30,25 +41,25 @@ function ArticleDetailsPage ({ article }) {
 
 export default ArticleDetailsPage
 
-const getArticlePageProps = async (slug) => {
+const getArticlePageProps = async (slug: string): Promise<ArticleDetailsPageProps> => {
   const articleId = slug.split('-').pop()
-  const article = convertDates(await articleObject(articleId))
+  const article = convertDates(await articleObject(articleId as string)) as Article
   return {
     article,
     title: article.title,
-    description: article.content || null
+    description: article.content
   }
 }
 
 // SSG
-export async function getStaticProps ({ params: { slug }, locale = 'en' }) {
+export async function getStaticProps ({ params }: GetStaticPropsContext<ArticleDetailsPageParams>): Promise<GetStaticPropsResult<ArticleDetailsPageProps>> {
   return {
-    props: await getArticlePageProps(slug),
+    props: await getArticlePageProps(params?.slug as string),
     revalidate: 10 * 60 // Refresh page every 10 minutes
   }
 }
 
-export async function getStaticPaths ({ locales }) {
+export async function getStaticPaths (context: GetStaticPathsContext): Promise<GetStaticPathsResult<ArticleDetailsPageParams>> {
   // const paths = (await articlesCollection()).map(article => ({ params: { slug: getArticleSlug(article) }, locale: 'en' }))
   return {
     paths: [
