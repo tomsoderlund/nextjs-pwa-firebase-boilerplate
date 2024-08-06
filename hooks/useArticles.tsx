@@ -79,7 +79,7 @@ export const ArticlesContextProvider = (props) => {
 
   // Refresh SSG cache
   const revalidateArticle = async (article) => {
-    await makeRestRequest('/api/revalidate', { path: articlePath(article).href }, { method: 'POST' })
+    await makeRestRequest('POST', '/api/revalidate', { path: articlePath(article).href })
   }
 
   // createArticle(variables)

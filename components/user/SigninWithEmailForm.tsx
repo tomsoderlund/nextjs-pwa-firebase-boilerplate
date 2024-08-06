@@ -43,7 +43,7 @@ const SigninWithEmailForm = ({ buttonText = 'Sign in', thankyouText = 'Check you
       // }
       // await sendSignInLinkToEmail(auth, inputs.email, actionCodeSettings)
       window.localStorage.setItem('emailForSignIn', inputs.email)
-      // makeRestRequest('/api/notifications', { email: anonymizeEmail(inputs.email) }, { method: 'POST' })
+      // makeRestRequest('POST', '/api/notifications', { email: anonymizeEmail(inputs.email) })
       handleInputChange({ target: { name: 'email', value: '' } })
       setIsSubmitted(true)
       // if (googleEventName) googleEvent(googleEventName)
