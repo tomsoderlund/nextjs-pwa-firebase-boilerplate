@@ -53,6 +53,9 @@ const getArticlePageProps = async (slug: string): Promise<ArticleDetailsPageProp
 
 // SSG
 export async function getStaticProps ({ params }: GetStaticPropsContext<ArticleDetailsPageParams>): Promise<GetStaticPropsResult<ArticleDetailsPageProps>> {
+  // if (article === undefined) {
+  //   return { notFound: true }
+  // }
   return {
     props: await getArticlePageProps(params?.slug as string),
     revalidate: 10 * 60 // Refresh page every 10 minutes
