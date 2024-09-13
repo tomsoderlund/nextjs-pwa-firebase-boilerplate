@@ -1,5 +1,5 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
+import { getFirestore, getDoc, getDocs, DocumentData, DocumentSnapshot, DocumentReference, CollectionReference } from 'firebase/firestore'
 import 'firebase/auth'
 // import 'firebase/analytics'
 
@@ -14,32 +14,32 @@ export const firebaseConfig = {
 }
 
 // Initialize Firebase
-export const firebaseApp = (firebase.apps.length === 0) ? firebase.initializeApp(firebaseConfig) : firebase.app()
-export const firebaseDB = firebaseApp.firestore()
+export const firebaseApp = initializeApp(firebaseConfig)
+export const firebaseDB = getFirestore(firebaseApp)
 // if (isClientSide()) firebase.analytics()
 
 // Helpers
-export type FirestoreDoc = firebase.firestore.DocumentData
+export type FirestoreDoc = DocumentData
 // export interface FirestoreDoc {
 //   id: string
 //   [key: string]: any
 // }
 
-export const docWithId = (doc: firebase.firestore.DocumentSnapshot): FirestoreDoc => ({
+export const docWithId = (doc: DocumentSnapshot): FirestoreDoc => ({
   id: doc.id,
   ...doc.data()
 })
 
-export const getDocumentItem = async (docRef: firebase.firestore.DocumentReference): Promise<FirestoreDoc> => {
-  const docSnapshot = await docRef.get()
+export const getDocumentItem = async (docRef: DocumentReference): Promise<FirestoreDoc> => {
+  const docSnapshot = await getDoc(docRef)
   return docWithId(docSnapshot)
 }
 
-export const getCollectionItems = async (collectionRef: firebase.firestore.CollectionReference): Promise<FirestoreDoc[]> => {
-  const collectionSnapshots = await collectionRef.get()
+export const getCollectionItems = async (collectionRef: CollectionReference): Promise<FirestoreDoc[]> => {
+  const querySnapshot = await getDocs(collectionRef)
   const snapshots: FirestoreDoc[] = []
-  collectionSnapshots.forEach((snapshot) => {
-    snapshots.push(docWithId(snapshot))
+  querySnapshot.forEach((doc) => {
+    snapshots.push(docWithId(doc))
   })
   return snapshots
 }

@@ -1,9 +1,14 @@
 import React from 'react'
+import type { GetStaticPropsResult } from 'next'
 
 import { config } from 'config/config'
-
 import SigninWithEmailForm from 'components/user/SigninWithEmailForm'
 import SigninWithGoogleButton from 'components/user/SigninWithGoogleButton'
+
+interface SignInPageProps {
+  title: string
+  query?: { [key: string]: string }
+}
 
 function SigninPage (): React.ReactElement {
   return (
@@ -18,8 +23,10 @@ function SigninPage (): React.ReactElement {
 
 export default SigninPage
 
-export const getStaticProps = () => ({
-  props: {
-    title: 'Sign in' // used in _app.js
+export async function getStaticProps (): Promise<GetStaticPropsResult<SignInPageProps>> {
+  return {
+    props: {
+      title: 'Sign in'
+    }
   }
-})
+}

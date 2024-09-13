@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
+import type { GetStaticPropsResult } from 'next'
 import Router from 'next/router'
 import querystring from 'querystring'
+import { getAuth, signInWithEmailLink, isSignInWithEmailLink, User, updateProfile } from 'firebase/auth'
 
 import { config } from 'config/config'
 import { firebaseApp } from 'lib/data/firebase'
@@ -9,31 +11,33 @@ const titleCase = (str: string): string => str.replace(/(?:^|\s|[-"'([{])+\S/g, 
 const emailToName = (email: string): string => titleCase(email.split('@')[0].replace(/\./g, ' '))
 
 interface EmailAuthenticatePageProps {
-  query: { [key: string]: string }
+  title: string
+  query?: { [key: string]: string }
 }
 
 const EmailAuthenticatePage: React.FC<EmailAuthenticatePageProps> = ({ query }) => {
+  const auth = getAuth(firebaseApp)
   useEffect(() => {
     async function signinUserAndRedirect () {
-      if (firebaseApp.auth().isSignInWithEmailLink(window.location.href)) {
+      if (isSignInWithEmailLink(auth, window.location.href)) {
         let email = window.localStorage.getItem('emailForSignIn')
         if (!email) {
-          email = window.prompt('Please provide your email again for confirmation (the email was opened in a new window):') || ''
+          email = window.prompt('Please provide your email again for confirmation (the email was opened in a new window):') ?? ''
         }
         try {
-          const { user } = await firebaseApp.auth().signInWithEmailLink(email, window.location.href)
+          const { user }: { user: User } = await signInWithEmailLink(auth, email, window.location.href)
           if ((user != null) && !user.displayName) {
-            user.updateProfile({ displayName: emailToName(user.email || '') })
+            updateProfile(user, { displayName: emailToName(user.email ?? '') })
           }
           window.localStorage.removeItem('emailForSignIn')
           const { redirectTo } = querystring.parse(window.location.href.split('?')[1])
-          Router.push(redirectTo ? decodeURIComponent(redirectTo as string) : '/')
+          void Router.push(redirectTo ? decodeURIComponent(redirectTo as string) : '/')
         } catch (error) {
-          console.warn(`Warning: ${(error as Error).message || error}`, error)
+          console.warn(`Warning: ${(error as Error).message ?? error}`, error)
         }
       }
     }
-    signinUserAndRedirect()
+    void signinUserAndRedirect()
   }, [query])
 
   return (
@@ -45,8 +49,10 @@ const EmailAuthenticatePage: React.FC<EmailAuthenticatePageProps> = ({ query }) 
 
 export default EmailAuthenticatePage
 
-export const getStaticProps = () => ({
-  props: {
-    title: 'Logging in'
+export async function getStaticProps (): Promise<GetStaticPropsResult<EmailAuthenticatePageProps>> {
+  return {
+    props: {
+      title: 'Logging in'
+    }
   }
-})
+}

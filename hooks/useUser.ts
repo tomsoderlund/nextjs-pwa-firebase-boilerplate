@@ -3,7 +3,7 @@
   const { user } = useUser()
 */
 import { useState, useEffect } from 'react'
-import { User } from 'firebase/app'
+import { getAuth, User } from 'firebase/auth'
 
 import { firebaseApp } from 'lib/data/firebase'
 
@@ -14,16 +14,22 @@ interface UserHook {
 
 export default function useUser (): UserHook {
   const [user, setUser] = useState<User | null>(null)
+  const auth = getAuth(firebaseApp)
 
   useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((firebaseUser) => {
+      setUser(firebaseUser)
+    })
+    return () => unsubscribe()
+  }, [])
+
+  const signOut = async () => {
     try {
-      firebaseApp.auth().onAuthStateChanged(firebaseUser => setUser(firebaseUser))
+      await auth.signOut()
     } catch (error: unknown) {
       console.warn(`Warning: ${(error instanceof Error) ? error.message : 'Unknown error'}`)
     }
-  }, [])
-
-  const signOut = async () => await firebaseApp.auth().signOut()
+  }
 
   return { user, signOut }
 }

@@ -29,37 +29,32 @@ Then to use (“consume”) inside component or hook:
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
-import firebase from 'firebase/app'
-import { firebaseDB, docWithId, getCollectionItems, FirestoreDoc } from 'lib/data/firebase'
+import { collection, doc, getDoc, setDoc, updateDoc, deleteDoc, Timestamp, onSnapshot, serverTimestamp } from 'firebase/firestore'
+import { firebaseDB, docWithId, getDocumentItem, getCollectionItems, FirestoreDoc } from 'lib/data/firebase'
 import toSlug from 'lib/toSlug'
 import makeRestRequest from 'lib/makeRestRequest'
 
 export interface Article extends FirestoreDoc {
-  title: string
-  content?: string
-  dateCreated: firebase.firestore.Timestamp
-  dateUpdated?: firebase.firestore.Timestamp
+  id?: string
+  name: string
+  dateCreated: Timestamp
+  dateUpdated?: Timestamp
 }
 
 // Tip: if you don’t need SSR, you can move these inside the ArticlesContextProvider and create “chains” of child Firebase collections that depend on their parents
 // Collection/Item as Firebase references
-export const articlesCollectionRef = () => firebaseDB.collection('articles')
-export const articleRef = (articleId: string) => articlesCollectionRef().doc(articleId)
+export const articlesCollectionRef = () => collection(firebaseDB, 'articles')
+export const articleRef = (articleId: string) => doc(firebaseDB, 'articles', articleId)
 
 // Collection/Item as objects
 export const articlesCollection = async (): Promise<Article[]> => await getCollectionItems(articlesCollectionRef()) as Article[] // Add .orderBy('dateCreated') to sort by date but only rows where dateCreated exists
 
 export const articleObject = async (articleId: string) => {
-  const articleSnapshot = await articleRef(articleId).get()
-  if (!articleSnapshot.exists) {
-    const notFoundError = new Error(`Not found: ${articleId}`);
-    (notFoundError as any).code = 'ENOENT'
-    throw notFoundError
-  }
-  return docWithId(articleSnapshot)
+  const projRef = await articleRef(articleId)
+  return await getDocumentItem(projRef)
 }
 
-export const getArticleSlug = (article: Article) => `${toSlug(article.title)}-${article.id}`
+export const getArticleSlug = (article: Article) => article.id
 
 export const articlePath = (article: Article) => {
   return {
@@ -93,8 +88,11 @@ export const ArticlesContextProvider = (props: ArticlesInputProps) => {
   const [articles, setArticles] = useState<Article[]>(props.articles ?? [])
 
   useEffect(() => {
-    const unsubscribe = articlesCollectionRef().onSnapshot(() => {
-      articlesCollection().then((articles) => setArticles(articles))
+    const unsubscribe = onSnapshot(collection(firebaseDB, 'articles'), (snapshot) => {
+      const filteredArticles = snapshot.docs
+        .map(docWithId)
+        // .filter((article) => (article.ownerUserId === user?.uid) || isAdmin)
+      setArticles(filteredArticles as Article[])
     })
     return () => unsubscribe()
   }, [])
@@ -104,13 +102,13 @@ export const ArticlesContextProvider = (props: ArticlesInputProps) => {
   }
 
   const createArticle = async (variables: Partial<Article>) => {
-    const valuesWithTimestamp = { ...variables, dateCreated: firebase.firestore.FieldValue.serverTimestamp() }
+    const valuesWithTimestamp = { ...variables, dateCreated: serverTimestamp() }
 
-    const articleId = getArticleSlug(variables as Article)
+    const articleId = toSlug(variables.title)
     const newArticleRef = articleRef(articleId)
-    await newArticleRef.set(valuesWithTimestamp)
+    await setDoc(newArticleRef, valuesWithTimestamp)
 
-    const newArticleSnapshot = await newArticleRef.get()
+    const newArticleSnapshot = await getDoc(newArticleRef)
     const newArticleWithId: Article = docWithId(newArticleSnapshot) as Article
     setArticles([...articles, newArticleWithId])
     revalidateArticle(newArticleWithId)
@@ -119,9 +117,9 @@ export const ArticlesContextProvider = (props: ArticlesInputProps) => {
 
   const updateArticle = async (variables: Partial<Article>) => {
     const { id, dateCreated, ...values } = variables
-    const valuesWithTimestamp = { ...values, dateUpdated: firebase.firestore.FieldValue.serverTimestamp() }
-    await articleRef(id as string).update(valuesWithTimestamp)
-    const articleSnapshot = await articleRef(id as string).get()
+    const valuesWithTimestamp = { ...values, dateUpdated: serverTimestamp() }
+    await updateDoc(articleRef(id as string), valuesWithTimestamp)
+    const articleSnapshot = await getDoc(articleRef(id as string))
     const articleWithId: Article = docWithId(articleSnapshot) as Article
     setArticles(articles?.map((article) => (article.id === id ? articleWithId : article)))
     revalidateArticle(articleWithId)
@@ -129,7 +127,7 @@ export const ArticlesContextProvider = (props: ArticlesInputProps) => {
   }
 
   const deleteArticle = async (articleId: string) => {
-    await articleRef(articleId).delete()
+    await deleteDoc(articleRef(articleId))
     setArticles(articles?.filter(article => article.id !== articleId))
   }
 
