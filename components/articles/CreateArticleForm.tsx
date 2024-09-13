@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import showNotification from 'lib/showNotification'
 import { useArticles } from 'hooks/useArticles'
+import InputWithLabel from 'components/common/InputWithLabel'
 
 const DEFAULT_INPUTS = { name: '' }
 
@@ -10,8 +11,8 @@ const useCreateArticleForm = () => {
   const { createArticle } = useArticles()
   const [inProgress, setInProgress] = useState(false)
 
-  const handleInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    const value = target.type === 'checkbox' ? target.checked : target.value
+  const handleInputChange = ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const value = (target instanceof HTMLInputElement && target.type === 'checkbox') ? target.checked : target.value
     setInputs({ ...inputs, [target.name]: value })
   }
 
@@ -33,8 +34,9 @@ const CreateArticleForm = () => {
   const { inputs, inProgress, handleInputChange, handleSubmit } = useCreateArticleForm()
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <InputWithLabel
         name='name'
+        label='Article name'
         value={inputs.name}
         placeholder='Enter name of article'
         type='text'
