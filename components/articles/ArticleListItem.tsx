@@ -96,7 +96,7 @@ const usePromptAndDeleteArticle = (article: Article) => {
   const handleDelete = async () => {
     if (window.confirm(`Delete ${article.name}?`)) {
       const notificationId = showNotification('Deleting article...')
-      await deleteArticle?.(article.id)
+      await deleteArticle?.(article.id as string)
       showNotification('Article deleted', 'success', { notificationId })
     }
   }
