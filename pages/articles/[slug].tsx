@@ -46,7 +46,7 @@ const getArticlePageProps = async (slug: string): Promise<ArticleDetailsPageProp
   const article = convertDates(await articleObject(articleId as string)) as Article
   return {
     article,
-    title: article.title,
+    title: article.name,
     description: article.content
   }
 }

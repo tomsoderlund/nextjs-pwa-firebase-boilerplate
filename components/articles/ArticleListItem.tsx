@@ -9,7 +9,7 @@ interface ArticleListItemProps {
 }
 
 const ArticleListItem = ({ article, inProgress = false }: ArticleListItemProps) => {
-  const promptAndUpdateArticle = usePromptAndUpdateArticle(article, 'title')
+  const promptAndUpdateArticle = usePromptAndUpdateArticle(article, 'name')
   const promptAndDeleteArticle = usePromptAndDeleteArticle(article)
 
   return (
@@ -18,7 +18,7 @@ const ArticleListItem = ({ article, inProgress = false }: ArticleListItemProps) 
       title={`id: ${article.id}`}
     >
       <Link legacyBehavior {...articlePath(article)}>
-        <a>{article.title}</a>
+        <a>{article.name}</a>
       </Link>
 
       <span className='actions'>
@@ -94,7 +94,7 @@ const usePromptAndDeleteArticle = (article: Article) => {
   const { deleteArticle } = useArticles()
 
   const handleDelete = async () => {
-    if (window.confirm(`Delete ${article.title}?`)) {
+    if (window.confirm(`Delete ${article.name}?`)) {
       const notificationId = showNotification('Deleting article...')
       await deleteArticle?.(article.id)
       showNotification('Article deleted', 'success', { notificationId })

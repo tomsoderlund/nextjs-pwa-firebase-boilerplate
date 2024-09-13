@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import showNotification from 'lib/showNotification'
 import { useArticles } from 'hooks/useArticles'
 
-const DEFAULT_INPUTS = { title: '' }
+const DEFAULT_INPUTS = { name: '' }
 
 const useCreateArticleForm = () => {
   const [inputs, setInputs] = useState(DEFAULT_INPUTS)
@@ -34,9 +34,9 @@ const CreateArticleForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        name='title'
-        value={inputs.title}
-        placeholder='Enter an article title'
+        name='name'
+        value={inputs.name}
+        placeholder='Enter name of article'
         type='text'
         autoComplete='off'
         required

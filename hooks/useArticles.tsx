@@ -104,7 +104,7 @@ export const ArticlesContextProvider = (props: ArticlesInputProps) => {
   const createArticle = async (variables: Partial<Article>) => {
     const valuesWithTimestamp = { ...variables, dateCreated: serverTimestamp() }
 
-    const articleId = toSlug(variables.title)
+    const articleId = toSlug(variables.name as string)
     const newArticleRef = articleRef(articleId)
     await setDoc(newArticleRef, valuesWithTimestamp)
 
