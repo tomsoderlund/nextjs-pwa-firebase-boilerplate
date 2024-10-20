@@ -29,7 +29,7 @@ Then to use (“consume”) inside component or hook:
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
-import { firebase, firebaseDB, docWithId, getCollectionItems } from 'lib/data/firebase'
+import { firebase, firebaseDB, docWithId, doesDocumentExist, getCollectionItems } from 'lib/data/firebase'
 import toSlug from 'lib/toSlug'
 import makeRestRequest from 'lib/makeRestRequest'
 
@@ -90,10 +90,14 @@ export const ArticlesContextProvider = (props) => {
     // Create new article with a specified key
     const articleId = getArticleSlug(variables)
     const newArticleRef = articleRef(articleId)
-    await newArticleRef.set(valuesWithTimestamp)
-
     // Create new article with an auto-generated key (UUID)
     // const newArticleRef = await articlesCollectionRef().add(valuesWithTimestamp)
+
+    if (await doesDocumentExist(newArticleRef)) {
+      throw new Error(`Article '${articleId}' already exists`)
+    }
+
+    await newArticleRef.set(valuesWithTimestamp)
 
     // Update client-side state
     const newArticleSnapshot = await newArticleRef.get()
