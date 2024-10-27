@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore, getDoc, getDocs, DocumentData, DocumentSnapshot, DocumentReference, CollectionReference } from 'firebase/firestore'
+import { getFirestore, getDoc, getDocs, DocumentData, DocumentSnapshot, DocumentReference, CollectionReference, QuerySnapshot } from 'firebase/firestore'
 import 'firebase/auth'
 // import 'firebase/analytics'
 
@@ -20,10 +20,8 @@ export const firebaseDB = getFirestore(firebaseApp)
 
 // Helpers
 export type FirestoreDoc = DocumentData
-// export interface FirestoreDoc {
-//   id: string
-//   [key: string]: any
-// }
+
+export const doesDocumentExist = async (docRef: DocumentReference): Promise<boolean> => (await getDoc(docRef)).exists()
 
 export const docWithId = (doc: DocumentSnapshot): FirestoreDoc => ({
   id: doc.id,
@@ -36,7 +34,7 @@ export const getDocumentItem = async (docRef: DocumentReference): Promise<Firest
 }
 
 export const getCollectionItems = async (collectionRef: CollectionReference): Promise<FirestoreDoc[]> => {
-  const querySnapshot = await getDocs(collectionRef)
+  const querySnapshot: QuerySnapshot = await getDocs(collectionRef)
   const snapshots: FirestoreDoc[] = []
   querySnapshot.forEach((doc) => {
     snapshots.push(docWithId(doc))
