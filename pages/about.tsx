@@ -6,6 +6,7 @@
   },
 */
 import React from 'react'
+import type { GetStaticPropsContext, GetStaticPropsResult } from 'next'
 import Image from 'next/image'
 
 import { PageProps } from 'components/page/PageHead'
@@ -82,10 +83,11 @@ const AboutPage: React.FC<PageProps> = ({ title }) => {
 }
 export default AboutPage
 
-export const getStaticProps = async () => {
+export async function getStaticProps ({ params }: GetStaticPropsContext): Promise<GetStaticPropsResult<PageProps>> {
   return {
     props: {
-      title: 'About'
+      title: 'About',
+      description: `I created ${config.appName} because I’ve always been passionate about building fast, modern web apps using the best technology out there.`
     }
   }
 }
