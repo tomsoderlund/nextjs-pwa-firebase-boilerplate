@@ -36,7 +36,7 @@ export default function App ({ Component, pageProps, router }: AppProps): React.
       </main>
       <Footer />
 
-      <Link legacyBehavior href='/'><a className='button circle-menu-button'><img src='/icons/home.svg' alt='Home' /></a></Link>
+      <Link href='/' className='button circle-menu-button'><img src='/icons/home.svg' alt='Home' /></Link>
       <button className='circle-menu-button right'><img src='/icons/person.svg' alt='User' /></button>
       <button className='circle-menu-button bottom right'><img src='/icons/help.svg' alt='Help' /></button>
 
