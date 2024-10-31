@@ -1,19 +1,15 @@
 import React from 'react'
-// import Link from 'next/link'
+import Link from 'next/link'
 
 import { config } from 'config/config'
 
 const Footer = (): React.ReactElement => (
   <footer>
-    <TomorroworldLogo />
     <span>
-      {/*
-        <Link href='/about'><a>About</a></Link>
-        {' | '}
-        <Link href='/projects'><a>Sign in</a></Link>
-        {' | '}
-    */}
-      {config.appName} is an early access product from <a href='http://www.tomorroworld.com' target='_blank' rel='noopener noreferrer'>Tomorroworld</a>
+      <Link href='/about'>About {config.appName}</Link>
+      {' | '}
+      In early access from <a href='http://www.tomorroworld.com' target='_blank' rel='noopener noreferrer'>Tomorroworld</a>
+      <TomorroworldLogo />
       {' | '}
       <a href={`mailto:contact+${config.appSlug as string}@tomorroworld.com`} target='_blank' rel='noopener noreferrer'>Contact</a>
     </span>
@@ -25,10 +21,10 @@ const Footer = (): React.ReactElement => (
       footer {
         color: #777777;
         height: unset;
-        padding: 0.5em;
+        padding: 0.4em 0.5em 0.6em;
       }
 
-      a {
+      footer :global(a) {
         color: inherit;
         border-color: inherit;
       }
@@ -47,14 +43,13 @@ const TomorroworldLogo = (): React.ReactElement => (
     />
     <style jsx>{`
       a {
-        margin-right: 0.5em;
+        margin-left: 0.2em;
         border-bottom: none;
-        line-height: 0;
       }
       img {
-        width: 20px;
-        height: 20px;
-        border-radius: 2px;
+        width: 18px;
+        height: 18px;
+        vertical-align: bottom;
       }
     `}
     </style>
