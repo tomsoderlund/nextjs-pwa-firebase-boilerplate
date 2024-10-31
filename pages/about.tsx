@@ -1,3 +1,10 @@
+/*
+  Don't forget to add to next.config.js:
+
+  images: {
+    domains: ['www.tomsoderlund.com']
+  },
+*/
 import React from 'react'
 import Image from 'next/image'
 
