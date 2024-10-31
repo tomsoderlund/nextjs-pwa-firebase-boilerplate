@@ -31,12 +31,12 @@ const AboutPage: React.FC<PageProps> = ({ title }) => {
           </p>
           <p>
             You might find my other projects interesting too.
-            For example, my <a href='https://www.tomsoderlund.com/articles' target='_blank' rel='noopener noreferrer'>startup and AI blog</a>,
-            or my web and mobile apps at <a href='https://www.tomorroworld.com/#projects' target='_blank' rel='noopener noreferrer'>Tomorroworld</a>.
+            For example, my <a href='https://www.tomsoderlund.com/articles' target='_blank' rel='noopener'>startup and AI blog</a>,
+            or my web and mobile apps at <a href='https://www.tomorroworld.com/#projects' target='_blank' rel='noopener'>Tomorroworld</a>.
           </p>
           <p>
             If you’re curious to learn more or collaborate,
-            feel free to email me or check out <a href='https://www.tomorroworld.com/' target='_blank' rel='noopener noreferrer'>Tomorroworld</a> for a deeper
+            feel free to email me or check out <a href='https://www.tomorroworld.com/' target='_blank' rel='noopener'>Tomorroworld</a> for a deeper
             dive into my world of projects, ranging from AI to sustainability tech.
           </p>
         </div>
