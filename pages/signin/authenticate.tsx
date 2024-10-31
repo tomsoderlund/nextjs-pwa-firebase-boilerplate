@@ -21,17 +21,17 @@ const EmailAuthenticatePage: React.FC<EmailAuthenticatePageProps> = ({ query }) 
     async function signinUserAndRedirect () {
       if (isSignInWithEmailLink(auth, window.location.href)) {
         let email = window.localStorage.getItem('emailForSignIn')
-        if (!email) {
+        if (email === null) {
           email = window.prompt('Please provide your email again for confirmation (the email was opened in a new window):') ?? ''
         }
         try {
           const { user }: { user: User } = await signInWithEmailLink(auth, email, window.location.href)
-          if ((user != null) && !user.displayName) {
-            updateProfile(user, { displayName: emailToName(user.email ?? '') })
+          if ((user != null) && user.displayName === null) {
+            void updateProfile(user, { displayName: emailToName(user.email ?? '') })
           }
           window.localStorage.removeItem('emailForSignIn')
           const { redirectTo } = querystring.parse(window.location.href.split('?')[1])
-          void Router.push(redirectTo ? decodeURIComponent(redirectTo as string) : '/')
+          void Router.push(redirectTo !== undefined ? decodeURIComponent(redirectTo as string) : '/')
         } catch (error) {
           console.warn(`Warning: ${(error as Error).message ?? error}`, error)
         }
