@@ -62,6 +62,9 @@ const AboutPage: React.FC<PageProps> = ({ title }) => {
           border-radius: 50%;
           margin-right: 1.5rem;
         }
+        a {
+          font-weight: bold;
+        }
 
         @media (max-width: 600px) {
           .column {
