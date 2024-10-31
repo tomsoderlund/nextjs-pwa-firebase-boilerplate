@@ -8,7 +8,7 @@ const Footer = (): React.ReactElement => (
     <span>
       <Link href='/about'>About {config.appName}</Link>
       {' | '}
-      In early access from <a href='http://www.tomorroworld.com' target='_blank' rel='noopener noreferrer'>Tomorroworld</a>
+      By <a href='http://www.tomorroworld.com' target='_blank' rel='noopener noreferrer'>Tomorroworld</a>
       <TomorroworldLogo />
       {' | '}
       <a href={`mailto:contact+${config.appSlug as string}@tomorroworld.com`} target='_blank' rel='noopener noreferrer'>Contact</a>
