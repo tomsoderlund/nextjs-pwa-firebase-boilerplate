@@ -60,6 +60,10 @@ const AboutPage: React.FC<PageProps> = ({ title }) => {
           .column {
             flex-direction: column;
           }
+          .about :global(.avatar) {
+            border-radius: 50%;
+            margin: 0 auto 1em;
+          }
         }
       `}
       </style>
