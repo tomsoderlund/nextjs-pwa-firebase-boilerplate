@@ -1,6 +1,6 @@
 ![App icon](public/favicon.png)
 
-# Next.js PWA Firebase
+# Next.js Firebase PWA
 
 **Next.js serverless PWA with Firebase and React Hooks**
 
@@ -74,7 +74,7 @@ If you navigate to `http://localhost:3004/` you will see a web page with a list 
 
 ### Change app name and description
 
-- Do search/replace for the `name`’s “Next.js PWA Firebase”, “nextjs-pwa-firebase-boilerplate” and `description` “Next.js serverless PWA with Firebase and React Hooks” to something else.
+- Do search/replace for the `name`’s “Next.js Firebase PWA”, “nextjs-pwa-firebase-boilerplate” and `description` “Next.js serverless PWA with Firebase and React Hooks” to something else.
 - Change the `version` in `package.json` to `0.1.0` or similar.
 - Change the `license` in `package.json` to whatever suits your project.
 
