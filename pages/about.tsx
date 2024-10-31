@@ -16,7 +16,7 @@ const AboutPage: React.FC<PageProps> = ({ title }) => {
           style={{ borderRadius: '50%', marginRight: '1.5rem' }}
         />
         <div>
-          <h1>About</h1>
+          <h1>{ title }</h1>
           <p>
             I created <strong>{config.appName}</strong> because I’ve always been passionate about building fast,
             modern web apps using the best technology out there. This project combines the power of React Hooks,
