@@ -22,6 +22,7 @@ const Footer = (): React.ReactElement => (
         color: #777777;
         height: unset;
         padding: 0.4em 0.5em 0.6em;
+        text-align: center;
       }
 
       footer :global(a) {

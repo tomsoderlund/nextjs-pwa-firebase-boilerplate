@@ -13,10 +13,10 @@ const AboutPage: React.FC<PageProps> = ({ title }) => {
           alt='Tom Söderlund'
           width={150}
           height={150}
-          style={{ borderRadius: '50%', marginRight: '1.5rem' }}
+          className='avatar'
         />
         <div>
-          <h1>{ title }</h1>
+          <h1>{title}</h1>
           <p>
             I created <strong>{config.appName}</strong> because I’ve always been passionate about building fast,
             modern web apps using the best technology out there. This project combines the power of React Hooks,
@@ -31,12 +31,12 @@ const AboutPage: React.FC<PageProps> = ({ title }) => {
           </p>
           <p>
             You might find my other projects interesting too.
-            For example, my <a href='https://www.tomsoderlund.com/articles' target='_blank' rel='noopener'>startup and AI blog</a>,
-            or my web and mobile apps at <a href='https://www.tomorroworld.com/#projects' target='_blank' rel='noopener'>Tomorroworld</a>.
+            For example, my <a href='https://www.tomsoderlund.com/articles' target='_blank' rel='noopener noreferrer'>startup and AI blog</a>,
+            or my web and mobile apps at <a href='https://www.tomorroworld.com/#projects' target='_blank' rel='noopener noreferrer'>Tomorroworld</a>.
           </p>
           <p>
             If you’re curious to learn more or collaborate,
-            feel free to email me or check out <a href='https://www.tomorroworld.com/' target='_blank' rel='noopener'>Tomorroworld</a> for a deeper
+            feel free to email me or check out <a href='https://www.tomorroworld.com/' target='_blank' rel='noopener noreferrer'>Tomorroworld</a> for a deeper
             dive into my world of projects, ranging from AI to sustainability tech.
           </p>
         </div>
@@ -50,6 +50,16 @@ const AboutPage: React.FC<PageProps> = ({ title }) => {
         .column {
           display: flex;
           align-items: flex-start;
+        }
+        .about :global(.avatar) {
+          border-radius: 50%;
+          margin-right: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+          .column {
+            flex-direction: column;
+          }
         }
       `}
       </style>
