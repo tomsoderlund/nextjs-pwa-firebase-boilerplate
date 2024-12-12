@@ -59,7 +59,9 @@ Install dependencies:
 
     yarn  # or npm install
 
-Start it by doing the following:
+At this point, you need to [set up Firebase Firestore, see below](#set-up-firebase-database-firestore).
+
+When Firebase is set up, start the web app by:
 
     yarn dev
 
